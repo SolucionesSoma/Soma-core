@@ -1,7 +1,7 @@
 ﻿import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { Moon, Sun, Menu, X, ArrowRight } from 'lucide-react';
-import { footerConfig, siteConfig } from '../config';
+import { footerConfig} from '../config';
 
 const NAV_ITEMS = footerConfig.quickLinks;
 
