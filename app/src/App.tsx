@@ -5,7 +5,9 @@ import { siteConfig } from './config';
 import Header from './sections/Header';
 import Hero from './sections/Hero';
 import AlbumCube from './sections/AlbumCube';
-import ParallaxGallery from './sections/ParallaxGallery';
+import OurWorkSection from './sections/parallax/OurWorkSection';
+import TechMarqueeSection from './sections/parallax/TechMarqueeSection';
+import AchievementsSection from './sections/parallax/AchievementsSection';
 import TourSchedule from './sections/TourSchedule';
 import Footer from './sections/Footer';
 import CookieConsentBanner from './components/CookieConsentBanner';
@@ -68,12 +70,13 @@ function App() {
       {/* Hero Section - Immersive landing */}
       <Hero />
 
-      {/* Services Cube Section - 3D showcase */}
+      
+      {/* Work / Marquee / Achievements Sections */}
+      <TechMarqueeSection />
+      <OurWorkSection />
       <AlbumCube />
-
-      {/* Parallax Gallery Section */}
-      <ParallaxGallery />
-
+      <AchievementsSection />
+      
       {/* Process Section */}
       <TourSchedule />
 

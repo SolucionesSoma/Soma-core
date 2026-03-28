@@ -77,21 +77,21 @@ export const albumCubeConfig: AlbumCubeConfig = {
       id: 1,
       title: "Software a la medida",
       subtitle: "Desarrollo",
-      image: "/images/gallery2.jpg",
+      image: "/images/gallery2.webp",
       description: "Creamos plataformas, paneles y herramientas digitales adaptadas a tu operación.",
     },
     {
       id: 2,
       title: "Soluciones con IA",
       subtitle: "Inteligencia Artificial",
-      image: "/images/gallery3.jpg",
+      image: "/images/gallery3.webp",
       description: "Aplicamos IA donde genera valor: clasificación, análisis, predicción y asistencia.",
     },
     {
       id: 3,
       title: "Optimización",
       subtitle: "Procesos",
-      image: "/images/gallery4.jpg",
+      image: "/images/gallery4.webp",
       description: "Analizamos cuellos de botella y rediseñamos procesos para reducir fricción.",
     },
     {
@@ -104,11 +104,11 @@ export const albumCubeConfig: AlbumCubeConfig = {
   ],
   cubeTextures: [
     "/images/gallery1.jpg",
-    "/images/gallery2.jpg",
-    "/images/gallery3.jpg",
-    "/images/gallery4.jpg",
+    "/images/gallery2.webp",
+    "/images/gallery3.webp",
+    "/images/gallery4.webp",
     "/images/gallery5.jpg",
-    "/images/gallery6.jpg",
+    "/images/gallery6.webp",
   ],
   scrollHint: "Descubre nuestros servicios",
 };
@@ -157,23 +157,23 @@ export const parallaxGalleryConfig: ParallaxGalleryConfig = {
   ],
   endCtaText: "¿Listo para transformar tu empresa?",
   parallaxImagesTop: [
-    { id: 1, src: "/images/portfolio/portfolio1.png", alt: "Abogado Hernan Morantes", href:"https://abogadohernanmorantes.com/" },
-    { id: 2, src: "/images/portfolio/portfolio5.png", alt: "Arquitecto Jesus", href:"https://jesus-morantes.vercel.app/" },
-    { id: 3, src: "/images/portfolio/portfolio3.png", alt: "Montt.ink tatto", href:"https://montt-ink.vercel.app/" },
-    { id: 4, src: "/images/portfolio/portfolio4.png", alt: "Crediseguros", href:"https://crediseguros.vercel.app/" },
+    { id: 1, src: "/images/portfolio/portfolio1.webp", alt: "Abogado Hernan Morantes", href:"https://abogadohernanmorantes.com/" },
+    { id: 2, src: "/images/portfolio/portfolio5.webp", alt: "Arquitecto Jesus", href:"https://jesus-morantes.vercel.app/" },
+    { id: 3, src: "/images/portfolio/portfolio3.webp", alt: "Montt.ink tatto", href:"https://montt-ink.vercel.app/" },
+    { id: 4, src: "/images/portfolio/portfolio4.webp", alt: "Crediseguros", href:"https://crediseguros.vercel.app/" },
     
   ],
   parallaxImagesBottom: [
-   { id: 8, src: "/images/portfolio/portfolio3.png", alt: "Montt.ink tatto", href:"https://montt-ink.vercel.app/" },
-    { id: 9, src: "/images/portfolio/portfolio1.png", alt: "Abogado Hernan Morantes", href:"https://abogadohernanmorantes.com/" },
-    { id: 10, src: "/images/portfolio/portfolio4.png", alt: "Crediseguros", href:"https://crediseguros.vercel.app/" },
-   { id: 11, src: "/images/portfolio/portfolio2.png", alt: "Soft Asesorias", href:"https://soft-asesorias-mocha.vercel.app/" },
-   { id: 12, src: "/images/portfolio/portfolio5.png", alt: "Arquitecto Jesus", href:"https://jesus-morantes.vercel.app/" },
+   { id: 8, src: "/images/portfolio/portfolio3.webp", alt: "Montt.ink tatto", href:"https://montt-ink.vercel.app/" },
+    { id: 9, src: "/images/portfolio/portfolio1.webp", alt: "Abogado Hernan Morantes", href:"https://abogadohernanmorantes.com/" },
+    { id: 10, src: "/images/portfolio/portfolio4.webp", alt: "Crediseguros", href:"https://crediseguros.vercel.app/" },
+   { id: 11, src: "/images/portfolio/portfolio2.webp", alt: "Soft Asesorias", href:"https://soft-asesorias-mocha.vercel.app/" },
+   { id: 12, src: "/images/portfolio/portfolio5.webp", alt: "Arquitecto Jesus", href:"https://jesus-morantes.vercel.app/" },
   ],
   galleryImages: [
         {
       id: 1,
-      src: "/images/news2.png",
+      src: "/images/news2.webp",
       title: "Primer y tercer puesto - Hackathon Metropolitana",
       date: "2024",
       description:
@@ -182,7 +182,7 @@ export const parallaxGalleryConfig: ParallaxGalleryConfig = {
     },
     {
       id: 2,
-      src: "/images/news1.png",
+      src: "/images/news1.webp",
       title: "Publicación científica en IA",
       date: "2025",
       description:
@@ -191,7 +191,7 @@ export const parallaxGalleryConfig: ParallaxGalleryConfig = {
     },
     {
       id: 3,
-      src: "/images/news4.png",
+      src: "/images/news4.webp",
       title: "Segundo y tercer lugar - HackDay 2024 (Indra)",
       date: "2024",
       description:
@@ -225,7 +225,7 @@ export interface TourScheduleConfig {
 export const tourScheduleConfig: TourScheduleConfig = {
   sectionLabel: "Nuestro Proceso",
   sectionTitle: "De la idea a la solución",
-  vinylImage: "/images/gallery3.jpg",
+  vinylImage: "/images/gallery3.webp",
   buyButtonText: "Iniciar",
   detailsButtonText: "Ver detalles",
   bottomNote: "Cada proyecto es único y merece una solución a la medida.",
@@ -245,7 +245,7 @@ export const tourScheduleConfig: TourScheduleConfig = {
       time: "Paso 2",
       city: "Solución",
       venue: "Definimos la estructura técnica y funcional",
-      image: "/images/gallery2.jpg",
+      image: "/images/gallery2.webp",
     },
     {
       id: 3,
@@ -253,7 +253,7 @@ export const tourScheduleConfig: TourScheduleConfig = {
       time: "Paso 3",
       city: "Desarrollo",
       venue: "Construimos rápido con foco en utilidad real",
-      image: "/images/gallery4.jpg",
+      image: "/images/gallery4.webp",
     },
     {
       id: 4,
@@ -302,9 +302,9 @@ export interface FooterConfig {
 }
 
 export const footerConfig: FooterConfig = {
-  portraitImage: "/images/founder-white.png",
-  portraitImageLight: "/images/founder-white.png",
-  portraitImageDark: "/images/founder-black.png",
+  portraitImage: "/images/founder-white.webp",
+  portraitImageLight: "/images/founder-white.webp",
+  portraitImageDark: "/images/founder-black.webp",
   portraitAlt: "SOMA Team",
   artistName: "David Morantes",
   artistSubtitle: "CEO · CIO · COO",
@@ -346,3 +346,4 @@ export const footerConfig: FooterConfig = {
     { icon: "email", label: "Correo", href: "mailto:contacto@somaacoretech.com" },
   ],
 };
+

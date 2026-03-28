@@ -121,19 +121,19 @@ const Footer = ({ theme }: FooterProps) => {
 
           <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
             <article
-              className="order-2 overflow-hidden rounded-[2rem] border border-[var(--line)] bg-[var(--bg-card)] lg:order-1"
+              className="order-1 overflow-hidden rounded-[2rem] border border-[var(--line)] bg-[var(--bg-card)] lg:order-1"
               style={{ boxShadow: 'var(--shadow)' }}
             >
               <div className="aspect-[5/5] overflow-hidden">
                 <img
                   src={theme === 'dark' ? footerConfig.portraitImageDark || footerConfig.portraitImage : footerConfig.portraitImageLight || footerConfig.portraitImage}
                   alt={footerConfig.portraitAlt || footerConfig.artistName}
-                  className="h-full w-full object-cover transition duration-500 hover:scale-105"
+                  className="h-full w-full object-cover transition duration-500 md:hover:scale-105"
                 />
               </div>
             </article>
 
-            <div ref={founderRef} className="order-1 lg:order-2">
+            <div ref={founderRef} className="order-2 lg:order-2">
               <article
                 className="rounded-[2rem] border border-[var(--line)] bg-[var(--bg-card)] p-8 sm:p-10"
                 style={{ boxShadow: 'var(--shadow)' }}
@@ -208,7 +208,7 @@ const Footer = ({ theme }: FooterProps) => {
               </p>
 
               <div className="space-y-4">
-                <div className="flex items-start gap-4 rounded-xl border border-[var(--line)] bg-[var(--bg-card)] p-4 transition-colors hover:border-neon-cyan/30">
+                <div className="flex items-start gap-4 rounded-xl border border-[var(--line)] bg-[var(--bg-card)] p-4 transition-colors md:hover:border-neon-cyan/30">
                   <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-neon-cyan/10">
                     <Phone className="h-5 w-5 text-neon-cyan" />
                   </div>
@@ -218,7 +218,7 @@ const Footer = ({ theme }: FooterProps) => {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4 rounded-xl border border-[var(--line)] bg-[var(--bg-card)] p-4 transition-colors hover:border-neon-cyan/30">
+                <div className="flex items-start gap-4 rounded-xl border border-[var(--line)] bg-[var(--bg-card)] p-4 transition-colors md:hover:border-neon-cyan/30">
                   <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-neon-cyan/10">
                     <Mail className="h-5 w-5 text-neon-cyan" />
                   </div>
@@ -226,14 +226,14 @@ const Footer = ({ theme }: FooterProps) => {
                     <p className="mb-1 text-xs uppercase tracking-wider text-[var(--muted)]">Email</p>
                     <a
                       href={`mailto:${footerConfig.email}`}
-                      className="font-medium text-[var(--fg)] transition-colors hover:text-neon-cyan"
+                      className="font-medium text-[var(--fg)] transition-colors md:hover:text-neon-cyan"
                     >
                       {footerConfig.email}
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4 rounded-xl border border-[var(--line)] bg-[var(--bg-card)] p-4 transition-colors hover:border-neon-cyan/30">
+                <div className="flex items-start gap-4 rounded-xl border border-[var(--line)] bg-[var(--bg-card)] p-4 transition-colors md:hover:border-neon-cyan/30">
                   <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-neon-cyan/10">
                     <MapPin className="h-5 w-5 text-neon-cyan" />
                   </div>
@@ -315,7 +315,7 @@ const Footer = ({ theme }: FooterProps) => {
                       href={social.href}
                       target={social.href.startsWith('mailto:') ? undefined : '_blank'}
                       rel={social.href.startsWith('mailto:') ? undefined : 'noreferrer'}
-                      className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--line)] text-[var(--muted)] transition-all hover:border-neon-cyan/50 hover:text-neon-cyan"
+                      className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--line)] text-[var(--muted)] transition-all md:hover:border-neon-cyan/50 md:hover:text-neon-cyan"
                       aria-label={social.label}
                       title={social.label}
                     >
@@ -403,4 +403,3 @@ const Footer = ({ theme }: FooterProps) => {
 };
 
 export default Footer;
-

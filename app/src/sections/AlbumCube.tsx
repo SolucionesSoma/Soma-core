@@ -1,11 +1,12 @@
-import { useRef, useEffect, useState, Suspense } from 'react';
+﻿import { useEffect, useRef, useState, Suspense } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { useTexture, Environment } from '@react-three/drei';
+import { useTexture } from '@react-three/drei';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import * as THREE from 'three';
+import { Brain, Code2, Lightbulb, Workflow } from 'lucide-react';
 import { albumCubeConfig } from '../config';
-import { ArrowRight, Code2, Brain, Workflow, Lightbulb } from 'lucide-react';
+import { useIsMobile } from '../hooks/use-mobile';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,43 +17,24 @@ interface CubeProps {
 const Cube = ({ rotationProgress }: CubeProps) => {
   const meshRef = useRef<THREE.Mesh>(null);
   const { viewport } = useThree();
-
   const textures = useTexture(albumCubeConfig.cubeTextures);
-
-  // Responsive cube size
-  const cubeSize = Math.min(viewport.width * 0.35, 2.5);
+  const cubeSize = Math.min(viewport.width * 0.42, 3.25);
 
   useFrame(() => {
-    if (meshRef.current) {
-      // Map rotation progress (0-1) to rotation angles
-      const targetRotationY = rotationProgress * Math.PI * 2;
-      const targetRotationX = Math.sin(rotationProgress * Math.PI) * 0.2;
+    if (!meshRef.current) return;
 
-      // Smooth interpolation
-      meshRef.current.rotation.y = THREE.MathUtils.lerp(
-        meshRef.current.rotation.y,
-        targetRotationY,
-        0.1
-      );
-      meshRef.current.rotation.x = THREE.MathUtils.lerp(
-        meshRef.current.rotation.x,
-        targetRotationX,
-        0.1
-      );
-    }
+    const targetRotationY = rotationProgress * Math.PI * 1.6;
+    const targetRotationX = Math.sin(rotationProgress * Math.PI) * 0.18;
+
+    meshRef.current.rotation.y = THREE.MathUtils.lerp(meshRef.current.rotation.y, targetRotationY, 0.08);
+    meshRef.current.rotation.x = THREE.MathUtils.lerp(meshRef.current.rotation.x, targetRotationX, 0.08);
   });
 
   return (
     <mesh ref={meshRef} castShadow>
       <boxGeometry args={[cubeSize, cubeSize, cubeSize]} />
       {textures.map((texture, index) => (
-        <meshStandardMaterial
-          key={index}
-          attach={`material-${index}`}
-          map={texture}
-          roughness={0.3}
-          metalness={0.2}
-        />
+        <meshStandardMaterial key={index} attach={`material-${index}`} map={texture} roughness={0.15} metalness={0.05} />
       ))}
     </mesh>
   );
@@ -61,198 +43,148 @@ const Cube = ({ rotationProgress }: CubeProps) => {
 const SERVICE_ICONS = [Code2, Brain, Workflow, Lightbulb];
 
 const AlbumCube = () => {
-  // Null check: if config is empty, do not render
   if (albumCubeConfig.albums.length === 0 || albumCubeConfig.cubeTextures.length === 0) {
     return null;
   }
 
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLDivElement>(null);
-  const infoRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
+  const sectionRef = useRef<HTMLElement>(null);
   const [rotationProgress, setRotationProgress] = useState(0);
   const [currentAlbumIndex, setCurrentAlbumIndex] = useState(0);
-  const [blurAmount, setBlurAmount] = useState(0);
-  const [letterSpacing, setLetterSpacing] = useState(0);
-  const scrollTriggerRef = useRef<ScrollTrigger | null>(null);
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  useEffect(() => {
+    setReducedMotion(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  }, []);
 
   useEffect(() => {
     if (!sectionRef.current) return;
 
     const st = ScrollTrigger.create({
       trigger: sectionRef.current,
-      start: 'top top',
-      end: '+=300%',
-      scrub: 1,
-      pin: true,
+      start: isMobile ? 'top 92%' : 'top 80%',
+      end: isMobile ? 'bottom 8%' : 'bottom 20%',
+      scrub: reducedMotion ? false : isMobile ? 0.35 : 0.6,
+      invalidateOnRefresh: true,
       onUpdate: (self) => {
         const progress = self.progress;
         setRotationProgress(progress);
 
-        // Calculate current album index
         const albumIndex = Math.min(
-          Math.floor(progress * 4),
+          Math.floor(progress * albumCubeConfig.albums.length),
           albumCubeConfig.albums.length - 1
         );
         setCurrentAlbumIndex(albumIndex);
-
-        // Velocity-based blur effect
-        const velocity = Math.abs(self.getVelocity());
-        const targetBlur = Math.min(velocity / 500, 8);
-        const targetSpacing = Math.min(velocity / 100, 30);
-
-        setBlurAmount(prev => prev + (targetBlur - prev) * 0.2);
-        setLetterSpacing(prev => prev + (targetSpacing - prev) * 0.2);
       },
     });
 
-    scrollTriggerRef.current = st;
+    return () => st.kill();
+  }, [isMobile, reducedMotion]);
 
-    return () => {
-      st.kill();
-    };
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        '.service-item',
+        { y: 24, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.55,
+          stagger: 0.1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 75%',
+          },
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
-  const currentAlbum = albumCubeConfig.albums[currentAlbumIndex];
-  const CurrentIcon = SERVICE_ICONS[currentAlbumIndex] || Code2;
-
-  const scrollToContact = () => {
-    const element = document.getElementById('contacto');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
-    <section
-      id="servicios"
-      ref={sectionRef}
-      className="relative w-full h-screen bg-transparent overflow-hidden"
-    >
-      {/* Animated background gradient */}
-      <div className="absolute inset-0 z-0">
-        <div 
-          className="absolute inset-0 opacity-30"
-          style={{
-            background: `radial-gradient(ellipse at ${30 + rotationProgress * 40}% 50%, rgba(0, 212, 255, 0.15) 0%, transparent 50%)`
-          }}
-        />
+    <section id="servicios" ref={sectionRef} className="relative w-full overflow-hidden bg-transparent py-20">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <div className="absolute left-[-8rem] top-8 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl" />
+        <div className="absolute right-[-8rem] top-24 h-72 w-72 rounded-full bg-sky-400/10 blur-3xl" />
       </div>
 
-      {/* Background title with blur effect */}
-      <div
-        ref={titleRef}
-        className="absolute inset-0 flex items-center justify-center pointer-events-none z-0"
-        style={{
-          filter: `blur(${blurAmount}px)`,
-          letterSpacing: `${letterSpacing}px`,
-        }}
-      >
-        <h2 className="font-display text-[18vw] text-white/[0.03] uppercase whitespace-nowrap select-none">
-          {currentAlbum.subtitle}
-        </h2>
-      </div>
-
-      {/* Section label */}
-      <div className="absolute top-12 left-12 z-30">
-        <div className="inline-flex items-center gap-2 rounded-full border border-neon-cyan/30 bg-neon-cyan/10 px-4 py-2">
-          <span className="text-xs font-mono-custom uppercase tracking-wider text-neon-cyan">
-            Nuestros Servicios
-          </span>
-        </div>
-      </div>
-
-      {/* 3D Canvas */}
-      <div className="absolute inset-0 z-10 flex items-center justify-center">
-        <div className="w-full h-full max-w-4xl max-h-4xl">
-          <Canvas
-            camera={{ position: [0, 0, 6], fov: 45 }}
-            gl={{ antialias: true, alpha: true }}
-          >
-            <Suspense fallback={null}>
-              <ambientLight intensity={0.5} />
-              <spotLight
-                position={[10, 10, 10]}
-                angle={0.15}
-                penumbra={1}
-                intensity={1.2}
-                castShadow
-              />
-              <spotLight
-                position={[-10, -10, -10]}
-                angle={0.15}
-                penumbra={1}
-                intensity={0.6}
-                color="#9DC4FF"
-              />
-              <pointLight position={[0, 0, 5]} intensity={0.6} color="#00D4FF" />
-              <Cube rotationProgress={rotationProgress} />
-              <Environment preset="city" />
-            </Suspense>
-          </Canvas>
-        </div>
-      </div>
-
-      {/* Service info overlay */}
-      <div 
-        ref={infoRef}
-        className="absolute bottom-12 left-12 z-20 max-w-md"
-      >
-        <div className="flex items-center gap-3 mb-4">
-          <div className="w-10 h-10 rounded-xl bg-neon-cyan/20 flex items-center justify-center">
-            <CurrentIcon className="w-5 h-5 text-neon-cyan" />
+      <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-12">
+        <div className="mb-12">
+          <div>
+            <p className="mb-4 inline-flex rounded-full border border-cyan-500/20 bg-cyan-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-700 dark:text-cyan-200">
+              Nuestros Servicios
+            </p>
+            <h2 className="text-3xl font-black tracking-tight text-[var(--fg)] sm:text-4xl">
+              Soluciones tecnológicas a la medida
+            </h2>
+            <p className="mt-2 max-w-md text-base leading-8 text-[var(--muted)]">
+              Diseño moderno, ejecución rápida y experiencia de navegación fluida.
+            </p>
           </div>
-          <p className="font-mono-custom text-xs text-neon-soft/60 uppercase tracking-wider">
-            Servicio {String(currentAlbum.id).padStart(2, '0')} / {String(albumCubeConfig.albums.length).padStart(2, '0')}
-          </p>
         </div>
-        
-        <h3 className="font-display text-4xl md:text-5xl text-white mb-3 transition-all duration-300 leading-tight">
-          {currentAlbum.title}
-        </h3>
-        
-        <p className="font-mono-custom text-sm text-white/60 mb-4 leading-relaxed">
-          {currentAlbum.description}
-        </p>
 
-        <button 
-          onClick={scrollToContact}
-          className="group inline-flex items-center gap-2 text-neon-cyan hover:text-white transition-colors"
-        >
-          <span className="text-sm font-medium">Saber más</span>
-          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-        </button>
-      </div>
+        <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[1fr_0.85fr]">
+          <div className="service-item relative min-h-[360px] lg:min-h-[460px]">
+            <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+              <div className="absolute left-8 top-10 h-48 w-48 rounded-full bg-cyan-400/20 blur-3xl" />
+              <div className="absolute bottom-12 right-10 h-56 w-56 rounded-full bg-blue-400/20 blur-3xl" />
+            </div>
 
-      {/* Progress indicator */}
-      <div className="absolute right-12 top-1/2 -translate-y-1/2 z-20">
-        <div className="flex flex-col gap-3">
-          {albumCubeConfig.albums.map((album, index) => (
-            <div
-              key={album.id}
-              className={`w-1 rounded-full transition-all duration-500 ${
-                index === currentAlbumIndex
-                  ? 'bg-neon-cyan h-12'
-                  : 'bg-white/20 h-4 hover:bg-white/40'
-              }`}
-            />
-          ))}
+            <div className="relative h-[320px] w-full sm:h-[380px] lg:h-[470px]">
+              <Canvas dpr={[1, 1.5]} camera={{ position: [0, 0, 5.9], fov: 44 }} gl={{ antialias: true, alpha: true }}>
+                <Suspense fallback={null}>
+                  <ambientLight intensity={0.95} />
+                  <hemisphereLight args={['#e0f2fe', '#0f172a', 0.45]} />
+                  <spotLight position={[8, 8, 8]} angle={0.2} penumbra={1} intensity={1.0} />
+                  <spotLight position={[-8, -8, -8]} angle={0.2} penumbra={1} intensity={0.7} color="#9DC4FF" />
+                  <pointLight position={[0, 0, 4]} intensity={0.75} color="#00D4FF" />
+                  <Cube rotationProgress={rotationProgress} />
+                </Suspense>
+              </Canvas>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-1">
+            {albumCubeConfig.albums.map((album, index) => {
+              const Icon = SERVICE_ICONS[index] || Code2;
+              const isActive = index === currentAlbumIndex;
+              const shortDescription =
+                album.description.length > 100 ? `${album.description.slice(0, 100).trimEnd()}...` : album.description;
+
+              return (
+                <article
+                  key={album.id}
+                  className={`service-item rounded-xl border p-3.5 transition-all duration-300 ${
+                    isActive
+                      ? 'border-cyan-500/35 bg-cyan-500/10 dark:bg-cyan-500/15'
+                      : 'border-[var(--line)] bg-[var(--bg-card)] md:hover:border-[var(--line-strong)]'
+                  }`}
+                  style={{ boxShadow: 'var(--shadow)' }}
+                >
+                  <div className="mb-2 flex items-center justify-between">
+                    <div className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-cyan-500/15 text-cyan-700 dark:text-cyan-200">
+                      <Icon className="h-3.5 w-3.5" />
+                    </div>
+                    <span className="text-xs font-mono-custom uppercase tracking-wider text-[var(--muted)]">
+                      {String(album.id).padStart(2, '0')}
+                    </span>
+                  </div>
+
+                  <h3 className="text-sm font-bold text-[var(--fg)] sm:text-base">{album.title}</h3>
+                  <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-cyan-700 dark:text-cyan-300">
+                    {album.subtitle}
+                  </p>
+                  <p className="mt-1.5 text-xs leading-5 text-[var(--muted)]">{shortDescription}</p>
+                </article>
+              );
+            })}
+          </div>
         </div>
       </div>
-
-      {/* Scroll hint */}
-      <div className="absolute bottom-12 right-12 z-20 text-right">
-        <p className="font-mono-custom text-xs text-white/40 uppercase tracking-wider mb-1">
-          {albumCubeConfig.scrollHint}
-        </p>
-        <div className="w-16 h-px bg-gradient-to-r from-transparent to-neon-cyan/50 ml-auto" />
-      </div>
-
-      {/* Decorative corner lines */}
-      <div className="absolute top-12 left-12 w-20 h-px bg-gradient-to-r from-neon-cyan/50 to-transparent" />
-      <div className="absolute top-12 left-12 w-px h-20 bg-gradient-to-b from-neon-cyan/50 to-transparent" />
-      
-      {/* Bottom gradient fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[var(--bg)] to-transparent pointer-events-none" />
     </section>
   );
 };

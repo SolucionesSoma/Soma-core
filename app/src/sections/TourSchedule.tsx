@@ -107,7 +107,7 @@ const TourSchedule = () => {
                 className={`process-item group relative cursor-pointer rounded-2xl border p-6 transition-all duration-500 ${
                   isActive
                     ? 'border-cyan-500/40 bg-cyan-500/10 dark:bg-cyan-500/15'
-                    : 'border-[var(--line)] bg-[var(--bg-card)] hover:border-[var(--line-strong)] hover:bg-[var(--bg-card-strong)]'
+                    : 'border-[var(--line)] bg-[var(--bg-card)] md:hover:border-[var(--line-strong)] md:hover:bg-[var(--bg-card-strong)]'
                 }`}
                 onMouseEnter={() => setActiveStep(index)}
               >
