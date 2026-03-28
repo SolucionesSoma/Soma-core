@@ -304,7 +304,7 @@ const Footer = ({ theme }: FooterProps) => {
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
             <div>
-              <img src={theme === 'dark' ? '/logo-dark.svg' : '/logo-light.svg'} alt="SOMA Core" className="h-10 w-auto" />
+              <img src={theme === 'dark' ? '/logo-dark.svg'  : '/logo-light.svg'} alt="SOMA Core" className="h-10 w-auto" />
               <p className="mb-6 mt-4 text-sm leading-relaxed text-[var(--muted)]">{footerConfig.brandDescription}</p>
               <div className="flex flex-wrap gap-3">
                 {footerConfig.socialLinks.map((social) => {
@@ -403,3 +403,4 @@ const Footer = ({ theme }: FooterProps) => {
 };
 
 export default Footer;
+

@@ -47,7 +47,7 @@ export const heroConfig: HeroConfig = {
   ctaPrimary: "Empezar proyecto",
   ctaPrimaryTarget: "contacto",
   ctaSecondary: "Conócenos",
-  ctaSecondaryTarget: "conocenos",
+  ctaSecondaryTarget: "conócenos",
   navItems: [
     { label: "Servicios", sectionId: "servicios", icon: "disc" },
     { label: "Proceso", sectionId: "proceso", icon: "play" },

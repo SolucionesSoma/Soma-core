@@ -14,6 +14,7 @@ interface HeaderProps {
 
 export default function Header({ theme, setTheme, mobileOpen, setMobileOpen }: HeaderProps) {
   const headerRef = useRef<HTMLElement>(null);
+  const themeLogoSrc = theme === 'dark' ? '/logo-dark.svg'  : '/logo-light.svg';
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -35,7 +36,7 @@ export default function Header({ theme, setTheme, mobileOpen, setMobileOpen }: H
   };
 
   const openContactCalendar = () => {
-    window.open(siteConfig.contactCalendarUrl, '_blank', 'noopener,noreferrer');
+    window.open('https://wa.me/573185772152', '_blank', 'noopener,noreferrer');
     setMobileOpen(false);
   };
 
@@ -47,7 +48,7 @@ export default function Header({ theme, setTheme, mobileOpen, setMobileOpen }: H
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <a href="#inicio" onClick={() => scrollToSection('inicio')} className="flex items-center gap-3">
           <img
-            src={theme === 'dark' ? '/logo-dark.svg' : '/logo-light.svg'}
+            src={themeLogoSrc}
             alt="SOMA Logo"
             className="h-9 w-auto"
           />
