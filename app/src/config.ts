@@ -7,6 +7,7 @@ export interface SiteConfig {
   title: string;
   description: string;
   language: string;
+  contactCalendarUrl: string;
 }
 
 export const siteConfig: SiteConfig = {
@@ -14,6 +15,7 @@ export const siteConfig: SiteConfig = {
   description:
     "SOMA Core crea software a la medida e inteligencia artificial para optimizar procesos y acelerar resultados de negocio.",
   language: "es",
+  contactCalendarUrl: "https://calendly.com/somacoretech",
 };
 
 // -- Hero Section -------------------------------------------------------------
@@ -283,6 +285,7 @@ export interface FooterConfig {
   portraitAlt: string;
   artistName: string;
   artistSubtitle: string;
+  founderLinks: { label: string; href: string }[];
   brandDescription: string;
   quickLinksTitle: string;
   quickLinks: QuickLink[];
@@ -294,6 +297,7 @@ export interface FooterConfig {
   addressLabel: string;
   address: string;
   copyrightText: string;
+  legalLinks: { label: string; href: string }[];
   socialLinks: SocialLink[];
 }
 
@@ -315,6 +319,11 @@ export const footerConfig: FooterConfig = {
     { label: "Fundador", sectionId: "equipo" },
     { label: "Contacto", sectionId: "contacto" },
   ],
+  founderLinks: [
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/david-morantes-duarte-04671826a" },
+    { label: "Publicación científica (Springer)", href: "https://link.springer.com/article/10.1007/s00435-025-00747-x" },
+    { label: "Reconocimientos UIS", href: "https://comunicaciones.uis.edu.co/destacada-participacion-de-estudiantes-uis-en-competencia-de-tecnologia-hackday-2024/" },
+  ],
   contactTitle: "Contacto",
   emailLabel: "Email",
   email: "contacto@somaacoretech.com",
@@ -323,6 +332,11 @@ export const footerConfig: FooterConfig = {
   addressLabel: "Ubicación",
   address: "Colombia",
   copyrightText: "© 2026 SOMA CORE. Todos los derechos reservados.",
+  legalLinks: [
+    { label: "Política de privacidad", href: "/privacy.html" },
+    { label: "Términos y condiciones", href: "/terms.html" },
+    { label: "Política de cookies", href: "/cookies.html" },
+  ],
   socialLinks: [
     { icon: "facebook", label: "Facebook", href: "https://www.facebook.com/search/pages/?q=Soma%20core" },
     { icon: "instagram", label: "Instagram", href: "https://www.instagram.com/somacoretech/" },

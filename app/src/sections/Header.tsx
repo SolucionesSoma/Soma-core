@@ -1,7 +1,7 @@
 ﻿import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { Moon, Sun, Menu, X, ArrowRight } from 'lucide-react';
-import { footerConfig } from '../config';
+import { footerConfig, siteConfig } from '../config';
 
 const NAV_ITEMS = footerConfig.quickLinks;
 
@@ -31,6 +31,11 @@ export default function Header({ theme, setTheme, mobileOpen, setMobileOpen }: H
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+    setMobileOpen(false);
+  };
+
+  const openContactCalendar = () => {
+    window.open(siteConfig.contactCalendarUrl, '_blank', 'noopener,noreferrer');
     setMobileOpen(false);
   };
 
@@ -72,7 +77,7 @@ export default function Header({ theme, setTheme, mobileOpen, setMobileOpen }: H
           </button>
 
           <button
-            onClick={() => scrollToSection('contacto')}
+            onClick={openContactCalendar}
             className="inline-flex items-center gap-2 rounded-full border border-cyan-500/20 bg-cyan-500/10 px-4 py-2 text-sm font-semibold text-cyan-700 transition hover:bg-cyan-500/15 dark:text-cyan-200"
           >
             Hablemos
@@ -116,7 +121,7 @@ export default function Header({ theme, setTheme, mobileOpen, setMobileOpen }: H
             ))}
 
             <button
-              onClick={() => scrollToSection('contacto')}
+              onClick={openContactCalendar}
               className="mt-3 inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-500 px-4 py-3 text-sm font-bold text-white transition hover:bg-cyan-600"
             >
               Solicitar asesoría

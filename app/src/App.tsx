@@ -8,6 +8,8 @@ import AlbumCube from './sections/AlbumCube';
 import ParallaxGallery from './sections/ParallaxGallery';
 import TourSchedule from './sections/TourSchedule';
 import Footer from './sections/Footer';
+import CookieConsentBanner from './components/CookieConsentBanner';
+import { Analytics } from '@vercel/analytics/react';
 
 function App() {
   // Initialize Lenis smooth scrolling
@@ -62,6 +64,7 @@ function App() {
         setTheme={setTheme}
       />
 
+      <Analytics />
       {/* Hero Section - Immersive landing */}
       <Hero />
 
@@ -76,6 +79,7 @@ function App() {
 
       {/* Footer Section with Team and Contact */}
       <Footer theme={theme} />
+      <CookieConsentBanner />
     </main>
   );
 }

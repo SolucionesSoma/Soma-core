@@ -11,6 +11,7 @@ import {
   Mail,
   Phone,
   MapPin,
+  ExternalLink,
   Send,
   User,
   Building,
@@ -158,6 +159,27 @@ const Footer = ({ theme }: FooterProps) => {
                     aporta una base analítica y rigurosa a la forma en que diseña soluciones y convierte
                     ideas en herramientas.
                   </p>
+                </div>
+
+                <div className="mt-6 border-t border-[var(--line)] pt-6">
+                  <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-700 dark:text-cyan-300">
+                    Perfil verificable
+                  </p>
+                  <ul className="space-y-3">
+                    {footerConfig.founderLinks.map((item) => (
+                      <li key={item.href}>
+                        <a
+                          href={item.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-2 text-sm text-[var(--muted)] transition-colors hover:text-cyan-700 dark:hover:text-cyan-300"
+                        >
+                          <ExternalLink className="h-4 w-4" />
+                          {item.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </article>
             </div>
@@ -352,6 +374,17 @@ const Footer = ({ theme }: FooterProps) => {
 
           <div className="flex flex-col items-center justify-between gap-4 border-t border-[var(--line)] pt-8 md:flex-row">
             <p className="text-xs font-mono-custom text-[var(--muted)]">{footerConfig.copyrightText}</p>
+            <div className="flex flex-wrap items-center gap-4">
+              {footerConfig.legalLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-xs text-[var(--muted)] transition-colors hover:text-cyan-700 dark:hover:text-cyan-300"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>
