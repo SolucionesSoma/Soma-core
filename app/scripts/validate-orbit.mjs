@@ -11,6 +11,7 @@ const fox = read("src/pages/orbit/OrbitFoxMark.tsx");
 const demo = read("src/pages/orbit/demo/OrbitDemo.tsx");
 const styles = read("src/pages/orbit/orbit.css") + read("src/pages/orbit/demo/orbitDemo.css");
 const sitemap = read("public/sitemap.xml");
+const vercel = read("vercel.json");
 
 assert.match(app, /location\.pathname/);
 assert.match(app, /productos\\\/orbit/);
@@ -30,6 +31,8 @@ assert.match(page, /mailto:contacto@somacoretech\.com/);
 assert.match(page, /wa\.me\/573185772152/);
 assert.match(page, /SoftwareApplication/);
 assert.match(sitemap, /productos\/orbit/);
+assert.match(vercel, /productos\/orbit/);
+assert.match(vercel, /index\.html/);
 assert.match(home, /href=\{`\/productos\/orbit/);
 assert.match(styles, /prefers-reduced-motion/);
 assert.match(styles, /min-height:\s*44px/);

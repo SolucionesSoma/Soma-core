@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/productos/orbit",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/productos/orbit/",
+      "destination": "/index.html"
+    }
+  ]
+}
