@@ -10,8 +10,13 @@ const cookie = read("src/components/CookieConsentBanner.tsx");
 const privacy = read("public/privacy.html");
 const terms = read("public/terms.html");
 const cookiesPolicy = read("public/cookies.html");
+const privacyEn = fs.existsSync("public/privacy-en.html") ? read("public/privacy-en.html") : "";
+const termsEn = fs.existsSync("public/terms-en.html") ? read("public/terms-en.html") : "";
+const cookiesEn = fs.existsSync("public/cookies-en.html") ? read("public/cookies-en.html") : "";
 const config = read("src/config.ts");
 const legalCss = read("public/legal.css");
+const legalJs = read("public/legal.js");
+const sitemap = read("public/sitemap.xml");
 
 assert.match(index, /application\/ld\+json/, "JSON-LD missing");
 assert.match(index, /og-soma\.jpg/, "social image missing");
@@ -42,13 +47,13 @@ assert.match(
 for (const page of ["privacy", "terms"])
   assert.match(
     app,
-    new RegExp(`/${page}\\.html\\?v=20260920-3`),
+    new RegExp(`/${page}\\.html\\?v=20260920-4`),
     `versioned ${page} link missing from footer`,
   );
 for (const page of ["cookies", "privacy"])
   assert.match(
     cookie,
-    new RegExp(`/${page}\\.html\\?v=20260920-3`),
+    new RegExp(`/${page}\\.html\\?v=20260920-4`),
     `versioned ${page} link missing from cookie banner`,
   );
 for (const network of [
@@ -93,15 +98,39 @@ for (const [name, document] of [
   assert.match(document, /class="legal-hero"/, `${name}: SOMA legal hero missing`);
   assert.match(
     document,
-    /legal\.css\?v=20260920-3/,
+    /legal\.css\?v=20260920-4/,
     `${name}: versioned legal styles missing`,
   );
   assert.match(
     document,
-    /legal\.js\?v=20260920-3/,
+    /legal\.js\?v=20260920-4/,
     `${name}: versioned theme behavior missing`,
   );
 }
+for (const [name, document, counterpart] of [
+  ["privacy", privacy, "privacy-en.html"],
+  ["terms", terms, "terms-en.html"],
+  ["cookies", cookiesPolicy, "cookies-en.html"],
+]) {
+  assert.match(document, new RegExp(counterpart), `${name}: English selector missing`);
+  assert.match(document, /hreflang="en"/, `${name}: English hreflang missing`);
+}
+for (const [name, document, counterpart] of [
+  ["privacy-en", privacyEn, "privacy.html"],
+  ["terms-en", termsEn, "terms.html"],
+  ["cookies-en", cookiesEn, "cookies.html"],
+]) {
+  assert.match(document, /<html lang="en"/, `${name}: English lang missing`);
+  assert.match(document, new RegExp(counterpart), `${name}: Spanish selector missing`);
+  assert.match(document, /hreflang="es"/, `${name}: Spanish hreflang missing`);
+  assert.match(document, /902080602-8/, `${name}: company NIT missing`);
+  assert.match(document, /contacto@somacoretech\.com/, `${name}: company email missing`);
+  assert.match(document, /legal\.css\?v=20260920-4/, `${name}: versioned legal styles missing`);
+  assert.match(document, /legal\.js\?v=20260920-4/, `${name}: versioned theme behavior missing`);
+}
+assert.match(legalJs, /Enable light mode/, "legal: English theme label missing");
+for (const page of ["privacy-en", "terms-en", "cookies-en"])
+  assert.match(sitemap, new RegExp(`${page}\\.html`), `sitemap: ${page} missing`);
 assert.match(legalCss, /family=Manrope/, "legal: SOMA font import missing");
 assert.match(legalCss, /--deep:\s*#05263f/, "legal: SOMA deep token missing");
 assert.match(legalCss, /--blue:\s*#0878c2/, "legal: SOMA blue token missing");

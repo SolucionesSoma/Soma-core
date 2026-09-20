@@ -19,8 +19,8 @@ export default function CookieConsentBanner({ locale }: { locale: Locale }) {
       <div className="cookie-copy">
         <strong>{t.title}</strong>
         <p>
-          {t.copy} <a href="/cookies.html?v=20260920-3">{t.policy}</a> ·{" "}
-          <a href="/privacy.html?v=20260920-3">{t.privacy}</a>
+          {t.copy} <a href={locale === "en" ? "/cookies-en.html?v=20260920-4" : "/cookies.html?v=20260920-4"}>{t.policy}</a> ·{" "}
+          <a href={locale === "en" ? "/privacy-en.html?v=20260920-4" : "/privacy.html?v=20260920-4"}>{t.privacy}</a>
         </p>
       </div>
       <div className="cookie-actions">

@@ -333,9 +333,9 @@ export const footerConfig: FooterConfig = {
   address: "Colombia",
   copyrightText: "© 2026 SOMA CORE. Todos los derechos reservados.",
   legalLinks: [
-    { label: "Política de privacidad", href: "/privacy.html?v=20260920-3" },
-    { label: "Términos y condiciones", href: "/terms.html?v=20260920-3" },
-    { label: "Política de cookies", href: "/cookies.html?v=20260920-3" },
+    { label: "Política de privacidad", href: "/privacy.html?v=20260920-4" },
+    { label: "Términos y condiciones", href: "/terms.html?v=20260920-4" },
+    { label: "Política de cookies", href: "/cookies.html?v=20260920-4" },
   ],
   socialLinks: [
     { icon: "facebook", label: "Facebook", href: "https://www.facebook.com/search/pages/?q=Soma%20core" },

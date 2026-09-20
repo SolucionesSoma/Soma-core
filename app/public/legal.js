@@ -1,5 +1,6 @@
 (() => {
   const root = document.documentElement;
+  const isEnglish = root.lang === "en";
   const stored = localStorage.getItem("soma-theme");
   const initial = stored === "dark" || stored === "light"
     ? stored
@@ -14,7 +15,9 @@
     );
     document.querySelector("#theme-toggle")?.setAttribute(
       "aria-label",
-      theme === "dark" ? "Activar modo claro" : "Activar modo oscuro",
+      theme === "dark"
+        ? (isEnglish ? "Enable light mode" : "Activar modo claro")
+        : (isEnglish ? "Enable dark mode" : "Activar modo oscuro"),
     );
   };
 
