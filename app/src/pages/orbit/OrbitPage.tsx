@@ -4,7 +4,6 @@ import { Analytics } from "@vercel/analytics/react";
 import CookieConsentBanner from "../../components/CookieConsentBanner";
 import { applyPreferences, getInitialLocale, getInitialTheme, type Theme } from "../../preferences";
 import type { Locale } from "../../i18n";
-import OrbitFoxMark from "./OrbitFoxMark";
 import { orbitContent } from "./orbitContent";
 import "../../index.css";
 import "./orbit.css";
@@ -55,7 +54,7 @@ export default function OrbitPage() {
     <header className="orbit-header">
       <div className="orbit-utility"><div className="container"><a href="/">{t.back}</a><span>{t.signature}</span></div></div>
       <div className="container orbit-nav">
-        <a className="orbit-brand" href="#orbit-hero" aria-label="Orbit, inicio"><OrbitFoxMark /><span><strong>ORBIT</strong><small>{t.signature}</small></span></a>
+        <a className="orbit-brand" href="#orbit-hero" aria-label="Orbit, inicio"><img src="/orbit-fox-hd.webp" alt=""/><span><strong>ORBIT</strong><small>{t.signature}</small></span></a>
         <nav aria-label={locale === "es" ? "Navegación Orbit" : "Orbit navigation"}>{t.nav.map((label, index) => <button key={label} onClick={() => scroll(ids[index])}>{label}</button>)}</nav>
         <div className="orbit-nav-actions">
           <button className="orbit-pref" onClick={() => setLocale(locale === "es" ? "en" : "es")} aria-label={t.language}><Languages size={18}/><span>{locale.toUpperCase()}</span></button>
@@ -72,7 +71,7 @@ export default function OrbitPage() {
         <div className="container orbit-hero-grid">
           <div className="orbit-hero-copy"><span className="orbit-eyebrow">{t.hero.eyebrow}</span><h1>{t.hero.title}</h1><p>{t.hero.copy}</p><div className="orbit-actions"><a className="orbit-button" href={WA}>{t.hero.primary}<ArrowRight size={18}/></a><a className="orbit-button secondary" href="mailto:contacto@somacoretech.com"><Mail size={18}/>{t.hero.secondary}</a></div><button className="orbit-text-action" onClick={() => scroll("demo")}>{t.hero.demo}<ArrowDown size={17}/></button></div>
           <div className="orbit-hero-visual" aria-label={locale === "es" ? "Vista de Orbit" : "Orbit preview"}>
-            <div className="orbit-halo"/><OrbitFoxMark className="orbit-fox" title={locale === "es" ? "Zorro geométrico de Orbit" : "Orbit geometric fox"}/>
+            <div className="orbit-halo"/><img className="orbit-fox" src="/orbit-fox-hd.webp" alt={locale === "es" ? "Zorro de papel, símbolo de Orbit" : "Paper fox, Orbit symbol"} width="1200" height="1287" fetchPriority="high"/>
             <div className="orbit-ui-card main"><span>ORBIT / CONTROL</span><strong>96.4%</strong><small>SLA {locale === "es" ? "cumplido" : "met"}</small><div className="spark"><i/><i/><i/><i/><i/></div></div>
             <div className="orbit-ui-card alert"><b>INC-1042</b><span>{locale === "es" ? "En atención" : "In progress"}</span><em>01:42</em></div>
             <div className="orbit-ui-card asset"><span>ACT-0732</span><b>{locale === "es" ? "Mantenimiento" : "Maintenance"}</b></div>
@@ -85,7 +84,7 @@ export default function OrbitPage() {
 
       <section id="flujo" className="orbit-section orbit-flow"><div className="container"><SectionHead {...t.sections.flow}/><div className="orbit-flow-grid">{t.flow.map(([name, copy], i) => <article key={name}><b>{String(i+1).padStart(2,"0")}</b><h3>{name}</h3><p>{copy}</p></article>)}</div></div></section>
 
-      <section id="demo" className="orbit-section orbit-demo-section"><div className="container"><SectionHead {...t.sections.demo}/>{demoReady ? <Suspense fallback={<div className="orbit-demo-placeholder" aria-busy="true">ORBIT</div>}><OrbitDemo locale={locale}/></Suspense> : <div className="orbit-demo-placeholder" aria-hidden="true"><OrbitFoxMark/><span>ORBIT</span></div>}</div></section>
+      <section id="demo" className="orbit-section orbit-demo-section"><div className="container"><SectionHead {...t.sections.demo}/>{demoReady ? <Suspense fallback={<div className="orbit-demo-placeholder" aria-busy="true">ORBIT</div>}><OrbitDemo locale={locale}/></Suspense> : <div className="orbit-demo-placeholder" aria-hidden="true"><img src="/orbit-fox-hd.webp" alt=""/><span>ORBIT</span></div>}</div></section>
 
       <section id="gobierno" className="orbit-section orbit-governance"><div className="container orbit-two-col"><SectionHead {...t.sections.governance}/><div className="orbit-governance-list">{t.governance.map(([name, copy], i) => <article key={name}><span>{String(i+1).padStart(2,"0")}</span><div><h3>{name}</h3><p>{copy}</p></div></article>)}</div></div></section>
 
@@ -93,7 +92,7 @@ export default function OrbitPage() {
 
       <section id="preguntas" className="orbit-section orbit-faq"><div className="container orbit-two-col"><SectionHead {...t.sections.faq}/><div>{t.faq.map(([q,a]) => <details key={q}><summary>{q}<span>+</span></summary><p>{a}</p></details>)}</div></div></section>
 
-      <section id="contacto" className="orbit-cta"><div className="container"><OrbitFoxMark/><div><span>{t.signature}</span><h2>{t.cta.title}</h2><p>{t.cta.copy}</p></div><div className="orbit-cta-actions"><a className="orbit-button light" href={WA}>{t.cta.whatsapp}<ArrowRight size={18}/></a><a href="mailto:contacto@somacoretech.com">{t.cta.email}</a></div></div></section>
+      <section id="contacto" className="orbit-cta"><div className="container"><img src="/orbit-fox-hd.webp" alt=""/><div><span>{t.signature}</span><h2>{t.cta.title}</h2><p>{t.cta.copy}</p></div><div className="orbit-cta-actions"><a className="orbit-button light" href={WA}>{t.cta.whatsapp}<ArrowRight size={18}/></a><a href="mailto:contacto@somacoretech.com">{t.cta.email}</a></div></div></section>
     </main>
 
     <footer className="orbit-footer"><div className="container"><a href="/"><img src={theme === "light" ? "/logo-light.svg" : "/logo-dark.svg"} alt="SOMA" width="155" height="52"/></a><p>{locale === "es" ? "Software, automatización e IA para operaciones reales." : "Software, automation and AI for real operations."}</p><div><a href="mailto:contacto@somacoretech.com">contacto@somacoretech.com</a><span>NIT 902080602-8</span><a href={locale === "es" ? "/privacy.html?v=20260920-4" : "/privacy-en.html?v=20260920-4"}>{locale === "es" ? "Privacidad" : "Privacy"}</a><a href={locale === "es" ? "/terms.html?v=20260920-4" : "/terms-en.html?v=20260920-4"}>{locale === "es" ? "Términos" : "Terms"}</a></div></div></footer>

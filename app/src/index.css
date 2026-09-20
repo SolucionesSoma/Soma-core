@@ -867,8 +867,9 @@ footer {
     radial-gradient(circle at 50% 42%, rgba(88, 214, 245, 0.26), transparent 42%),
     linear-gradient(145deg, #e8f7fc, #ccecf7);
 }
-.orbit-product-art svg {
+.orbit-product-art > img {
   width: min(78%, 260px);
+  height: auto;
   filter: drop-shadow(0 20px 24px rgba(5, 43, 68, 0.18));
 }
 .orbit-product-art > span {
@@ -880,11 +881,6 @@ footer {
   color: #436e85;
   font-size: 9px;
 }
-.orbit-product-art .fox-deep { fill: #062841; }
-.orbit-product-art .fox-blue { fill: #0878c2; }
-.orbit-product-art .fox-mid { fill: #20a9de; }
-.orbit-product-art .fox-cyan { fill: #58d6f5; }
-.orbit-product-art .fox-paper { fill: #c9f2fc; }
 .suite-product > div {
   display: flex;
   flex-direction: column;

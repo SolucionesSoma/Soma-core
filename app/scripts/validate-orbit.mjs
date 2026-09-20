@@ -35,8 +35,11 @@ assert.match(sitemap, /productos\/orbit/);
 assert.match(vercel, /productos\/orbit/);
 assert.match(vercel, /index\.html/);
 assert.match(vite, /base:\s*["']\/["']/);
-assert.match(home, /OrbitFoxMark/);
 assert.doesNotMatch(home, /images\/products\/orbit\.webp/);
+assert.match(home, /orbit-fox-hd\.webp/);
+assert.match(page, /orbit-fox-hd\.webp/);
+for (const structure of ["demo-sidebar-logo", "demo-app-header", "demo-breadcrumb", "demo-filter-bar", "demo-support-title"])
+  assert.match(demo, new RegExp(structure));
 assert.match(home, /href=\{`\/productos\/orbit/);
 assert.match(styles, /prefers-reduced-motion/);
 assert.match(styles, /min-height:\s*44px/);

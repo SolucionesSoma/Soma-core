@@ -27,7 +27,6 @@ import {
   type Theme,
 } from "../preferences";
 import "../index.css";
-import OrbitFoxMark from "./orbit/OrbitFoxMark";
 
 const WA = "https://wa.me/573185772152";
 const productImages = [
@@ -274,7 +273,7 @@ function HomePage() {
                     {name === "Orbit" ? (
                       <div className="orbit-product-art" role="img" aria-label={locale === "es" ? "Zorro geométrico, símbolo de Orbit" : "Geometric fox, Orbit symbol"}>
                         <span>ORBIT</span>
-                        <OrbitFoxMark />
+                        <img src="/orbit-fox-hd.webp" alt="" width="1200" height="1287" loading="lazy" decoding="async" />
                         <small>{locale === "es" ? "Una solución de SOMA" : "A SOMA solution"}</small>
                       </div>
                     ) : (
