@@ -510,7 +510,7 @@ function App() {
                 target="_blank"
                 rel="noreferrer"
               >
-                X
+                <XBrandIcon />X
               </a>
             </div>
           </div>
@@ -598,7 +598,13 @@ function Foot({
 }
 function InstagramIcon() {
   return (
-    <svg className="brand-icon" viewBox="0 0 24 24" aria-hidden="true">
+    <svg
+      className="brand-icon"
+      width="15"
+      height="15"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
       <rect
         x="3"
         y="3"
@@ -623,9 +629,31 @@ function InstagramIcon() {
 }
 function TikTokIcon() {
   return (
-    <svg className="brand-icon" viewBox="0 0 24 24" aria-hidden="true">
+    <svg
+      className="brand-icon"
+      width="15"
+      height="15"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
       <path
         d="M15.5 3c.4 2.4 1.8 3.9 4.5 4.2v3.2a9.3 9.3 0 0 1-4.4-1.3v6.4a6.5 6.5 0 1 1-5.7-6.4v3.3a3.2 3.2 0 1 0 2.4 3.1V3h3.2Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+function XBrandIcon() {
+  return (
+    <svg
+      className="brand-icon"
+      width="15"
+      height="15"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <path
+        d="M4 4l12.2 16H20L7.8 4H4Zm1.9 1.5h1.2l11 13h-1.2l-11-13ZM18.2 4 13 10l1 1.3L20 4h-1.8ZM4 20h1.8l5.4-6.3-1-1.3L4 20Z"
         fill="currentColor"
       />
     </svg>
