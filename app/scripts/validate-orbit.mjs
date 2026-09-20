@@ -26,7 +26,7 @@ for (const name of ["dashboard", "incidents", "pqrsf", "maintenance", "assets"])
   assert.match(data + demo, new RegExp(name, "i"));
 assert.match(fox, /<svg/);
 assert.match(page, /lazy\(/);
-assert.match(demo, /demoNotice/);
+assert.match(demo, /Demo con datos ficticios/);
 assert.match(demo, /aria-live/);
 assert.match(page, /mailto:contacto@somacoretech\.com/);
 assert.match(page, /wa\.me\/573185772152/);
@@ -40,6 +40,13 @@ assert.match(home, /orbit-fox-hd\.webp/);
 assert.match(page, /orbit-fox-hd\.webp/);
 for (const structure of ["demo-sidebar-logo", "demo-app-header", "demo-breadcrumb", "demo-filter-bar", "demo-support-title"])
   assert.match(demo, new RegExp(structure));
+for (const originalStructure of ["Programación de mantenimientos cíclicos", "Gestión de activos fijos", "Añadir registro", "Generar Excel", "Planificación", "Historial", "Actas de entrega", "Proveedores"])
+  assert.match(demo, new RegExp(originalStructure));
+assert.match(demo, /demo-calendar-grid/);
+assert.match(demo, /demo-asset-tabs/);
+assert.match(demo, /demo-ticket-filters/);
+assert.match(styles, /grid-template-columns:\s*256px 1fr/);
+assert.match(styles, /min-height:\s*900px/);
 assert.match(page, /footer-grid/);
 assert.match(page, /instagram\.com\/somacoretech/);
 assert.match(page, /linkedin\.com\/company\/soma-core/);

@@ -1,147 +1,63 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import {
-  Activity, AlertTriangle, Bell, Box, CalendarDays, ChevronDown, ChevronRight,
-  FolderOpen, Gauge, Languages, LayoutDashboard, MessageSquareText, Moon, Plus,
-  RotateCcw, Search, ShieldCheck, UserRound, X,
+  ArrowLeftRight, Bell, Boxes, Building2, CalendarDays, ChevronLeft,
+  ChevronRight, ClipboardList, Download, FileText, FolderOpen, History, Languages,
+  LayoutDashboard, MessageSquareDiff, Moon, Package, Plus, Search, UserRound, X,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import type { Locale } from "../../../i18n";
-import { orbitContent } from "../orbitContent";
 import { orbitDemoData, type DemoModule, type Ticket } from "../orbitDemoData";
 import "./orbitDemo.css";
 
-const icons: Record<DemoModule, LucideIcon> = {
-  dashboard: LayoutDashboard,
-  incidents: AlertTriangle,
-  pqrsf: MessageSquareText,
-  maintenance: CalendarDays,
-  assets: Box,
-};
 type Maintenance = (typeof orbitDemoData.maintenance)[number];
 type Asset = (typeof orbitDemoData.assets)[number];
-type DemoSelected = Ticket | Maintenance | Asset;
+type Selection = Ticket | Maintenance | Asset;
+
+const moduleIcons: Record<DemoModule, LucideIcon> = { dashboard: LayoutDashboard, incidents: FileText, pqrsf: MessageSquareDiff, maintenance: CalendarDays, assets: Boxes };
+const assetTabs = [["Inventario", Boxes], ["Facturas", FileText], ["Traslados", ArrowLeftRight], ["Insumos", Package], ["Actas de entrega", ClipboardList], ["Proveedores", Building2]] as const;
 
 export default function OrbitDemo({ locale }: { locale: Locale }) {
-  const t = orbitContent[locale].demo;
+  const es = locale === "es";
   const [module, setModule] = useState<DemoModule>("dashboard");
-  const [filter, setFilter] = useState("all");
-  const [selected, setSelected] = useState<DemoSelected | null>(null);
+  const [selected, setSelected] = useState<Selection | null>(null);
   const [creating, setCreating] = useState(false);
   const [added, setAdded] = useState<Ticket[]>([]);
+  const [query, setQuery] = useState("");
+  const [queue, setQueue] = useState("all");
   const [notice, setNotice] = useState("");
-  const labels: Record<DemoModule, string> = {
-    dashboard: t.dashboard, incidents: t.incidents, pqrsf: t.pqrsf,
-    maintenance: t.maintenance, assets: t.assets,
-  };
-  const tickets = [...added, ...orbitDemoData.tickets]
-    .filter((ticket) => ticket.kind === module)
-    .filter((ticket) => filter === "all" || (filter === "critical" ? ticket.priority === "Crítica" : ticket.status !== "Cerrado"));
-  const reset = () => {
-    setModule("dashboard"); setFilter("all"); setSelected(null);
-    setCreating(false); setAdded([]); setNotice("");
-  };
-  const changeModule = (next: DemoModule) => {
-    setModule(next); setFilter("all"); setSelected(null);
-  };
+  const labels: Record<DemoModule, string> = { dashboard: "Dashboard", incidents: "Tickets", pqrsf: "PQRSF", maintenance: es ? "Cíclicos" : "Maintenance", assets: es ? "Activos" : "Assets" };
+  const titles: Record<DemoModule, string> = { dashboard: es ? "Bienvenido al dashboard" : "Welcome to the dashboard", incidents: "Tickets", pqrsf: "PQRSF", maintenance: es ? "Programación de mantenimientos cíclicos" : "Cyclic maintenance scheduling", assets: es ? "Gestión de activos fijos" : "Fixed asset management" };
+  const tickets = useMemo(() => [...added, ...orbitDemoData.tickets].filter((ticket) => ticket.kind === module).filter((ticket) => queue === "all" || (queue === "urgent" ? ticket.priority !== "Media" : ticket.status !== "Cerrado")).filter((ticket) => `${ticket.id} ${ticket.title} ${ticket.area}`.toLowerCase().includes(query.toLowerCase())), [added, module, query, queue]);
+  const changeModule = (next: DemoModule) => { setModule(next); setQuery(""); setQueue("all"); setSelected(null); };
 
-  return (
-    <div className="orbit-demo-shell">
-      <div className="demo-layout">
-        <aside className="demo-app-sidebar">
-          <div className="demo-sidebar-logo">
-            <img src="/orbit-fox-hd.webp" alt="Orbit" />
-            <div><strong>ORBIT</strong><small>{locale === "es" ? "Una solución de SOMA" : "A SOMA solution"}</small></div>
-          </div>
-          <h3 className="demo-support-title">{locale === "es" ? "Soporte" : "Support"}</h3>
-          <nav className="demo-nav" aria-label="Orbit demo modules">
-            {orbitDemoData.modules.map((name) => {
-              const Icon = icons[name];
-              return (
-                <button key={name} aria-current={module === name ? "page" : undefined} onClick={() => changeModule(name)}>
-                  <Icon size={20} /><span>{labels[name]}</span>
-                </button>
-              );
-            })}
-            <button><FolderOpen size={20} /><span>{locale === "es" ? "Catálogos" : "Catalogs"}</span></button>
-          </nav>
-          <div className="demo-sidebar-user">
-            <span>SM</span><div><b>Sofía Moreno</b><small>{locale === "es" ? "Administradora" : "Administrator"}</small></div><ChevronDown size={15}/>
-          </div>
-        </aside>
-
-        <div className="demo-app-body">
-          <header className="demo-app-header">
-            <span className="demo-breadcrumb">/ {locale === "es" ? "soporte" : "support"} / {labels[module].toLowerCase()}</span>
-            <div>
-              <button aria-label={locale === "es" ? "Idioma" : "Language"}><Languages size={20}/><small>{locale.toUpperCase()}</small></button>
-              <button aria-label={locale === "es" ? "Tema" : "Theme"}><Moon size={20}/></button>
-              <button aria-label={locale === "es" ? "Notificaciones" : "Notifications"}><Bell size={20}/><i/></button>
-              <button className="demo-profile" aria-label={locale === "es" ? "Perfil" : "Profile"}><UserRound size={20}/></button>
-            </div>
-          </header>
-
-          <main className="demo-workspace">
-            <div className="demo-title">
-              <div><h3>{labels[module]}</h3><p>{locale === "es" ? "Información operativa actualizada" : "Updated operational information"}</p></div>
-              <div className="demo-title-actions">
-                <span>{t.demoNotice}</span>
-                <button className="demo-reset" onClick={reset}><RotateCcw size={15}/>{t.reset}</button>
-                {(module === "incidents" || module === "pqrsf") && <button className="demo-primary" onClick={() => setCreating(true)}><Plus size={17}/>{t.create}</button>}
-              </div>
-            </div>
-
-            <div className="demo-filter-bar">
-              <label><Search size={17}/><input aria-label={locale === "es" ? "Buscar" : "Search"} placeholder={locale === "es" ? "Buscar en Orbit" : "Search Orbit"}/></label>
-              <button>{locale === "es" ? "Últimos 30 días" : "Last 30 days"}<ChevronDown size={15}/></button>
-              <button>{locale === "es" ? "Todas las áreas" : "All areas"}<ChevronDown size={15}/></button>
-            </div>
-
-            <div className="demo-section-tabs">
-              {(["incidents", "pqrsf", "maintenance", "assets"] as DemoModule[]).map((name) => (
-                <button key={name} className={module === name ? "active" : ""} onClick={() => changeModule(name)}>{labels[name]}</button>
-              ))}
-            </div>
-
-            {module === "dashboard" && <Dashboard locale={locale} onOpen={() => changeModule("incidents")}/>} 
-            {(module === "incidents" || module === "pqrsf") && (
-              <div className="demo-list-card">
-                <div className="demo-queue-bar">
-                  {[["all", t.all], ["critical", t.critical], ["open", t.open]].map(([value, label]) => (
-                    <button key={value} className={filter === value ? "active" : ""} onClick={() => setFilter(value)}>{label}</button>
-                  ))}
-                </div>
-                {tickets.length ? <div className="demo-table">
-                  <div className="demo-table-head"><span>ID</span><span>{locale === "es" ? "Asunto" : "Subject"}</span><span>{locale === "es" ? "Área" : "Area"}</span><span>SLA</span><span/></div>
-                  {tickets.map((ticket) => <button key={ticket.id} onClick={() => setSelected(ticket)}><b>{ticket.id}</b><span className="ticket-title"><i className={`demo-priority ${ticket.priority.toLowerCase().replace("í", "i")}`}/>{ticket.title}</span><span>{ticket.area}</span><em>{ticket.sla}</em><ChevronRight size={16}/></button>)}
-                </div> : <div className="demo-empty"><Search/><p>{t.empty}</p><button onClick={() => setFilter("all")}>{t.clear}</button></div>}
-              </div>
-            )}
-            {module === "maintenance" && <div className="demo-cards">{orbitDemoData.maintenance.map((item) => <button key={item.id} onClick={() => setSelected(item)}><div><small>{item.date}</small><span>{item.status}</span></div><b>{item.title}</b><p>{item.site} · {item.owner}</p><div className="progress"><i style={{ width: `${item.progress}%` }}/></div><em>{item.progress}%</em></button>)}</div>}
-            {module === "assets" && <div className="demo-list-card"><div className="demo-table assets"><div className="demo-table-head"><span>ID</span><span>{locale === "es" ? "Activo" : "Asset"}</span><span>{locale === "es" ? "Ubicación" : "Location"}</span><span>{locale === "es" ? "Estado" : "Status"}</span><span/></div>{orbitDemoData.assets.map((item) => <button key={item.id} onClick={() => setSelected(item)}><b>{item.id}</b><span className="ticket-title"><Box size={17}/>{item.name}</span><span>{item.site}</span><em>{item.status}</em><ChevronRight size={16}/></button>)}</div></div>}
-          </main>
-        </div>
-      </div>
-      <div className="sr-only" aria-live="polite">{notice}</div>
-      {(selected || creating) && <div className="demo-modal-backdrop" onMouseDown={(event) => { if (event.currentTarget === event.target) { setSelected(null); setCreating(false); } }}><div className="demo-modal" role="dialog" aria-modal="true" aria-label={creating ? t.create : t.detail} onKeyDown={(event) => { if (event.key === "Escape") { setSelected(null); setCreating(false); } }} tabIndex={-1}><button className="demo-close" autoFocus onClick={() => { setSelected(null); setCreating(false); }} aria-label={t.close}><X/></button>{creating ? <CreateForm locale={locale} onCancel={() => setCreating(false)} onCreate={(ticket) => { setAdded([ticket, ...added]); setCreating(false); setNotice(t.created); }}/> : selected ? <Detail item={selected} locale={locale}/> : null}</div></div>}
-    </div>
-  );
+  return <div className="orbit-demo-shell"><div className="demo-layout">
+    <aside className="demo-app-sidebar"><button className="demo-collapse" aria-label={es ? "Contraer menú" : "Collapse menu"}><ChevronLeft size={14}/></button><div className="demo-sidebar-logo"><img src="/orbit-fox-hd.webp" alt="Orbit"/><strong>ORBIT</strong></div><h3 className="demo-support-title">{es ? "Soporte" : "Support"}</h3><nav className="demo-nav" aria-label="Orbit demo modules">{(Object.keys(moduleIcons) as DemoModule[]).map((name) => { const Icon = moduleIcons[name]; return <button key={name} aria-current={module === name ? "page" : undefined} onClick={() => changeModule(name)}><Icon size={22}/><span>{labels[name]}</span></button>; })}<button><FolderOpen size={22}/><span>{es ? "Catálogos" : "Catalogs"}</span></button></nav><div className="demo-sidebar-user"><span>@</span><b>Sofía Moreno</b></div></aside>
+    <div className="demo-app-body"><header className="demo-app-header"><span className="demo-breadcrumb">/ {labels[module]}</span><div><button aria-label={es ? "Idioma" : "Language"}><Languages size={22}/><small>{locale}</small></button><button aria-label={es ? "Tema" : "Theme"}><Moon size={22}/></button><button aria-label={es ? "Notificaciones" : "Notifications"}><Bell size={22}/><i/></button><button aria-label={es ? "Perfil" : "Profile"}><UserRound size={22}/></button></div></header><main className="demo-workspace"><div className="demo-page-heading"><h3>{titles[module]}</h3><span>{es ? "Demo con datos ficticios" : "Demo with sample data"}</span></div>{module === "dashboard" && <Dashboard es={es} onOpen={() => changeModule("incidents")}/>} {(module === "incidents" || module === "pqrsf") && <TicketWorkspace es={es} module={module} tickets={tickets} query={query} setQuery={setQuery} queue={queue} setQueue={setQueue} onCreate={() => setCreating(true)} onSelect={setSelected}/>} {module === "maintenance" && <MaintenanceWorkspace es={es} onSelect={setSelected}/>} {module === "assets" && <AssetsWorkspace es={es} onSelect={setSelected}/>}</main></div>
+  </div><div className="sr-only" aria-live="polite">{notice}</div>{(selected || creating) && <div className="demo-modal-backdrop" onMouseDown={(event) => { if (event.currentTarget === event.target) { setSelected(null); setCreating(false); } }}><div className="demo-modal" role="dialog" aria-modal="true" tabIndex={-1}><button className="demo-close" autoFocus onClick={() => { setSelected(null); setCreating(false); }} aria-label={es ? "Cerrar" : "Close"}><X/></button>{creating ? <CreateForm es={es} onCancel={() => setCreating(false)} onCreate={(ticket) => { setAdded([ticket, ...added]); setCreating(false); setNotice(es ? "Ticket creado" : "Ticket created"); }}/> : selected && <Detail item={selected} es={es}/>}</div></div>}</div>;
 }
 
-function Dashboard({ locale, onOpen }: { locale: Locale; onOpen: () => void }) {
-  const es = locale === "es";
-  const cards: Array<[string, string, LucideIcon]> = [["96.4%", es ? "Cumplimiento SLA" : "SLA compliance", ShieldCheck], ["27", es ? "Tickets activos" : "Active tickets", Activity], ["08", es ? "Próximos a vencer" : "Near due", Gauge], ["142", es ? "Total del periodo" : "Period total", MessageSquareText]];
-  return <><section className="demo-metric-grid">{cards.map(([value, label, Icon]) => <article key={label}><div><span>{label}</span><strong>{value}</strong></div><Icon/></article>)}</section><section className="demo-dashboard-grid"><article className="demo-chart"><div><b>{es ? "Cumplimiento diario" : "Daily compliance"}</b><small>{es ? "Tendencia de los últimos 7 días" : "Last 7 days trend"}</small></div><div className="line-chart"><svg viewBox="0 0 500 190" preserveAspectRatio="none"><path d="M0 145 C70 120,90 150,145 105 S230 55,285 82 S365 120,410 60 S470 45,500 25"/><path className="fill" d="M0 145 C70 120,90 150,145 105 S230 55,285 82 S365 120,410 60 S470 45,500 25 L500 190 L0 190Z"/></svg><div><span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span></div></div></article><article className="demo-queue"><div><b>{es ? "Atención prioritaria" : "Priority queue"}</b><button onClick={onOpen}>{es ? "Ver tickets" : "View tickets"}</button></div>{orbitDemoData.tickets.slice(0, 4).map((ticket) => <p key={ticket.id}><i className={`demo-priority ${ticket.priority.toLowerCase().replace("í", "i")}`}/><span><b>{ticket.id}</b><small>{ticket.title}</small></span><em>{ticket.sla}</em></p>)}</article></section><section className="demo-lower-grid"><article><b>{es ? "Distribución por estado" : "Status distribution"}</b><div className="donut"><i/><span><strong>142</strong><small>{es ? "tickets" : "tickets"}</small></span></div></article><article><b>{es ? "Tickets por prioridad" : "Tickets by priority"}</b><div className="horizontal-bars"><p><span>{es ? "Crítica" : "Critical"}</span><i><b style={{width:"28%"}}/></i><em>12</em></p><p><span>{es ? "Alta" : "High"}</span><i><b style={{width:"62%"}}/></i><em>34</em></p><p><span>{es ? "Media" : "Medium"}</span><i><b style={{width:"88%"}}/></i><em>61</em></p></div></article></section></>;
+function Dashboard({ es, onOpen }: { es: boolean; onOpen: () => void }) {
+  const metrics = [["Cumplimiento", "96.4%"], ["SLA", "91.8%"], ["IVT", "4.7 h"], ["Promedio de resolución", "7.2 h"]];
+  return <div className="demo-dashboard"><section className="demo-filter-bar dashboard-filter"><label>{es ? "Fecha inicial" : "Start date"}<input value="2026-09-01" readOnly/></label><label>{es ? "Fecha final" : "End date"}<input value="2026-09-30" readOnly/></label><label>{es ? "Prioridad" : "Priority"}<select><option>{es ? "Todas" : "All"}</option></select></label><button>{es ? "Aplicar filtros" : "Apply filters"}</button><button>{es ? "Limpiar" : "Clear"}</button></section><div className="demo-section-tabs"><button className="active">{es ? "Incidencias" : "Incidents"}</button><button>PQRSF</button><button>{es ? "Mantenimientos" : "Maintenance"}</button><button>{es ? "Activos" : "Assets"}</button></div><section className="demo-metric-grid">{metrics.map(([label, value]) => <article key={label}><span>{label}</span><strong>{value}</strong></article>)}</section><section className="demo-dashboard-grid"><article className="demo-chart"><h4>{es ? "Cumplimiento por día" : "Daily compliance"}</h4><p>{es ? "Comportamiento del periodo seleccionado" : "Selected-period performance"}</p><div className="line-chart"><svg viewBox="0 0 500 190" preserveAspectRatio="none"><path d="M0 150 C55 130 80 145 130 110 S210 62 270 90 S355 128 405 68 S465 48 500 30"/><path className="fill" d="M0 150 C55 130 80 145 130 110 S210 62 270 90 S355 128 405 68 S465 48 500 30 L500 190 L0 190Z"/></svg><div><span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span></div></div></article><article className="demo-ranking"><div><h4>{es ? "Tickets por usuario" : "Tickets by user"}</h4><button onClick={onOpen}>{es ? "Abrir tickets" : "Open tickets"}</button></div>{[["Laura Méndez",12],["Tomás Ríos",9],["Sofía Moreno",7]].map(([name,count],i)=><p key={String(name)}><small>#{i+1}</small><span>{name}</span><b>{count}</b></p>)}</article></section></div>;
 }
 
-function CreateForm({ locale, onCancel, onCreate }: { locale: Locale; onCancel: () => void; onCreate: (ticket: Ticket) => void }) {
-  const t = orbitContent[locale].demo;
-  return <form onSubmit={(event) => { event.preventDefault(); const data = new FormData(event.currentTarget); onCreate({ id: "INC-1049", title: String(data.get("title")), kind: "incidents", area: String(data.get("area")), priority: String(data.get("priority")) as Ticket["priority"], status: "Nuevo", sla: "04:00", owner: "Mesa de servicio", created: "Ahora" }); }}><small>ORBIT / {t.create.toUpperCase()}</small><h3>{t.create}</h3><label>{t.title}<input name="title" required placeholder={locale === "es" ? "Describa la situación" : "Describe the situation"}/></label><label>{t.area}<select name="area"><option>Operaciones</option><option>Infraestructura</option><option>Servicio</option></select></label><label>{t.priority}<select name="priority"><option>Media</option><option>Alta</option><option>Crítica</option></select></label><div className="form-actions"><button type="button" onClick={onCancel}>{t.cancel}</button><button className="demo-primary" type="submit">{t.save}</button></div></form>;
+function TicketWorkspace({ es, module, tickets, query, setQuery, queue, setQueue, onCreate, onSelect }: { es: boolean; module: DemoModule; tickets: Ticket[]; query: string; setQuery: (value: string) => void; queue: string; setQueue: (value: string) => void; onCreate: () => void; onSelect: (item: Ticket) => void }) {
+  return <section className="demo-ticket-card"><header><div><h4>{module === "pqrsf" ? "PQRSF" : es ? "Incidencias" : "Incidents"}</h4><p>{es ? "Listado de tickets" : "Ticket list"}</p></div><div>{module !== "pqrsf" && <button onClick={onCreate}><Plus size={16}/>{es ? "Añadir registro" : "Add record"}</button>}<button><Download size={16}/>{es ? "Generar Excel" : "Export Excel"}</button></div></header><div className="demo-ticket-filters"><Field label={es ? "Prioridad" : "Priority"}/><Field label={es ? "Tipo" : "Type"}/><Field label={es ? "Estado" : "Status"}/><Field label={es ? "Usuario" : "User"}/><Field label={es ? "Sucursal" : "Location"}/><Field label={es ? "Orden" : "Order"}/><label className="search"><span>{es ? "Buscar" : "Search"}</span><div><Search size={15}/><input value={query} onChange={(e)=>setQuery(e.target.value)} placeholder={es ? "Radicado o asunto" : "ID or subject"}/></div></label><button>{es ? "Buscar" : "Search"}</button><button>{es ? "Limpiar" : "Clear"}</button></div><div className="demo-queue-bar">{[["all",es?"Todos":"All"],["urgent",es?"Prioritarios":"Priority"],["open",es?"Abiertos":"Open"]].map(([value,label])=><button key={value} className={queue===value?"active":""} onClick={()=>setQueue(value)}>{label}<b>{value==="all"?tickets.length:value==="urgent"?2:3}</b></button>)}</div><div className="demo-table"><div className="demo-table-head"><span></span><span>Radicado</span><span>{es?"Tipo":"Type"}</span><span>{es?"Asunto":"Subject"}</span><span>{es?"Prioridad":"Priority"}</span><span>{es?"Estado":"Status"}</span><span>{es?"Responsable":"Owner"}</span><span></span></div>{tickets.map(ticket=><button key={ticket.id} onClick={()=>onSelect(ticket)}><input type="checkbox" onClick={(e)=>e.stopPropagation()}/><b>{ticket.id}</b><span>{module==="pqrsf"?"Solicitud":"Incidente"}</span><span>{ticket.title}</span><em className={`priority ${ticket.priority.toLowerCase().replace("í","i")}`}>{ticket.priority}</em><em>{ticket.status}</em><span>{ticket.owner}</span><ChevronRight size={16}/></button>)}</div><footer><span>{es ? `Mostrando ${tickets.length} registros` : `Showing ${tickets.length} records`}</span><div><button disabled><ChevronLeft size={15}/></button><b>1</b><button disabled><ChevronRight size={15}/></button></div></footer></section>;
 }
 
-function Detail({ item, locale }: { item: DemoSelected; locale: Locale }) {
-  const t = orbitContent[locale].demo;
-  const isTicket = item.id.startsWith("INC") || item.id.startsWith("PQR");
-  const isMaintenance = item.id.startsWith("MNT");
-  const title = "name" in item ? item.name : item.title;
-  return <div className="demo-detail"><small>ORBIT / {item.id}</small><h3>{title}</h3><div className="detail-meta"><span><b>{locale === "es" ? "Estado" : "Status"}</b>{item.status}</span><span><b>{locale === "es" ? "Responsable" : "Owner"}</b>{item.owner}</span></div>{isTicket && "sla" in item && <><section><h4>SLA · {item.sla}</h4><div className="sla-line"><i/></div></section><section><h4>{t.timeline}</h4><p>09:04 · {locale === "es" ? "Asignado al equipo responsable" : "Assigned to responsible team"}</p><p>08:42 · {locale === "es" ? "Clasificación asistida confirmada" : "Assisted classification confirmed"}</p><p>08:21 · {locale === "es" ? "Caso creado" : "Case created"}</p></section><section className="detail-split"><div><h4>{t.attachments}</h4><p>evidencia-01.pdf</p></div><div><h4>{t.response}</h4><p>{locale === "es" ? "Diagnóstico en curso." : "Diagnosis in progress."}</p></div></section></>}{isMaintenance && <><section><h4>{t.checklist}</h4><p>✓ {locale === "es" ? "Inspección visual" : "Visual inspection"}</p><p>✓ {locale === "es" ? "Prueba funcional" : "Functional test"}</p><p>○ {locale === "es" ? "Registro de evidencia" : "Evidence record"}</p></section><section><h4>{t.signatures}</h4><p>{locale === "es" ? "Responsable técnico · pendiente" : "Technical owner · pending"}</p></section></>}{!isTicket && !isMaintenance && "site" in item && <><section className="detail-split"><div><h4>{t.location}</h4><p>{item.site}</p></div><div><h4>{t.invoice}</h4><p>FAC-2026-0184</p></div></section><section><h4>{t.transfers}</h4><p>12 SEP · {locale === "es" ? "Asignado a" : "Assigned to"} {item.owner}</p><p>03 JUN · {locale === "es" ? "Recibido en" : "Received at"} {item.site}</p></section><section><h4>{t.maintenance}</h4><p>18 AGO · {locale === "es" ? "Revisión preventiva completada" : "Preventive inspection completed"}</p></section></>}</div>;
+function Field({ label }: { label: string }) { return <label><span>{label}</span><select><option>Todas</option></select></label>; }
+
+function MaintenanceWorkspace({ es, onSelect }: { es: boolean; onSelect: (item: Maintenance) => void }) {
+  const days = Array.from({length:35},(_,i)=>i<2?"":String(i-1));
+  return <div className="demo-maintenance"><div className="demo-section-tabs"><button className="active"><CalendarDays size={16}/>{es?"Planificación":"Planning"}</button><button><History size={16}/>{es?"Historial":"History"}</button></div><section className="demo-calendar-card"><header><div><button><ChevronLeft size={16}/></button><button>Hoy</button><button><ChevronRight size={16}/></button><h4>Septiembre 2026</h4></div><div><button>Mes</button><button>Semana</button><button><Plus size={15}/> Programar</button></div></header><div className="demo-calendar-grid">{["LUN","MAR","MIÉ","JUE","VIE","SÁB","DOM"].map(day=><b key={day}>{day}</b>)}{days.map((day,i)=><button key={i}>{day}<span>{i===9?"Revisión preventiva":i===16?"Inspección eléctrica":""}</span></button>)}</div></section><div className="demo-cards">{orbitDemoData.maintenance.map(item=><button key={item.id} onClick={()=>onSelect(item)}><small>{item.date}</small><b>{item.title}</b><p>{item.site} · {item.owner}</p><em>{item.status}</em></button>)}</div></div>;
 }
+
+function AssetsWorkspace({ es, onSelect }: { es: boolean; onSelect: (item: Asset) => void }) {
+  return <div className="demo-assets"><div className="demo-asset-tabs">{assetTabs.map(([name,Icon],i)=><button key={name} className={i===0?"active":""}><Icon size={16}/>{name}</button>)}</div><section className="demo-ticket-card"><header><div><h4>{es?"Inventario de activos":"Asset inventory"}</h4><p>{es?"Consulta y administración de activos fijos":"Fixed asset administration"}</p></div><div><button><Plus size={16}/>{es?"Crear activo":"Create asset"}</button><button><Download size={16}/>{es?"Exportar":"Export"}</button></div></header><div className="demo-ticket-filters asset"><Field label={es?"Categoría":"Category"}/><Field label={es?"Ubicación":"Location"}/><Field label={es?"Estado":"Status"}/><label className="search"><span>{es?"Buscar":"Search"}</span><div><Search size={15}/><input placeholder={es?"Código o nombre":"Code or name"}/></div></label><button>{es?"Buscar":"Search"}</button></div><div className="demo-table assets"><div className="demo-table-head"><span>Código</span><span>{es?"Activo":"Asset"}</span><span>{es?"Categoría":"Category"}</span><span>{es?"Ubicación":"Location"}</span><span>{es?"Estado":"Status"}</span><span></span></div>{orbitDemoData.assets.map(item=><button key={item.id} onClick={()=>onSelect(item)}><b>{item.id}</b><span>{item.name}</span><span>{item.category}</span><span>{item.site}</span><em>{item.status}</em><ChevronRight size={16}/></button>)}</div></section></div>;
+}
+
+function CreateForm({ es, onCancel, onCreate }: { es: boolean; onCancel: () => void; onCreate: (ticket: Ticket) => void }) {
+  return <form onSubmit={(event)=>{event.preventDefault();const data=new FormData(event.currentTarget);onCreate({id:"INC-1049",title:String(data.get("title")),kind:"incidents",area:String(data.get("area")),priority:String(data.get("priority")) as Ticket["priority"],status:"Nuevo",sla:"04:00",owner:"Mesa de servicio",created:"Ahora"});}}><small>ORBIT / TICKETS</small><h3>{es?"Añadir registro":"Add record"}</h3><label>{es?"Asunto":"Subject"}<input name="title" required/></label><label>{es?"Área":"Area"}<select name="area"><option>Operaciones</option><option>Infraestructura</option></select></label><label>{es?"Prioridad":"Priority"}<select name="priority"><option>Media</option><option>Alta</option><option>Crítica</option></select></label><div className="form-actions"><button type="button" onClick={onCancel}>{es?"Cancelar":"Cancel"}</button><button className="demo-primary" type="submit">{es?"Guardar":"Save"}</button></div></form>;
+}
+
+function Detail({ item, es }: { item: Selection; es: boolean }) { const title="name" in item?item.name:item.title; return <div className="demo-detail"><small>ORBIT / {item.id}</small><h3>{title}</h3><div className="detail-meta"><span><b>{es?"Estado":"Status"}</b>{item.status}</span><span><b>{es?"Responsable":"Owner"}</b>{item.owner}</span></div><section><h4>{es?"Trazabilidad":"History"}</h4><p>09:04 · {es?"Asignado al equipo responsable":"Assigned to team"}</p><p>08:42 · {es?"Clasificación confirmada":"Classification confirmed"}</p><p>08:21 · {es?"Registro creado":"Record created"}</p></section></div>; }
