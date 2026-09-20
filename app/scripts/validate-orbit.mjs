@@ -40,6 +40,10 @@ assert.match(home, /orbit-fox-hd\.webp/);
 assert.match(page, /orbit-fox-hd\.webp/);
 for (const structure of ["demo-sidebar-logo", "demo-app-header", "demo-breadcrumb", "demo-filter-bar", "demo-support-title"])
   assert.match(demo, new RegExp(structure));
+assert.match(page, /footer-grid/);
+assert.match(page, /instagram\.com\/somacoretech/);
+assert.match(page, /linkedin\.com\/company\/soma-core/);
+assert.match(styles, /\.orbit-fox\{[^}]*height:\s*auto/);
 assert.match(home, /href=\{`\/productos\/orbit/);
 assert.match(styles, /prefers-reduced-motion/);
 assert.match(styles, /min-height:\s*44px/);

@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useState } from "react";
-import { ArrowDown, ArrowRight, Languages, Mail, Menu, Moon, Sun, X } from "lucide-react";
+import { ArrowDown, ArrowRight, Languages, Linkedin, Mail, Menu, Moon, Sun, X } from "lucide-react";
 import { Analytics } from "@vercel/analytics/react";
 import CookieConsentBanner from "../../components/CookieConsentBanner";
 import { applyPreferences, getInitialLocale, getInitialTheme, type Theme } from "../../preferences";
@@ -95,7 +95,40 @@ export default function OrbitPage() {
       <section id="contacto" className="orbit-cta"><div className="container"><img src="/orbit-fox-hd.webp" alt=""/><div><span>{t.signature}</span><h2>{t.cta.title}</h2><p>{t.cta.copy}</p></div><div className="orbit-cta-actions"><a className="orbit-button light" href={WA}>{t.cta.whatsapp}<ArrowRight size={18}/></a><a href="mailto:contacto@somacoretech.com">{t.cta.email}</a></div></div></section>
     </main>
 
-    <footer className="orbit-footer"><div className="container"><a href="/"><img src={theme === "light" ? "/logo-light.svg" : "/logo-dark.svg"} alt="SOMA" width="155" height="52"/></a><p>{locale === "es" ? "Software, automatización e IA para operaciones reales." : "Software, automation and AI for real operations."}</p><div><a href="mailto:contacto@somacoretech.com">contacto@somacoretech.com</a><span>NIT 902080602-8</span><a href={locale === "es" ? "/privacy.html?v=20260920-4" : "/privacy-en.html?v=20260920-4"}>{locale === "es" ? "Privacidad" : "Privacy"}</a><a href={locale === "es" ? "/terms.html?v=20260920-4" : "/terms-en.html?v=20260920-4"}>{locale === "es" ? "Términos" : "Terms"}</a></div></div></footer>
+    <footer>
+      <div className="container footer-grid">
+        <div className="footer-brand">
+          <img src="/logo-dark.svg" alt="SOMA" width="170" height="65" loading="lazy" decoding="async"/>
+          <p>{locale === "es" ? "Tecnología, personas y negocio para un futuro con más posibilidades." : "Technology, people and business for a future with more possibilities."}</p>
+        </div>
+        <OrbitFoot title={locale === "es" ? "Qué hacemos" : "What we do"} links={locale === "es" ? ["Estrategia y arquitectura", "Software y productos digitales", "Automatización e IA", "Soporte y evolución"] : ["Strategy and architecture", "Software and digital products", "Automation and AI", "Support and evolution"]} href="/#capacidades"/>
+        <OrbitFoot title={locale === "es" ? "Soluciones" : "Solutions"} links={locale === "es" ? ["Retail y comercio", "Servicios profesionales", "Salud y atención", "Operaciones internas"] : ["Retail and commerce", "Professional services", "Health and care", "Internal operations"]} href="/#sectores"/>
+        <div className="foot contact-foot">
+          <h3>{locale === "es" ? "Contacto y redes" : "Contact and social"}</h3>
+          <a className="email-link" href="mailto:contacto@somacoretech.com"><Mail size={15}/>contacto@somacoretech.com</a>
+          <div className="social-links">
+            <a href="https://www.instagram.com/somacoretech/" target="_blank" rel="noreferrer"><OrbitSocialIcon kind="instagram"/>Instagram</a>
+            <a href="https://www.linkedin.com/company/soma-core" target="_blank" rel="noreferrer"><Linkedin size={15}/>LinkedIn</a>
+            <a href="https://www.tiktok.com/@somacoretech" target="_blank" rel="noreferrer"><OrbitSocialIcon kind="tiktok"/>TikTok</a>
+            <a href="https://x.com/SomaCoreTech" target="_blank" rel="noreferrer"><OrbitSocialIcon kind="x"/>X</a>
+          </div>
+        </div>
+      </div>
+      <div className="container legal">
+        <span>SOMA · Bucaramanga, Colombia · NIT 902080602-8</span>
+        <span><a href={locale === "en" ? "/privacy-en.html?v=20260920-4" : "/privacy.html?v=20260920-4"}>{locale === "es" ? "Privacidad" : "Privacy"}</a> · <a href={locale === "en" ? "/terms-en.html?v=20260920-4" : "/terms.html?v=20260920-4"}>{locale === "es" ? "Términos" : "Terms"}</a></span>
+      </div>
+    </footer>
     <CookieConsentBanner locale={locale}/>
   </div>;
+}
+
+function OrbitFoot({ title, links, href }: { title: string; links: string[]; href: string }) {
+  return <div className="foot"><h3>{title}</h3>{links.map((link) => <a href={href} key={link}>{link}</a>)}</div>;
+}
+
+function OrbitSocialIcon({ kind }: { kind: "instagram" | "tiktok" | "x" }) {
+  if (kind === "instagram") return <svg className="brand-icon" width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" strokeWidth="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" strokeWidth="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>;
+  if (kind === "tiktok") return <svg className="brand-icon" width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 3c.4 2.4 1.8 3.9 4.5 4.2v3.2a9.3 9.3 0 0 1-4.4-1.3v6.4a6.5 6.5 0 1 1-5.7-6.4v3.3a3.2 3.2 0 1 0 2.4 3.1V3h3.2Z" fill="currentColor"/></svg>;
+  return <svg className="brand-icon" width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l12.2 16H20L7.8 4H4Zm1.9 1.5h1.2l11 13h-1.2l-11-13ZM18.2 4 13 10l1 1.3L20 4h-1.8ZM4 20h1.8l5.4-6.3-1-1.3L4 20Z" fill="currentColor"/></svg>;
 }
