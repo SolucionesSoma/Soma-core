@@ -12,6 +12,7 @@ const demo = read("src/pages/orbit/demo/OrbitDemo.tsx");
 const styles = read("src/pages/orbit/orbit.css") + read("src/pages/orbit/demo/orbitDemo.css");
 const sitemap = read("public/sitemap.xml");
 const vercel = read("vercel.json");
+const vite = read("vite.config.ts");
 
 assert.match(app, /location\.pathname/);
 assert.match(app, /productos\\\/orbit/);
@@ -33,6 +34,9 @@ assert.match(page, /SoftwareApplication/);
 assert.match(sitemap, /productos\/orbit/);
 assert.match(vercel, /productos\/orbit/);
 assert.match(vercel, /index\.html/);
+assert.match(vite, /base:\s*["']\/["']/);
+assert.match(home, /OrbitFoxMark/);
+assert.doesNotMatch(home, /images\/products\/orbit\.webp/);
 assert.match(home, /href=\{`\/productos\/orbit/);
 assert.match(styles, /prefers-reduced-motion/);
 assert.match(styles, /min-height:\s*44px/);

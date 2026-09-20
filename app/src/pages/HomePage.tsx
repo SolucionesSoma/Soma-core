@@ -27,11 +27,12 @@ import {
   type Theme,
 } from "../preferences";
 import "../index.css";
+import OrbitFoxMark from "./orbit/OrbitFoxMark";
 
 const WA = "https://wa.me/573185772152";
 const productImages = [
   "/images/products/atlas.webp",
-  "/images/products/orbit.webp",
+  "",
   "/images/products/sonora.webp",
   "/images/products/flow.webp",
   "/images/products/relay.webp",
@@ -270,14 +271,22 @@ function HomePage() {
                     className={`suite-product ${i === 0 ? "featured" : ""}`}
                     key={name}
                   >
-                    <img
-                      src={productImages[i]}
-                      alt={`${name}: ${desc}`}
-                      width="1586"
-                      height="992"
-                      loading={i === 0 ? "eager" : "lazy"}
-                      decoding="async"
-                    />
+                    {name === "Orbit" ? (
+                      <div className="orbit-product-art" role="img" aria-label={locale === "es" ? "Zorro geométrico, símbolo de Orbit" : "Geometric fox, Orbit symbol"}>
+                        <span>ORBIT</span>
+                        <OrbitFoxMark />
+                        <small>{locale === "es" ? "Una solución de SOMA" : "A SOMA solution"}</small>
+                      </div>
+                    ) : (
+                      <img
+                        src={productImages[i]}
+                        alt={`${name}: ${desc}`}
+                        width="1586"
+                        height="992"
+                        loading={i === 0 ? "eager" : "lazy"}
+                        decoding="async"
+                      />
+                    )}
                     <div>
                       <div className="project-top">
                         <h3>{name}</h3>

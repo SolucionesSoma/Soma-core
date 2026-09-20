@@ -854,6 +854,37 @@ footer {
 .suite-product.featured > img {
   min-height: 470px;
 }
+.suite-product > .orbit-product-art {
+  min-height: 310px;
+  padding: 28px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 4px;
+  overflow: hidden;
+  color: #08314d;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(88, 214, 245, 0.26), transparent 42%),
+    linear-gradient(145deg, #e8f7fc, #ccecf7);
+}
+.orbit-product-art svg {
+  width: min(78%, 260px);
+  filter: drop-shadow(0 20px 24px rgba(5, 43, 68, 0.18));
+}
+.orbit-product-art > span {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+}
+.orbit-product-art > small {
+  color: #436e85;
+  font-size: 9px;
+}
+.orbit-product-art .fox-deep { fill: #062841; }
+.orbit-product-art .fox-blue { fill: #0878c2; }
+.orbit-product-art .fox-mid { fill: #20a9de; }
+.orbit-product-art .fox-cyan { fill: #58d6f5; }
+.orbit-product-art .fox-paper { fill: #c9f2fc; }
 .suite-product > div {
   display: flex;
   flex-direction: column;
