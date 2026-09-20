@@ -401,7 +401,7 @@ function App() {
                 <article key={title}>
                   <span>0{i + 1}</span>
                   <h3>{title}</h3>
-                  <p>{t.process.stepCopy}</p>
+                  <p>{t.process.stepCopy[i]}</p>
                 </article>
               ))}
             </div>
