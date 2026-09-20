@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "optimize:images": "node scripts/optimize-images.mjs",
-    "validate:site": "node scripts/validate-site.mjs"
+    "validate:site": "node scripts/validate-site.mjs",
+    "validate:orbit": "node scripts/validate-orbit.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

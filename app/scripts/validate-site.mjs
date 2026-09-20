@@ -3,7 +3,7 @@ import fs from "node:fs";
 
 const read = (path) => fs.readFileSync(path, "utf8");
 const index = read("index.html");
-const app = read("src/App.tsx");
+const app = read("src/App.tsx") + (fs.existsSync("src/pages/HomePage.tsx") ? read("src/pages/HomePage.tsx") : "");
 const i18n = fs.existsSync("src/i18n.ts") ? read("src/i18n.ts") : "";
 const css = read("src/index.css");
 const cookie = read("src/components/CookieConsentBanner.tsx");
