@@ -618,7 +618,8 @@ footer {
 .contact-foot .email-link { color: #dcecf6; overflow-wrap: anywhere; }
 .social-links { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; margin-top: 7px; }
 .social-links a { color: #bcd0dc; }
-.brand-icon { width: 15px; height: 15px; flex: 0 0 auto; }
+.social-links .brand-icon { width: 15px !important; height: 15px !important; min-width: 15px; max-width: 15px; flex: 0 0 15px; display: block; }
+.social-links a > svg { width: 15px; height: 15px; flex: 0 0 15px; }
 .social-links a:hover,
 .contact-foot .email-link:hover { color: #ffffff; text-decoration: underline; text-underline-offset: 4px; }
 .legal {
