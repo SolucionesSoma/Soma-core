@@ -79,7 +79,16 @@ for (const [name, document] of [
   assert.match(document, /class="utility"/, `${name}: SOMA utility bar missing`);
   assert.match(document, /logo-light\.svg/, `${name}: SOMA logo missing`);
   assert.match(document, /class="legal-hero"/, `${name}: SOMA legal hero missing`);
-  assert.match(document, /legal\.js/, `${name}: theme behavior missing`);
+  assert.match(
+    document,
+    /legal\.css\?v=20260920-3/,
+    `${name}: versioned legal styles missing`,
+  );
+  assert.match(
+    document,
+    /legal\.js\?v=20260920-3/,
+    `${name}: versioned theme behavior missing`,
+  );
 }
 assert.match(legalCss, /family=Manrope/, "legal: SOMA font import missing");
 assert.match(legalCss, /--deep:\s*#05263f/, "legal: SOMA deep token missing");
