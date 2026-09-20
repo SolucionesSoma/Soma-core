@@ -39,6 +39,18 @@ assert.match(
   /mailto:contacto@somacoretech\.com/,
   "company email missing from footer",
 );
+for (const page of ["privacy", "terms"])
+  assert.match(
+    app,
+    new RegExp(`/${page}\\.html\\?v=20260920-3`),
+    `versioned ${page} link missing from footer`,
+  );
+for (const page of ["cookies", "privacy"])
+  assert.match(
+    cookie,
+    new RegExp(`/${page}\\.html\\?v=20260920-3`),
+    `versioned ${page} link missing from cookie banner`,
+  );
 for (const network of [
   "instagram.com/somacoretech",
   "linkedin.com/company/soma-core",

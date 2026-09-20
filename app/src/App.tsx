@@ -518,8 +518,8 @@ function App() {
         <div className="container legal">
           <span>SOMA · Bucaramanga, Colombia · NIT 902080602-8</span>
           <span>
-            <a href="/privacy.html">{t.footer.privacy}</a> ·{" "}
-            <a href="/terms.html">{t.footer.terms}</a>
+            <a href="/privacy.html?v=20260920-3">{t.footer.privacy}</a> ·{" "}
+            <a href="/terms.html?v=20260920-3">{t.footer.terms}</a>
           </span>
         </div>
       </footer>
