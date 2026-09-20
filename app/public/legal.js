@@ -26,5 +26,11 @@
     document.querySelector("#theme-toggle")?.addEventListener("click", () => {
       apply(root.dataset.theme === "dark" ? "light" : "dark");
     });
+    const menuButton = document.querySelector("#menu-toggle");
+    const mobileMenu = document.querySelector("#mobile-menu");
+    menuButton?.addEventListener("click", () => {
+      const open = mobileMenu?.classList.toggle("is-open") ?? false;
+      menuButton.setAttribute("aria-expanded", String(open));
+    });
   });
 })();

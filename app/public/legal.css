@@ -48,9 +48,13 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--focus); outline
 .nav nav a { padding: 27px 0 25px; color: var(--ink); border-bottom: 2px solid transparent; font-size: 13px; font-weight: 600; text-decoration: none; }
 .nav nav a:hover { color: var(--blue); border-color: var(--blue); }
 .nav-actions { display: flex; align-items: center; gap: 12px; }
-.pref-control { min-width: 40px; height: 40px; padding: 0; display: inline-grid; place-items: center; color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 6px; }
+.pref-control { min-width: 46px; height: 40px; padding: 0 10px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; color: var(--ink); background: var(--surface-elevated); border: 1px solid var(--line); border-radius: 6px; font-size: 11px; font-weight: 800; text-decoration: none; transition: border-color 160ms ease, background-color 160ms ease, transform 160ms cubic-bezier(.23,1,.32,1); }
 .pref-control:hover { color: var(--blue); border-color: var(--blue); }
-.language-control { padding-inline: 10px; font-size: 12px; font-weight: 800; text-decoration: none; }
+.pref-control:active { transform: scale(.97); }
+.pref-control.icon-only { min-width: 40px; padding: 0; }
+.language-icon, .arrow-icon { flex: 0 0 auto; }
+.hamb { display: none; width: 40px; height: 40px; padding: 0; place-items: center; color: var(--ink); background: transparent; border: 0; }
+.mobile-menu { display: none; }
 .sun-icon { display: none; }
 .btn { min-height: 48px; padding: 0 22px; border: 1px solid transparent; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; font-weight: 700; font-size: 14px; white-space: nowrap; text-decoration: none; transition: .16s; }
 .btn:active { transform: scale(.97); }
@@ -104,10 +108,15 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--focus); outline
 [data-theme="dark"] .moon-icon { display: none; }
 [data-theme="dark"] .sun-icon { display: block; }
 [data-theme="dark"] .legal-hero { background: #031927; }
+[data-theme="dark"] .site-header { background: var(--surface); }
 
 @media (max-width: 960px) {
-  .nav nav { display: none; }
+  .nav nav, .nav-cta { display: none; }
   .nav-actions { margin-left: auto; }
+  .hamb { display: grid; }
+  .mobile-menu.is-open { display: flex; flex-direction: column; padding: 12px 24px 22px; background: var(--surface-elevated); border-top: 1px solid var(--line); }
+  .mobile-menu a { padding: 14px 0; color: var(--ink); border-bottom: 1px solid var(--line); font-size: 14px; font-weight: 600; text-decoration: none; }
+  .mobile-menu a:last-child { border-bottom: 0; }
 }
 @media (max-width: 800px) {
   .legal-layout { grid-template-columns: 1fr; padding-block: 48px 80px; }
@@ -120,6 +129,10 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--focus); outline
   .utility .container { justify-content: flex-end; }
   .nav { height: 68px; }
   .logo img { width: 142px; height: 48px; }
+  .pref-control { min-width: 38px; height: 36px; padding: 0 7px; }
+  .pref-control.icon-only { min-width: 36px; }
+  .pref-control span { display: none; }
+  .hamb { width: 36px; height: 36px; }
   .legal-hero .container { min-height: 300px; padding-block: 52px; }
   .legal-hero h1 { font-size: clamp(38px, 12vw, 54px); }
   .legal-hero .summary { font-size: 16px; }

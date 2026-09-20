@@ -96,14 +96,19 @@ for (const [name, document] of [
   assert.match(document, /class="utility"/, `${name}: SOMA utility bar missing`);
   assert.match(document, /logo-light\.svg/, `${name}: SOMA logo missing`);
   assert.match(document, /class="legal-hero"/, `${name}: SOMA legal hero missing`);
+  assert.match(document, /class="language-icon"/, `${name}: main-site language icon missing`);
+  assert.match(document, /class="hamb"/, `${name}: responsive menu control missing`);
+  assert.match(document, /class="mobile-menu"/, `${name}: responsive navigation missing`);
+  assert.match(document, /#perspectivas/, `${name}: insights navigation missing`);
+  assert.match(document, /class="arrow-icon"/, `${name}: CTA arrow missing`);
   assert.match(
     document,
-    /legal\.css\?v=20260920-4/,
+    /legal\.css\?v=20260920-5/,
     `${name}: versioned legal styles missing`,
   );
   assert.match(
     document,
-    /legal\.js\?v=20260920-4/,
+    /legal\.js\?v=20260920-5/,
     `${name}: versioned theme behavior missing`,
   );
 }
@@ -114,6 +119,7 @@ for (const [name, document, counterpart] of [
 ]) {
   assert.match(document, new RegExp(counterpart), `${name}: English selector missing`);
   assert.match(document, /hreflang="en"/, `${name}: English hreflang missing`);
+  assert.match(document, /<span>ES<\/span>/, `${name}: active Spanish locale missing`);
 }
 for (const [name, document, counterpart] of [
   ["privacy-en", privacyEn, "privacy.html"],
@@ -125,10 +131,12 @@ for (const [name, document, counterpart] of [
   assert.match(document, /hreflang="es"/, `${name}: Spanish hreflang missing`);
   assert.match(document, /902080602-8/, `${name}: company NIT missing`);
   assert.match(document, /contacto@somacoretech\.com/, `${name}: company email missing`);
-  assert.match(document, /legal\.css\?v=20260920-4/, `${name}: versioned legal styles missing`);
-  assert.match(document, /legal\.js\?v=20260920-4/, `${name}: versioned theme behavior missing`);
+  assert.match(document, /<span>EN<\/span>/, `${name}: active English locale missing`);
+  assert.match(document, /legal\.css\?v=20260920-5/, `${name}: versioned legal styles missing`);
+  assert.match(document, /legal\.js\?v=20260920-5/, `${name}: versioned theme behavior missing`);
 }
 assert.match(legalJs, /Enable light mode/, "legal: English theme label missing");
+assert.match(legalJs, /mobile-menu/, "legal: responsive menu behavior missing");
 for (const page of ["privacy-en", "terms-en", "cookies-en"])
   assert.match(sitemap, new RegExp(`${page}\\.html`), `sitemap: ${page} missing`);
 assert.match(legalCss, /family=Manrope/, "legal: SOMA font import missing");
