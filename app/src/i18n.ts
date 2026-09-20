@@ -112,8 +112,8 @@ export const translations = {
     },
     sectors: {
       label: "Sectores",
-      title: "Tecnología aplicada al contexto.",
-      copy: "Cada imagen y cada solución representan el entorno operativo al que sirven.",
+      title: "Soluciones diseñadas para cada entorno operativo.",
+      copy: "Adaptamos arquitectura, automatización y datos a los procesos, riesgos y objetivos de cada industria.",
       items: [
         [
           "Retail y comercio",
@@ -138,7 +138,12 @@ export const translations = {
       title: "Un socio tecnológico para construir y evolucionar.",
       copy: "Acompañamos su operación durante todo el ciclo de la solución.",
       steps: ["Comprender", "Definir", "Construir", "Acompañar"],
-      stepCopy: "Decisiones con contexto, disciplina y foco en resultados.",
+      stepCopy: [
+        "Analizamos procesos, datos, usuarios y restricciones.",
+        "Priorizamos alcance, arquitectura, seguridad e indicadores.",
+        "Desarrollamos, integramos y validamos con la operación.",
+        "Medimos, soportamos y evolucionamos cada solución.",
+      ],
       statement:
         "Combinamos entendimiento operativo, ingeniería de software y acompañamiento continuo.",
     },
@@ -287,8 +292,8 @@ export const translations = {
     },
     sectors: {
       label: "Industries",
-      title: "Technology applied to context.",
-      copy: "Every image and solution represents the operating environment it serves.",
+      title: "Solutions designed for each operating environment.",
+      copy: "We adapt architecture, automation and data to the processes, risks and goals of each industry.",
       items: [
         [
           "Retail and commerce",
@@ -313,7 +318,12 @@ export const translations = {
       title: "A technology partner to build and evolve.",
       copy: "We support your operation throughout the solution life cycle.",
       steps: ["Understand", "Define", "Build", "Support"],
-      stepCopy: "Decisions grounded in context, discipline and results.",
+      stepCopy: [
+        "We assess processes, data, users and constraints.",
+        "We prioritize scope, architecture, security and metrics.",
+        "We develop, integrate and validate with the operation.",
+        "We measure, support and evolve every solution.",
+      ],
       statement:
         "We combine operational understanding, software engineering and continuous support.",
     },
