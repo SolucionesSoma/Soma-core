@@ -7,7 +7,6 @@ import {
   Code2,
   Database,
   HardHat,
-  Instagram,
   Languages,
   Linkedin,
   Mail,
@@ -487,7 +486,7 @@ function App() {
                 target="_blank"
                 rel="noreferrer"
               >
-                <Instagram size={15} />
+                <InstagramIcon />
                 Instagram
               </a>
               <a
@@ -503,6 +502,7 @@ function App() {
                 target="_blank"
                 rel="noreferrer"
               >
+                <TikTokIcon />
                 TikTok
               </a>
               <a
@@ -594,6 +594,41 @@ function Foot({
         </a>
       ))}
     </div>
+  );
+}
+function InstagramIcon() {
+  return (
+    <svg className="brand-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <rect
+        x="3"
+        y="3"
+        width="18"
+        height="18"
+        rx="5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+      />
+      <circle
+        cx="12"
+        cy="12"
+        r="4"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+      />
+      <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" />
+    </svg>
+  );
+}
+function TikTokIcon() {
+  return (
+    <svg className="brand-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        d="M15.5 3c.4 2.4 1.8 3.9 4.5 4.2v3.2a9.3 9.3 0 0 1-4.4-1.3v6.4a6.5 6.5 0 1 1-5.7-6.4v3.3a3.2 3.2 0 1 0 2.4 3.1V3h3.2Z"
+        fill="currentColor"
+      />
+    </svg>
   );
 }
 export default App;
