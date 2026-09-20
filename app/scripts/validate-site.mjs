@@ -11,6 +11,7 @@ const privacy = read("public/privacy.html");
 const terms = read("public/terms.html");
 const cookiesPolicy = read("public/cookies.html");
 const config = read("src/config.ts");
+const legalCss = read("public/legal.css");
 
 assert.match(index, /application\/ld\+json/, "JSON-LD missing");
 assert.match(index, /og-soma\.jpg/, "social image missing");
@@ -75,7 +76,15 @@ for (const [name, document] of [
     /somaacoretech/,
     `${name}: contact email contains typo`,
   );
+  assert.match(document, /class="utility"/, `${name}: SOMA utility bar missing`);
+  assert.match(document, /logo-light\.svg/, `${name}: SOMA logo missing`);
+  assert.match(document, /class="legal-hero"/, `${name}: SOMA legal hero missing`);
+  assert.match(document, /legal\.js/, `${name}: theme behavior missing`);
 }
+assert.match(legalCss, /family=Manrope/, "legal: SOMA font import missing");
+assert.match(legalCss, /--deep:\s*#05263f/, "legal: SOMA deep token missing");
+assert.match(legalCss, /--blue:\s*#0878c2/, "legal: SOMA blue token missing");
+assert.match(legalCss, /\[data-theme="dark"\]/, "legal: dark theme missing");
 for (const section of [
   "Responsable del tratamiento",
   "Datos que tratamos",
