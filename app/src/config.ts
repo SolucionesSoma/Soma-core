@@ -326,7 +326,7 @@ export const footerConfig: FooterConfig = {
   ],
   contactTitle: "Contacto",
   emailLabel: "Email",
-  email: "contacto@somaacoretech.com",
+  email: "contacto@somacoretech.com",
   phoneLabel: "Teléfono",
   phone: "+57 318 577 2152",
   addressLabel: "Ubicación",
@@ -343,7 +343,6 @@ export const footerConfig: FooterConfig = {
     { icon: "linkedin", label: "LinkedIn", href: "http://linkedin.com/company/soma-core" },
     { icon: "tiktok", label: "TikTok", href: "https://www.tiktok.com/@somacoretech" },
     { icon: "x", label: "X", href: "https://x.com/SomaCoreTech" },
-    { icon: "email", label: "Correo", href: "mailto:contacto@somaacoretech.com" },
+    { icon: "email", label: "Correo", href: "mailto:contacto@somacoretech.com" },
   ],
 };
-

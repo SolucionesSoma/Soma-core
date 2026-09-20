@@ -7,6 +7,10 @@ const app = read("src/App.tsx");
 const i18n = fs.existsSync("src/i18n.ts") ? read("src/i18n.ts") : "";
 const css = read("src/index.css");
 const cookie = read("src/components/CookieConsentBanner.tsx");
+const privacy = read("public/privacy.html");
+const terms = read("public/terms.html");
+const cookiesPolicy = read("public/cookies.html");
+const config = read("src/config.ts");
 
 assert.match(index, /application\/ld\+json/, "JSON-LD missing");
 assert.match(index, /og-soma\.jpg/, "social image missing");
@@ -17,6 +21,7 @@ assert.doesNotMatch(
   "founder must not appear in organization schema",
 );
 assert.doesNotMatch(index, /somaacoretech/, "contact email contains typo");
+assert.doesNotMatch(config, /somaacoretech/, "legacy config contains email typo");
 assert.match(i18n, /export type Locale/, "typed locale dictionary missing");
 assert.match(i18n, /en:/, "English dictionary missing");
 assert.match(app, /aria-label=.*theme|themeLabel/i, "theme control missing");
@@ -54,6 +59,46 @@ assert.doesNotMatch(
   /className="search"/,
   "non-functional search control must not render",
 );
+for (const [name, document] of [
+  ["privacy", privacy],
+  ["terms", terms],
+  ["cookies", cookiesPolicy],
+]) {
+  assert.match(document, /902080602-8/, `${name}: company NIT missing`);
+  assert.match(
+    document,
+    /contacto@somacoretech\.com/,
+    `${name}: correct company email missing`,
+  );
+  assert.doesNotMatch(
+    document,
+    /somaacoretech/,
+    `${name}: contact email contains typo`,
+  );
+}
+for (const section of [
+  "Responsable del tratamiento",
+  "Datos que tratamos",
+  "Finalidades del tratamiento",
+  "Derechos de los titulares",
+  "Consultas y reclamos",
+  "Transferencia y transmisión",
+  "Conservación",
+  "Seguridad",
+])
+  assert.match(privacy, new RegExp(section, "i"), `privacy: ${section} missing`);
+assert.match(privacy, /diez \(10\) días hábiles/i, "privacy: query term missing");
+assert.match(privacy, /quince \(15\) días hábiles/i, "privacy: claim term missing");
+for (const section of [
+  "Alcance y aceptación",
+  "Contratación de servicios",
+  "Usos prohibidos",
+  "Propiedad intelectual",
+  "Servicios de terceros",
+  "Limitación de responsabilidad",
+  "Ley aplicable",
+])
+  assert.match(terms, new RegExp(section, "i"), `terms: ${section} missing`);
 const capabilityStart = app.indexOf("t.capabilities.items.map");
 const capabilityMarkup = app.slice(
   capabilityStart,
