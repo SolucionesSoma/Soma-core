@@ -59,6 +59,11 @@ img {
   justify-content: space-between;
   align-items: center;
 }
+.utility-links { display: inline-flex; align-items: center; gap: 9px; }
+.utility-links a,
+.utility-links button { border: 0; padding: 0; background: transparent; color: inherit; font-size: inherit; }
+.utility-links a:hover,
+.utility-links button:hover { color: #ffffff; text-decoration: underline; text-underline-offset: 3px; }
 header {
   position: sticky;
   top: 0;
@@ -447,7 +452,7 @@ header {
 }
 .cap-list article {
   display: grid;
-  grid-template-columns: 38px 30px 1fr 20px;
+  grid-template-columns: 38px 30px 1fr;
   gap: 16px;
   align-items: center;
   padding: 25px 0;

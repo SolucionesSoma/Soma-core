@@ -14,7 +14,6 @@ import {
   Menu,
   Moon,
   Scale,
-  Search,
   ShieldCheck,
   Sun,
   X,
@@ -103,8 +102,12 @@ function App() {
         <div className="utility">
           <div className="container">
             <span>{t.utility[0]}</span>
-            <span>
-              {t.utility[1]} &nbsp; | &nbsp; {t.utility[2]}
+            <span className="utility-links">
+              <a href="mailto:contacto@somacoretech.com">{t.utility[1]}</a>
+              <span aria-hidden="true">|</span>
+              <button type="button" onClick={() => go("contacto")}>
+                {t.utility[2]}
+              </button>
             </span>
           </div>
         </div>
@@ -153,9 +156,6 @@ function App() {
               title={theme === "light" ? t.dark : t.light}
             >
               {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
-            </button>
-            <button type="button" className="search" aria-label={t.search}>
-              <Search size={19} />
             </button>
             <a className="btn primary nav-cta" href={WA}>
               {t.talk}
@@ -286,7 +286,11 @@ function App() {
                       </div>
                       <p>{desc}</p>
                       <small>{meta}</small>
-                      <ProjectLink text={t.projects.more} />
+                      <ProjectLink
+                        text={t.projects.more}
+                        subject={name}
+                        locale={locale}
+                      />
                     </div>
                   </article>
                 ))}
@@ -310,7 +314,11 @@ function App() {
                   <Tag text={t.projects.web} />
                   <h3>{t.projects.landingTitle}</h3>
                   <p>{t.projects.landingCopy}</p>
-                  <ProjectLink text={t.projects.more} />
+                  <ProjectLink
+                    text={t.projects.more}
+                    subject={t.projects.landings}
+                    locale={locale}
+                  />
                 </div>
               </article>
             )}
@@ -353,7 +361,6 @@ function App() {
                       <h3>{title}</h3>
                       <p>{desc}</p>
                     </div>
-                    <ArrowRight />
                   </article>
                 );
               })}
@@ -422,7 +429,11 @@ function App() {
                   <span>0{i + 1}</span>
                   <h3>{title}</h3>
                   <p>{t.insights.itemCopy}</p>
-                  <ProjectLink text={t.projects.more} />
+                  <ProjectLink
+                    text={t.projects.more}
+                    subject={title}
+                    locale={locale}
+                  />
                 </article>
               ))}
             </div>
@@ -542,9 +553,24 @@ function Heading({
 function Tag({ text }: { text: string }) {
   return <span className="tag">{text}</span>;
 }
-function ProjectLink({ text }: { text: string }) {
+function ProjectLink({
+  text,
+  subject,
+  locale,
+}: {
+  text: string;
+  subject: string;
+  locale: Locale;
+}) {
+  const message =
+    locale === "es"
+      ? `Hola, quiero conocer más sobre ${subject}.`
+      : `Hello, I would like to learn more about ${subject}.`;
   return (
-    <a className="inline-link" href={WA}>
+    <a
+      className="inline-link"
+      href={`${WA}?text=${encodeURIComponent(message)}`}
+    >
       {text}
       <ArrowRight size={16} />
     </a>

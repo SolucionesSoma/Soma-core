@@ -49,4 +49,19 @@ assert.match(
   /link\[rel=.{0,3}canonical/,
   "runtime canonical localization missing",
 );
+assert.doesNotMatch(
+  app,
+  /className="search"/,
+  "non-functional search control must not render",
+);
+const capabilityStart = app.indexOf("t.capabilities.items.map");
+const capabilityMarkup = app.slice(
+  capabilityStart,
+  app.indexOf("</section>", capabilityStart),
+);
+assert.doesNotMatch(
+  capabilityMarkup,
+  /<ArrowRight/,
+  "capability rows must not show a false navigation affordance",
+);
 console.log("Site acceptance checks passed");

@@ -43,7 +43,7 @@ export const translations = {
         "Diseño y desarrollo web enfocado en claridad, rendimiento y objetivos comerciales.",
       development: "En desarrollo",
       next: "Próximos productos de SOMA",
-      more: "Conocer el proyecto",
+      more: "Consultar solución",
     },
     products: [
       [
@@ -226,7 +226,7 @@ export const translations = {
         "Web design and development focused on clarity, performance and business goals.",
       development: "In development",
       next: "Upcoming SOMA products",
-      more: "Explore product",
+      more: "Discuss solution",
     },
     products: [
       [
