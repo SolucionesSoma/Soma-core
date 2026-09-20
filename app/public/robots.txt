@@ -2,3 +2,4 @@
 Allow: /
 
 Sitemap: https://somacoretech.com/sitemap.xml
+Host: somacoretech.com

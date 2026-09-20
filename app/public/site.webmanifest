@@ -1,0 +1,17 @@
+{
+  "name": "SOMA Core",
+  "short_name": "SOMA",
+  "description": "Ingeniería digital para operaciones reales.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0878c2",
+  "icons": [
+    {
+      "src": "/soma-bird-hd.webp",
+      "sizes": "1453x1083",
+      "type": "image/webp",
+      "purpose": "any"
+    }
+  ]
+}

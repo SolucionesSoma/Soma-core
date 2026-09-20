@@ -1,87 +1,180 @@
-﻿<!doctype html>
-<html lang="es">
+<!doctype html>
+<html lang="es" data-theme="light">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>SOMA Core | IA y Software a la Medida</title>
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <title>SOMA Core | Software empresarial, automatización e IA</title>
     <meta
       name="description"
-      content="SOMA Core crea software a la medida e inteligencia artificial para optimizar procesos y acelerar resultados de negocio."
+      content="SOMA diseña software empresarial, automatización e inteligencia artificial para fortalecer operaciones, integrar equipos y acelerar decisiones."
     />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta
+      name="robots"
+      content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+    />
     <meta name="author" content="SOMA Core" />
-    <meta name="theme-color" content="#020617" />
-    <link rel="icon" type="image/svg+xml" href="/hero-image.svg" />
-    <link rel="shortcut icon" href="/hero-image.svg" />
-    <link rel="apple-touch-icon" href="/hero-image.svg" />
-
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="application-name" content="SOMA Core" />
+    <meta name="geo.region" content="CO-SAN" />
+    <meta name="geo.placename" content="Bucaramanga" />
     <link rel="canonical" href="https://somacoretech.com/" />
-    <link rel="alternate" href="https://somacoretech.com/" hreflang="es" />
-    <link rel="alternate" href="https://somacoretech.com/" hreflang="x-default" />
-
+    <link rel="alternate" href="https://somacoretech.com/" hreflang="es-CO" />
+    <link
+      rel="alternate"
+      href="https://somacoretech.com/?lang=en"
+      hreflang="en"
+    />
+    <link
+      rel="alternate"
+      href="https://somacoretech.com/"
+      hreflang="x-default"
+    />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="icon" type="image/webp" href="/soma-bird-hd.webp" />
+    <link rel="apple-touch-icon" href="/soma-bird-hd.webp" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link
+      rel="preload"
+      href="/soma-bird-hd.webp"
+      as="image"
+      type="image/webp"
+      fetchpriority="high"
+    />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_CO" />
+    <meta property="og:locale:alternate" content="en_US" />
     <meta property="og:site_name" content="SOMA Core" />
-    <meta property="og:title" content="SOMA Core | IA y Software a la Medida" />
+    <meta
+      property="og:title"
+      content="SOMA Core | Software empresarial, automatización e IA"
+    />
     <meta
       property="og:description"
-      content="SOMA Core crea software a la medida e inteligencia artificial para optimizar procesos y acelerar resultados de negocio."
+      content="SOMA diseña software empresarial, automatización e inteligencia artificial para fortalecer operaciones, integrar equipos y acelerar decisiones."
     />
     <meta property="og:url" content="https://somacoretech.com/" />
-    <meta property="og:image" content="https://somacoretech.com/logo-light.svg" />
-
+    <meta property="og:image" content="https://somacoretech.com/og-soma.jpg" />
+    <meta
+      property="og:image:secure_url"
+      content="https://somacoretech.com/og-soma.jpg"
+    />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="SOMA, ingeniería digital para operaciones reales"
+    />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="SOMA Core | IA y Software a la Medida" />
+    <meta
+      name="twitter:title"
+      content="SOMA Core | Software empresarial, automatización e IA"
+    />
     <meta
       name="twitter:description"
-      content="SOMA Core crea software a la medida e inteligencia artificial para optimizar procesos y acelerar resultados de negocio."
+      content="Software empresarial, automatización e IA para operaciones reales."
     />
-    <meta name="twitter:image" content="https://somacoretech.com/logo-light.svg" />
-
+    <meta name="twitter:image" content="https://somacoretech.com/og-soma.jpg" />
+    <meta
+      name="twitter:image:alt"
+      content="SOMA, ingeniería digital para operaciones reales"
+    />
+    <script>
+      try {
+        const t = localStorage.getItem("soma-theme");
+        const v =
+          t === "dark" || t === "light"
+            ? t
+            : matchMedia("(prefers-color-scheme:dark)").matches
+              ? "dark"
+              : "light";
+        document.documentElement.dataset.theme = v;
+        document.documentElement.style.colorScheme = v;
+      } catch {}
+    </script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "SOMA Core",
-        "url": "https://somacoretech.com/",
-        "email": "contacto@somaacoretech.com",
-        "founder": {
-          "@type": "Person",
-          "name": "David Morantes"
-        },
-        "knowsAbout": ["Software a la medida", "Inteligencia artificial", "Optimización de procesos"],
-        "sameAs": [
-          "https://www.facebook.com/search/pages/?q=Soma%20core",
-          "https://www.instagram.com/somacoretech/",
-          "http://linkedin.com/company/soma-core",
-          "https://www.tiktok.com/@somacoretech",
-          "https://x.com/SomaCoreTech"
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://somacoretech.com/#organization",
+            "name": "SOMA Core",
+            "legalName": "SOMA",
+            "identifier": {
+              "@type": "PropertyValue",
+              "propertyID": "NIT",
+              "value": "902080602-8"
+            },
+            "url": "https://somacoretech.com/",
+            "logo": "https://somacoretech.com/logo-light.svg",
+            "image": "https://somacoretech.com/og-soma.jpg",
+            "email": "contacto@somacoretech.com",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Bucaramanga",
+              "addressRegion": "Santander",
+              "addressCountry": "CO"
+            },
+            "sameAs": [
+              "https://www.instagram.com/somacoretech/",
+              "https://www.linkedin.com/company/soma-core",
+              "https://www.tiktok.com/@somacoretech",
+              "https://x.com/SomaCoreTech"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://somacoretech.com/#website",
+            "url": "https://somacoretech.com/",
+            "name": "SOMA Core",
+            "publisher": { "@id": "https://somacoretech.com/#organization" },
+            "inLanguage": ["es-CO", "en"]
+          },
+          {
+            "@type": "ProfessionalService",
+            "@id": "https://somacoretech.com/#service",
+            "name": "SOMA Core",
+            "url": "https://somacoretech.com/",
+            "provider": { "@id": "https://somacoretech.com/#organization" },
+            "areaServed": [
+              { "@type": "Country", "name": "Colombia" },
+              { "@type": "AdministrativeArea", "name": "Latin America" }
+            ],
+            "serviceType": [
+              "Software empresarial",
+              "Automatización de procesos",
+              "Inteligencia artificial",
+              "Integración de sistemas",
+              "Consultoría tecnológica"
+            ]
+          },
+          {
+            "@type": "ItemList",
+            "name": "SOMA Suite",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Atlas" },
+              { "@type": "ListItem", "position": 2, "name": "Orbit" },
+              { "@type": "ListItem", "position": 3, "name": "Sonora" },
+              { "@type": "ListItem", "position": 4, "name": "Flow" },
+              { "@type": "ListItem", "position": 5, "name": "Relay" }
+            ]
+          }
         ]
-      }
-    </script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "SOMA Core",
-        "url": "https://somacoretech.com/",
-        "inLanguage": "es"
-      }
-    </script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "SOMA Core",
-        "url": "https://somacoretech.com/",
-        "areaServed": "CO",
-        "serviceType": ["Desarrollo de software", "Implementación de IA", "Consultoría de procesos"],
-        "email": "contacto@somaacoretech.com"
       }
     </script>
   </head>
   <body>
+    <noscript
+      >Active JavaScript para explorar las soluciones empresariales de SOMA
+      Core.</noscript
+    >
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
