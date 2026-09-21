@@ -51,6 +51,8 @@ for (const modalTab of ["Información", "Factura", "Mantenimientos", "Traslados"
   assert.match(demo, new RegExp(modalTab));
 for (const workflow of ["Escalar ticket", "Pausar ticket", "Finalizar ticket", "Ejecutar mantenimiento", "Firma del responsable", "Firma de sede"])
   assert.match(demo, new RegExp(workflow));
+for (const missingView of ["Portal público", "Crear solicitud", "Consultar ticket", "Notificaciones", "Configuración de perfil", "Respuesta masiva", "Pendientes acumulados", "Reporte de mantenimiento"])
+  assert.match(demo, new RegExp(missingView));
 assert.match(styles, /grid-template-columns:\s*256px 1fr/);
 assert.match(styles, /min-height:\s*900px/);
 assert.match(page, /footer-grid/);
