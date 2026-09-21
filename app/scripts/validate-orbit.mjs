@@ -9,7 +9,8 @@ const content = read("src/pages/orbit/orbitContent.ts");
 const data = read("src/pages/orbit/orbitDemoData.ts");
 const fox = read("src/pages/orbit/OrbitFoxMark.tsx");
 const demo = read("src/pages/orbit/demo/OrbitDemo.tsx");
-const styles = read("src/pages/orbit/orbit.css") + read("src/pages/orbit/demo/orbitDemo.css");
+const demoStyles = read("src/pages/orbit/demo/orbitDemo.css");
+const styles = read("src/pages/orbit/orbit.css") + demoStyles;
 const sitemap = read("public/sitemap.xml");
 const vercel = read("vercel.json");
 const vite = read("vite.config.ts");
@@ -83,6 +84,10 @@ for (const assetFlow of ["Dar de baja", "Abrir factura", "Activo asociado", "Cre
   assert.match(demo, new RegExp(assetFlow));
 for (const mobilePolish of ["mobile-asset-subtable", "mobile-cyclic-history", "mobile-tab-label", "safe-area-inset-bottom", "color-scheme:dark"])
   assert.match(styles, new RegExp(mobilePolish));
+assert.doesNotMatch(demoStyles, /\[data-theme=dark\] \.orbit-demo-shell/);
+assert.match(demoStyles, /\.demo-app-sidebar\.open \.demo-nav span\{display:inline\}/);
+for (const isolatedThemeSurface of ["demo-app-header button", "demo-calendar-card button", "signature-grid button", "ticket-header-actions>button", "composer-send-chooser"])
+  assert.match(styles, new RegExp(`orbit-demo-shell \\.${isolatedThemeSurface.replace(/[>.]/g, "\\$&")}`));
 for (const faithfulTicketCreate of ["Formulario de solicitud", "Información de contacto", "Identificación", "Punto de venta", "Información del caso", "Adjuntar archivo"])
   assert.match(demo, new RegExp(faithfulTicketCreate));
 assert.match(styles, /grid-template-columns:\s*256px 1fr/);
