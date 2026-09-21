@@ -59,7 +59,12 @@ for (const mobileStructure of ["demo-mobile-menu", "demo-mobile-sidebar-backdrop
   assert.match(demo, new RegExp(mobileStructure));
 assert.match(styles, /\.demo-app-sidebar\.open/);
 assert.match(styles, /\.demo-mobile-ticket-list/);
-assert.match(styles, /max-height:\s*100dvh/);
+assert.doesNotMatch(styles, /max-height:\s*100dvh/);
+assert.match(styles, /contain:\s*layout paint/);
+assert.match(styles, /\.orbit-demo-shell \.demo-modal-backdrop\{position:absolute/);
+assert.match(styles, /\.orbit-demo-shell \.demo-mobile-sidebar-backdrop\{position:absolute/);
+assert.match(styles, /\.orbit-demo-shell \.ticket-response-modal\{[^}]*calc\(100%/);
+assert.match(styles, /--demo-surface:/);
 assert.match(styles, /grid-template-columns:\s*256px 1fr/);
 assert.match(styles, /min-height:\s*900px/);
 assert.match(page, /footer-grid/);
