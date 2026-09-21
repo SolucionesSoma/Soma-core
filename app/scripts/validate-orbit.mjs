@@ -51,8 +51,11 @@ for (const modalTab of ["Información", "Factura", "Mantenimientos", "Traslados"
   assert.match(demo, new RegExp(modalTab));
 for (const workflow of ["Escalar ticket", "Pausar ticket", "Finalizar ticket", "Ejecutar mantenimiento", "Firma del responsable", "Firma de sede"])
   assert.match(demo, new RegExp(workflow));
-for (const missingView of ["Portal público", "Crear solicitud", "Consultar ticket", "Notificaciones", "Configuración de perfil", "Respuesta masiva", "Pendientes acumulados", "Reporte de mantenimiento"])
+for (const missingView of ["Formulario de solicitud", "Notificaciones", "Configuración de perfil", "Respuesta masiva", "Pendientes acumulados", "Reporte de mantenimiento"])
   assert.match(demo, new RegExp(missingView));
+assert.doesNotMatch(demo, /Portal público|Public portal/);
+for (const responseComposer of ["composer-send-chooser", "composer-action-menu", "Más opciones", "Pública", "Interna", "+ CC/CCO", "Finalizar ticket al enviar", "Salir"])
+  assert.ok(demo.includes(responseComposer), `Missing response composer detail: ${responseComposer}`);
 for (const faithfulModal of ["demo-ticket-response-layout", "demo-ticket-case-panel", "demo-ticket-composer-panel", "Información PQRSF", "Registrar traslado", "Nueva acta de entrega", "Crear Factura Completa"])
   assert.match(demo, new RegExp(faithfulModal));
 for (const mobileStructure of ["demo-mobile-menu", "demo-mobile-sidebar-backdrop", "demo-mobile-ticket-list", "demo-mobile-asset-list"])
@@ -63,6 +66,7 @@ assert.doesNotMatch(styles, /max-height:\s*100dvh/);
 assert.match(styles, /contain:\s*layout paint/);
 assert.match(styles, /\.orbit-demo-shell \.demo-modal-backdrop\{position:absolute/);
 assert.match(styles, /\.orbit-demo-shell \.demo-mobile-sidebar-backdrop\{position:absolute/);
+assert.doesNotMatch(styles, /\.composer-action-menu\{position:fixed/);
 assert.match(styles, /\.orbit-demo-shell \.ticket-response-modal\{[^}]*calc\(100%/);
 assert.match(styles, /--demo-surface:/);
 for (const darkSurface of ["demo-metric-grid article", "demo-nav button", "demo-calendar-grid>button", "public-portal", "header-popover"])

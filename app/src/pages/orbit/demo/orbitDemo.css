@@ -25,3 +25,50 @@
 .demo-dark .demo-metric-grid article,.demo-dark .demo-chart,.demo-dark .demo-ranking,.demo-dark .demo-calendar-grid>button,.demo-dark .public-portal,.demo-dark .header-popover,.demo-dark .demo-service-frame article{background:var(--demo-raised);color:var(--demo-ink);border-color:var(--demo-border)}.demo-dark .demo-nav button{color:var(--demo-ink)}.demo-dark .demo-calendar-grid>button span{background:var(--demo-primary-soft);color:var(--demo-primary)}.demo-dark .demo-filter-bar button:not(:nth-last-child(2)),.demo-dark .demo-section-tabs button:not(.active),.demo-dark .demo-asset-tabs button:not(.active),.demo-dark .demo-ticket-card button:not(.demo-primary),.demo-dark .form-actions button:not(.demo-primary){background:var(--demo-raised);color:var(--demo-ink);border-color:var(--demo-border)}.demo-dark .header-popover>button:not(.popover-close),.demo-dark .selected-assets span,.demo-dark .record-selection span{background:var(--demo-subtle);color:var(--demo-ink)}
 .orbit-demo-shell .demo-modal{font-size:13px}.orbit-demo-shell .demo-modal h3{margin:7px 44px 8px 0}.modal-lead{margin:0 45px 18px 0;color:var(--demo-muted);font-size:12px;line-height:1.55}.modal-form-section{border:1px solid var(--demo-border)!important;border-radius:11px;margin:14px 0!important;padding:16px}.modal-form-section>header{display:flex;align-items:flex-start;gap:9px;margin-bottom:13px}.modal-form-section>header>div{display:grid}.modal-form-section>header b{font-size:13px}.modal-form-section>header span{margin-top:2px;color:var(--demo-muted);font-size:10px}.modal-form-section label{display:grid;gap:6px;margin:10px 0;font-size:10px;color:var(--demo-muted)}.modal-form-section input,.modal-form-section select{height:42px}.sticky-actions{position:sticky;bottom:-32px;margin:18px -32px -32px;padding:14px 32px;background:var(--demo-surface);border-top:1px solid var(--demo-border);z-index:2}.maintenance-form{width:min(780px,calc(100% - 36px))}.ticket-create-form{min-width:0}.modal-kicker{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.12em}.modal-kicker.danger{color:#dc2626}.pending-stack-modal{width:min(690px,calc(100% - 36px))}.pending-focus-card{border:1px solid var(--demo-border);border-radius:11px;padding:16px;margin-top:18px}.pending-focus-card>header{display:flex;justify-content:space-between;gap:12px}.pending-focus-card header div{display:grid}.pending-focus-card header span,.pending-focus-card>p{font-size:10px;color:var(--demo-muted)}.pending-focus-card header em{height:max-content;border-radius:999px;padding:5px 9px;background:#fff1f2;color:#be123c;font-size:9px;font-style:normal}.pending-focus-card label{display:grid;gap:6px;margin-top:14px;font-size:10px}.success-action{background:#ecfdf5!important;color:#047857!important;border-color:#a7f3d0!important}.danger-action{background:#fff1f2!important;color:#be123c!important;border-color:#fecdd3!important}.cyclic-report-modal{width:min(860px,calc(100% - 36px))}.report-sections{display:grid;gap:12px}.report-sections>section{border:1px solid var(--demo-border)!important;border-radius:10px;margin:0!important;padding:14px}.report-sections h4{margin:0 0 11px;font-size:12px}.report-sections p{color:var(--demo-muted)}.report-checks{display:grid;grid-template-columns:1fr 1fr;gap:8px}.report-checks span{display:flex;justify-content:space-between;border:1px solid var(--demo-border);border-radius:8px;padding:10px;font-size:10px}.report-checks em{color:#047857;font-style:normal;font-weight:700}
 @media(max-width:600px){.modal-form-section{padding:13px}.sticky-actions{bottom:-18px;margin:16px -18px -18px;padding:12px 18px}.report-checks{grid-template-columns:1fr}.pending-focus-card>header{display:grid}.pending-focus-card .form-actions{display:grid}.orbit-demo-shell .demo-modal{font-size:12px}}
+
+/* Ticket composer mirrors the original ESM interaction model. */
+.orbit-demo-shell .ticket-response-modal>.demo-close{display:none}
+.ticket-header-actions{display:flex;align-items:center;gap:10px}
+.ticket-header-actions>span{font-size:10px;background:#dcfce7;color:#15803d;border-radius:999px;padding:6px 10px}
+.ticket-header-actions>button{min-height:36px;border:1px solid var(--demo-border);border-radius:8px;background:var(--demo-raised);color:var(--demo-ink);display:flex;align-items:center;gap:6px;padding:0 11px;font-size:10px}
+.composer-cc{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.composer-cc input{height:36px;border:1px solid var(--demo-border);border-radius:7px;padding:0 10px;font-size:10px}
+.composer-send-chooser{display:flex;align-items:center;gap:7px;border:1px solid var(--demo-border);border-radius:8px;background:var(--demo-subtle);padding:8px 10px;font-size:10px}
+.composer-send-chooser button{border:0;border-radius:7px;background:var(--demo-primary);color:#fff;min-height:30px;padding:0 10px}
+.composer-send-chooser button.internal{background:#d97706}
+.composer-send-chooser button:last-child{margin-left:auto;background:transparent;color:var(--demo-muted)}
+.composer-settings{display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--demo-muted);font-size:9px}
+.composer-settings label{display:flex;align-items:center;gap:6px}
+.composer-settings button{border:0;background:transparent;color:var(--demo-muted);font:inherit}
+.composer-input-row{display:flex;align-items:flex-end;gap:6px}
+.composer-input-row textarea{flex:1;min-height:42px;max-height:140px;border:1px solid var(--demo-border);border-radius:16px;padding:11px 13px;resize:none;font-size:11px;line-height:1.45}
+.composer-plus-wrap{position:relative}
+.composer-plus,.composer-send{width:38px;height:38px;flex:none;border:0;border-radius:50%;display:grid;place-items:center;background:transparent;color:var(--demo-muted)}
+.composer-plus:hover,.composer-plus.active{background:var(--demo-subtle);color:var(--demo-ink)}
+.composer-plus.active svg{transform:rotate(45deg)}
+.composer-send{background:var(--demo-primary);color:#fff}
+.composer-send:disabled{background:#d1d5db;color:#6b7280;cursor:not-allowed}
+.composer-action-menu{position:absolute;left:0;bottom:calc(100% + 8px);z-index:8;width:260px;border:1px solid var(--demo-border);border-radius:12px;background:var(--demo-raised);box-shadow:0 16px 40px rgba(6,40,65,.2);overflow:hidden;padding:4px}
+.composer-action-menu>button{width:100%;min-height:50px;border:0;background:transparent;color:var(--demo-ink);display:flex;align-items:center;gap:10px;padding:7px 9px;text-align:left;border-radius:8px}
+.composer-action-menu>button:hover{background:var(--demo-subtle)}
+.composer-action-menu>button>svg{width:30px;height:30px;padding:7px;border-radius:50%;background:var(--demo-subtle);flex:none}
+.composer-action-menu>button>span{display:grid;min-width:0}
+.composer-action-menu b{font-size:10px}
+.composer-action-menu small{font-size:8px;color:var(--demo-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.request-form{max-width:760px}
+.request-form form>h4:not(:first-child){margin-top:16px;border-top:1px solid var(--demo-border);padding-top:16px}
+
+@media(max-width:600px){
+  .ticket-response-header{padding-right:12px}
+  .ticket-header-actions>span{display:none}
+  .ticket-header-actions>button{font-size:0;width:38px;padding:0;justify-content:center}
+  .ticket-composer{position:sticky;bottom:0;z-index:2}
+  .composer-cc{grid-template-columns:1fr}
+  .composer-send-chooser{align-items:stretch;flex-wrap:wrap}
+  .composer-send-chooser b{width:100%}
+  .composer-send-chooser button:last-child{margin-left:0}
+  .composer-settings{align-items:flex-start}
+  .composer-settings label{max-width:70%}
+  .composer-action-menu{position:absolute;left:0;right:auto;bottom:calc(100% + 8px);width:min(260px,calc(100vw - 52px));max-height:300px;overflow:auto}
+  .request-form{padding:16px}
+}
