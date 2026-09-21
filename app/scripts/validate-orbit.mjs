@@ -77,6 +77,12 @@ for (const darkSurface of ["demo-metric-grid article", "demo-nav button", "demo-
   assert.match(styles, new RegExp(`demo-dark[^}]*${darkSurface.replace(/[>.]/g, "\\$&")}|demo-dark \\.${darkSurface.replace(/[>.]/g, "\\$&")}`));
 for (const faithfulCyclic of ["Formulario del cíclico", "Programación", "Contexto de la visita", "Pendientes bloqueantes", "Informe visual del cíclico", "Información general", "Checklist técnico"])
   assert.match(demo, new RegExp(faithfulCyclic));
+for (const cyclicWorkspace of ["Mes", "Semana", "Día", "Importar", "Descargar plano", "Crear cíclico", "demo-cyclic-filters", "demo-calendar-agenda"])
+  assert.match(demo, new RegExp(cyclicWorkspace));
+for (const assetFlow of ["Dar de baja", "Abrir factura", "Activo asociado", "Crear proveedor", "Existencias", "Destino", "Firma de quien recibe"])
+  assert.match(demo, new RegExp(assetFlow));
+for (const mobilePolish of ["mobile-asset-subtable", "mobile-cyclic-history", "mobile-tab-label", "safe-area-inset-bottom", "color-scheme:dark"])
+  assert.match(styles, new RegExp(mobilePolish));
 for (const faithfulTicketCreate of ["Formulario de solicitud", "Información de contacto", "Identificación", "Punto de venta", "Información del caso", "Adjuntar archivo"])
   assert.match(demo, new RegExp(faithfulTicketCreate));
 assert.match(styles, /grid-template-columns:\s*256px 1fr/);

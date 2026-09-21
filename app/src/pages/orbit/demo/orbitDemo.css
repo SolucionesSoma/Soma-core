@@ -75,3 +75,50 @@
   .composer-action-menu{position:absolute;left:0;right:auto;bottom:calc(100% + 8px);width:min(260px,calc(100vw - 52px));max-height:300px;overflow:auto}
   .request-form{padding:16px}
 }
+
+/* Cíclicos and assets fidelity. */
+.demo-cyclic-filters{display:flex;align-items:end;gap:10px;border:1px solid var(--demo-border);border-radius:12px;background:var(--demo-surface);padding:14px;margin-bottom:14px}
+.demo-cyclic-filters>label{display:grid;gap:6px;min-width:130px;color:var(--demo-muted);font-size:10px}
+.demo-cyclic-filters select{height:38px;border:1px solid var(--demo-border);border-radius:8px;padding:0 10px}
+.demo-cyclic-filters>div{display:flex;gap:7px;margin-left:auto}
+.demo-cyclic-filters button,.calendar-view-switch button,.asset-detail-actions button,.document-preview button,.inline-create-link{min-height:38px;border:1px solid var(--demo-border);border-radius:8px;background:var(--demo-raised);color:var(--demo-ink);display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:0 11px;font-size:10px}
+.demo-cyclic-filters .demo-primary{background:var(--demo-primary);border-color:var(--demo-primary);color:#fff}
+.calendar-view-switch button.active{background:var(--demo-primary-soft);border-color:#b9deef;color:var(--demo-primary)}
+.demo-calendar-agenda{border-top:1px solid var(--demo-border);padding:12px 16px}
+.demo-calendar-agenda>header{display:flex;justify-content:space-between;padding:5px 0 13px;color:var(--demo-muted);font-size:10px}
+.demo-calendar-agenda>button{width:100%;min-height:66px;border:1px solid var(--demo-border);border-radius:9px;background:var(--demo-raised);color:var(--demo-ink);display:grid;grid-template-columns:85px 1fr auto;align-items:center;gap:12px;margin-bottom:8px;padding:10px;text-align:left}
+.demo-calendar-agenda>button div{display:grid;gap:4px}.demo-calendar-agenda>button span{color:var(--demo-muted);font-size:9px}.demo-calendar-agenda>button em{font-size:9px;font-style:normal;color:var(--demo-primary)}
+.mobile-cyclic-history,.mobile-asset-subtable{display:none}
+.asset-detail-actions{display:flex;justify-content:flex-end;gap:7px;margin:-47px 48px 18px 0}
+.asset-identity{display:flex;align-items:center;gap:12px;border:1px solid var(--demo-border);border-radius:10px;background:var(--demo-subtle);padding:14px;margin-bottom:12px}.asset-identity>div{display:grid;gap:3px}.asset-identity span{color:var(--demo-muted);font-size:10px}
+.document-preview button{margin-top:8px;background:var(--demo-primary);border-color:var(--demo-primary);color:#fff}
+.inline-create-link{margin-bottom:12px;color:var(--demo-primary)}
+
+@media(max-width:600px){
+  .orbit-demo-shell{color-scheme:light;min-height:760px;border-radius:0}
+  .demo-dark.orbit-demo-shell,[data-theme=dark] .orbit-demo-shell{color-scheme:dark}
+  .demo-app-body,.demo-workspace,.demo-layout{min-width:0}
+  .demo-app-header{position:sticky;top:0;z-index:20;background:var(--demo-surface)!important;border-bottom:1px solid var(--demo-border)}
+  .demo-app-header>div{gap:2px}.demo-app-header button{width:38px;min-height:44px;color:var(--demo-ink)}
+  .demo-breadcrumb{max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .demo-nav{gap:4px}.demo-nav button{flex:0 0 48px;min-height:48px;color:var(--demo-ink)}
+  .demo-page-heading{align-items:flex-start}.demo-page-heading h3{max-width:16ch;line-height:1.2}
+  .demo-ticket-card>header{gap:12px;padding:14px}.demo-ticket-card>header>div:last-child{flex:none}.demo-ticket-card>header>div:last-child button{width:42px;height:42px;padding:0;justify-content:center}.demo-ticket-card>header>div:last-child button span{display:none}
+  .demo-asset-tabs,.demo-section-tabs{scroll-snap-type:x proximity;padding:8px;gap:6px;background:var(--demo-surface)}
+  .demo-asset-tabs button,.demo-section-tabs button{font-size:10px!important;flex:0 0 auto;min-height:44px;scroll-snap-align:start;padding:0 12px}
+  .demo-asset-tabs button svg{margin:0}.mobile-tab-label{display:inline}
+  .demo-cyclic-filters{display:grid;grid-template-columns:1fr 1fr;padding:12px;align-items:end}
+  .demo-cyclic-filters>label{min-width:0}.demo-cyclic-filters>label:nth-child(3){grid-column:1/-1}
+  .demo-cyclic-filters>div{grid-column:1/-1;margin:0;display:grid;grid-template-columns:44px 44px 1fr}
+  .demo-cyclic-filters>div button{min-height:44px;padding:0}.demo-cyclic-filters>div button:not(.demo-primary){font-size:0}.demo-cyclic-filters>div button svg{flex:none}
+  .demo-calendar-card>header{display:grid;gap:10px;padding:12px}.demo-calendar-card>header>div{width:100%}.demo-calendar-card h4{font-size:14px;margin-left:auto}.calendar-view-switch{display:grid!important;grid-template-columns:repeat(3,1fr) 44px}.calendar-view-switch button{min-height:44px;padding:0}.calendar-view-switch button:last-child span{display:none}
+  .demo-calendar-grid{min-width:560px}.demo-calendar-card{overflow:auto}.demo-calendar-grid>button{height:72px}.demo-calendar-grid>button span{display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .demo-calendar-agenda{min-width:0;padding:10px}.demo-calendar-agenda>button{grid-template-columns:66px 1fr;min-height:76px}.demo-calendar-agenda>button em{grid-column:2}
+  .demo-table.assets{display:none}.mobile-cyclic-history{display:grid;gap:9px;padding:12px}.mobile-cyclic-history>button,.mobile-asset-subtable>button{position:relative;min-height:108px;border:1px solid var(--demo-border);border-radius:11px;background:var(--demo-raised);color:var(--demo-ink);padding:13px;text-align:left;display:grid;gap:7px}.mobile-cyclic-history header,.mobile-asset-subtable header{display:flex;justify-content:space-between}.mobile-cyclic-history em,.mobile-asset-subtable em{font-size:9px;font-style:normal;color:var(--demo-primary)}.mobile-cyclic-history span,.mobile-cyclic-history small,.mobile-asset-subtable span{color:var(--demo-muted);font-size:10px}
+  .demo-generic-table{display:none}.mobile-asset-subtable{display:grid;gap:9px;padding:12px}.mobile-asset-subtable>button svg{position:absolute;right:12px;bottom:12px;color:var(--demo-muted)}
+  .asset-detail-actions{margin:0 0 12px;justify-content:flex-start}.asset-detail-actions button{min-height:44px}
+  .detail-meta span,.asset-identity,.document-preview,.modal-form-section,.pending-focus-card,.report-sections>section{background:var(--demo-raised);color:var(--demo-ink);border-color:var(--demo-border)}
+  .demo-modal{padding-bottom:max(18px,env(safe-area-inset-bottom))}
+  .sticky-actions{padding-bottom:max(12px,env(safe-area-inset-bottom));display:grid;grid-template-columns:1fr 1fr}.form-actions button{min-height:44px}
+  .header-popover{position:fixed;left:10px;right:10px;top:64px;width:auto;background:var(--demo-raised);color:var(--demo-ink)}
+}
