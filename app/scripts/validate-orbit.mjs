@@ -65,6 +65,12 @@ assert.match(styles, /\.orbit-demo-shell \.demo-modal-backdrop\{position:absolut
 assert.match(styles, /\.orbit-demo-shell \.demo-mobile-sidebar-backdrop\{position:absolute/);
 assert.match(styles, /\.orbit-demo-shell \.ticket-response-modal\{[^}]*calc\(100%/);
 assert.match(styles, /--demo-surface:/);
+for (const darkSurface of ["demo-metric-grid article", "demo-nav button", "demo-calendar-grid>button", "public-portal", "header-popover"])
+  assert.match(styles, new RegExp(`demo-dark[^}]*${darkSurface.replace(/[>.]/g, "\\$&")}|demo-dark \\.${darkSurface.replace(/[>.]/g, "\\$&")}`));
+for (const faithfulCyclic of ["Formulario del cíclico", "Programación", "Contexto de la visita", "Pendientes bloqueantes", "Informe visual del cíclico", "Información general", "Checklist técnico"])
+  assert.match(demo, new RegExp(faithfulCyclic));
+for (const faithfulTicketCreate of ["Crear ticket", "Datos del solicitante", "Clasificación del caso", "Descripción del caso", "Adjuntar evidencias"])
+  assert.match(demo, new RegExp(faithfulTicketCreate));
 assert.match(styles, /grid-template-columns:\s*256px 1fr/);
 assert.match(styles, /min-height:\s*900px/);
 assert.match(page, /footer-grid/);
