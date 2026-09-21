@@ -39,6 +39,7 @@
 .composer-send-chooser button:last-child{margin-left:auto;background:transparent;color:var(--demo-muted)}
 .composer-settings{display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--demo-muted);font-size:9px}
 .composer-settings label{display:flex;align-items:center;gap:6px}
+.composer-settings input[type=checkbox]{width:14px;height:14px;min-width:14px;margin:0;accent-color:var(--demo-primary)}
 .composer-settings button{border:0;background:transparent;color:var(--demo-muted);font:inherit}
 .composer-input-row{display:flex;align-items:flex-end;gap:6px}
 .composer-input-row textarea{flex:1;min-height:42px;max-height:140px;border:1px solid var(--demo-border);border-radius:16px;padding:11px 13px;resize:none;font-size:11px;line-height:1.45}
@@ -56,6 +57,8 @@
 .composer-action-menu b{font-size:10px}
 .composer-action-menu small{font-size:8px;color:var(--demo-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .request-form{max-width:760px}
+.request-form-modal{width:min(780px,calc(100% - 36px))}
+.request-form-modal .request-form{border:0;box-shadow:none;padding:0;max-width:none}
 .request-form form>h4:not(:first-child){margin-top:16px;border-top:1px solid var(--demo-border);padding-top:16px}
 
 @media(max-width:600px){

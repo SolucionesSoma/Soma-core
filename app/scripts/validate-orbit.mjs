@@ -54,6 +54,9 @@ for (const workflow of ["Escalar ticket", "Pausar ticket", "Finalizar ticket", "
 for (const missingView of ["Formulario de solicitud", "Notificaciones", "Configuración de perfil", "Respuesta masiva", "Pendientes acumulados", "Reporte de mantenimiento"])
   assert.match(demo, new RegExp(missingView));
 assert.doesNotMatch(demo, /Portal público|Public portal/);
+assert.doesNotMatch(demo, /module === "intake"|intake: UserRound/);
+assert.match(demo, /creating \? <RequestForm/);
+assert.doesNotMatch(demo, /function CreateForm/);
 for (const responseComposer of ["composer-send-chooser", "composer-action-menu", "Más opciones", "Pública", "Interna", "+ CC/CCO", "Finalizar ticket al enviar", "Salir"])
   assert.ok(demo.includes(responseComposer), `Missing response composer detail: ${responseComposer}`);
 for (const faithfulModal of ["demo-ticket-response-layout", "demo-ticket-case-panel", "demo-ticket-composer-panel", "Información PQRSF", "Registrar traslado", "Nueva acta de entrega", "Crear Factura Completa"])
@@ -67,13 +70,14 @@ assert.match(styles, /contain:\s*layout paint/);
 assert.match(styles, /\.orbit-demo-shell \.demo-modal-backdrop\{position:absolute/);
 assert.match(styles, /\.orbit-demo-shell \.demo-mobile-sidebar-backdrop\{position:absolute/);
 assert.doesNotMatch(styles, /\.composer-action-menu\{position:fixed/);
+assert.match(styles, /\.composer-settings input\[type=checkbox\]\{width:14px;height:14px/);
 assert.match(styles, /\.orbit-demo-shell \.ticket-response-modal\{[^}]*calc\(100%/);
 assert.match(styles, /--demo-surface:/);
 for (const darkSurface of ["demo-metric-grid article", "demo-nav button", "demo-calendar-grid>button", "public-portal", "header-popover"])
   assert.match(styles, new RegExp(`demo-dark[^}]*${darkSurface.replace(/[>.]/g, "\\$&")}|demo-dark \\.${darkSurface.replace(/[>.]/g, "\\$&")}`));
 for (const faithfulCyclic of ["Formulario del cíclico", "Programación", "Contexto de la visita", "Pendientes bloqueantes", "Informe visual del cíclico", "Información general", "Checklist técnico"])
   assert.match(demo, new RegExp(faithfulCyclic));
-for (const faithfulTicketCreate of ["Crear ticket", "Datos del solicitante", "Clasificación del caso", "Descripción del caso", "Adjuntar evidencias"])
+for (const faithfulTicketCreate of ["Formulario de solicitud", "Información de contacto", "Identificación", "Punto de venta", "Información del caso", "Adjuntar archivo"])
   assert.match(demo, new RegExp(faithfulTicketCreate));
 assert.match(styles, /grid-template-columns:\s*256px 1fr/);
 assert.match(styles, /min-height:\s*900px/);
