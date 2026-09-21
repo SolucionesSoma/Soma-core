@@ -53,6 +53,13 @@ for (const workflow of ["Escalar ticket", "Pausar ticket", "Finalizar ticket", "
   assert.match(demo, new RegExp(workflow));
 for (const missingView of ["Portal público", "Crear solicitud", "Consultar ticket", "Notificaciones", "Configuración de perfil", "Respuesta masiva", "Pendientes acumulados", "Reporte de mantenimiento"])
   assert.match(demo, new RegExp(missingView));
+for (const faithfulModal of ["demo-ticket-response-layout", "demo-ticket-case-panel", "demo-ticket-composer-panel", "Información PQRSF", "Registrar traslado", "Nueva acta de entrega", "Crear Factura Completa"])
+  assert.match(demo, new RegExp(faithfulModal));
+for (const mobileStructure of ["demo-mobile-menu", "demo-mobile-sidebar-backdrop", "demo-mobile-ticket-list", "demo-mobile-asset-list"])
+  assert.match(demo, new RegExp(mobileStructure));
+assert.match(styles, /\.demo-app-sidebar\.open/);
+assert.match(styles, /\.demo-mobile-ticket-list/);
+assert.match(styles, /max-height:\s*100dvh/);
 assert.match(styles, /grid-template-columns:\s*256px 1fr/);
 assert.match(styles, /min-height:\s*900px/);
 assert.match(page, /footer-grid/);
