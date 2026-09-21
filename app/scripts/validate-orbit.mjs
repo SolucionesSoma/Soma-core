@@ -45,6 +45,10 @@ for (const originalStructure of ["Programación de mantenimientos cíclicos", "G
 assert.match(demo, /demo-calendar-grid/);
 assert.match(demo, /demo-asset-tabs/);
 assert.match(demo, /demo-ticket-filters/);
+for (const behavior of ["assetTab", "maintenanceView", "dashboardTab", "ticketTab", "AssetDetail", "MaintenanceForm", "CatalogWorkspace", "OtherServicesWorkspace"])
+  assert.match(demo, new RegExp(behavior));
+for (const modalTab of ["Información", "Factura", "Mantenimientos", "Traslados", "Detalle del caso", "Conversación", "Trazabilidad"])
+  assert.match(demo, new RegExp(modalTab));
 assert.match(styles, /grid-template-columns:\s*256px 1fr/);
 assert.match(styles, /min-height:\s*900px/);
 assert.match(page, /footer-grid/);
