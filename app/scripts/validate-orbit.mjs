@@ -49,6 +49,8 @@ for (const behavior of ["assetTab", "maintenanceView", "dashboardTab", "ticketTa
   assert.match(demo, new RegExp(behavior));
 for (const modalTab of ["Información", "Factura", "Mantenimientos", "Traslados", "Detalle del caso", "Conversación", "Trazabilidad"])
   assert.match(demo, new RegExp(modalTab));
+for (const workflow of ["Escalar ticket", "Pausar ticket", "Finalizar ticket", "Ejecutar mantenimiento", "Firma del responsable", "Firma de sede"])
+  assert.match(demo, new RegExp(workflow));
 assert.match(styles, /grid-template-columns:\s*256px 1fr/);
 assert.match(styles, /min-height:\s*900px/);
 assert.match(page, /footer-grid/);
