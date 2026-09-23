@@ -270,7 +270,9 @@ function HomePage() {
                     className={`suite-product ${i === 0 ? "featured" : ""}`}
                     key={name}
                   >
-                    {name === "Orbit" ? (
+                    {name === "Atlas" ? (
+                      <img src="/atlas-owl-hd.webp" alt={locale === "es" ? "Búho de papel, símbolo de Atlas" : "Paper owl, Atlas symbol"} width="1200" height="1200" loading="lazy" decoding="async" />
+                    ) : name === "Orbit" ? (
                       <img src="/images/products/orbit-hero-demo.webp" alt={locale === "es" ? "Zorro de Orbit junto al dashboard del aplicativo" : "Orbit fox alongside the application dashboard"} width="1200" height="674" loading="lazy" decoding="async" />
                     ) : (
                       <img
@@ -289,7 +291,12 @@ function HomePage() {
                       </div>
                       <p>{desc}</p>
                       <small>{meta}</small>
-                      {name === "Orbit" ? (
+                      {name === "Atlas" ? (
+                        <a className="inline-link" href={`/productos/atlas${locale === "en" ? "?lang=en" : ""}`}>
+                          {locale === "es" ? "Conocer Atlas" : "Explore Atlas"}
+                          <ArrowRight size={16} />
+                        </a>
+                      ) : name === "Orbit" ? (
                         <a className="inline-link" href={`/productos/orbit${locale === "en" ? "?lang=en" : ""}`}>
                           {locale === "es" ? "Conocer Orbit" : "Explore Orbit"}
                           <ArrowRight size={16} />

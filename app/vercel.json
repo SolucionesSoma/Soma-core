@@ -7,6 +7,14 @@
     {
       "source": "/productos/orbit/",
       "destination": "/index.html"
+    },
+    {
+      "source": "/productos/atlas",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/productos/atlas/",
+      "destination": "/index.html"
     }
   ]
 }

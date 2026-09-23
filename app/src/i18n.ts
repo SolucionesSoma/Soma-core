@@ -48,8 +48,8 @@ export const translations = {
     products: [
       [
         "Atlas",
-        "Distribución segura de Power BI e iframes con permisos por usuario, grupos y autenticación corporativa.",
-        "Datos · Acceso · Power BI",
+        "Portal B2B para centralizar documentos, facturas, pagos, devoluciones y cumplimiento de proveedores.",
+        "Proveedores · Pagos · Cumplimiento",
       ],
       [
         "Orbit",
@@ -231,8 +231,8 @@ export const translations = {
     products: [
       [
         "Atlas",
-        "Secure Power BI and iframe distribution with user, group and corporate authentication controls.",
-        "Data · Access · Power BI",
+        "B2B portal that centralizes supplier documents, invoices, payments, returns and compliance.",
+        "Suppliers · Payments · Compliance",
       ],
       [
         "Orbit",
