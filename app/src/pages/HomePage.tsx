@@ -271,11 +271,7 @@ function HomePage() {
                     key={name}
                   >
                     {name === "Orbit" ? (
-                      <div className="orbit-product-art" role="img" aria-label={locale === "es" ? "Zorro geométrico, símbolo de Orbit" : "Geometric fox, Orbit symbol"}>
-                        <span>ORBIT</span>
-                        <img src="/orbit-fox-hd.webp" alt="" width="1200" height="1287" loading="lazy" decoding="async" />
-                        <small>{locale === "es" ? "Una solución de SOMA" : "A SOMA solution"}</small>
-                      </div>
+                      <img src="/images/products/orbit-hero-demo.webp" alt={locale === "es" ? "Zorro de Orbit junto al dashboard del aplicativo" : "Orbit fox alongside the application dashboard"} width="1200" height="674" loading="lazy" decoding="async" />
                     ) : (
                       <img
                         src={productImages[i]}

@@ -37,7 +37,7 @@ assert.match(vercel, /productos\/orbit/);
 assert.match(vercel, /index\.html/);
 assert.match(vite, /base:\s*["']\/["']/);
 assert.doesNotMatch(home, /images\/products\/orbit\.webp/);
-assert.match(home, /orbit-fox-hd\.webp/);
+assert.match(home, /images\/products\/orbit-hero-demo\.webp/);
 assert.match(page, /orbit-fox-hd\.webp/);
 for (const structure of ["demo-sidebar-logo", "demo-app-header", "demo-breadcrumb", "demo-filter-bar", "demo-support-title"])
   assert.match(demo, new RegExp(structure));

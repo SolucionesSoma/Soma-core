@@ -71,7 +71,10 @@ export default function OrbitPage() {
         <div className="container orbit-hero-grid">
           <div className="orbit-hero-copy"><span className="orbit-eyebrow">{t.hero.eyebrow}</span><h1>{t.hero.title}</h1><p>{t.hero.copy}</p><div className="orbit-actions"><a className="orbit-button" href={WA}>{t.hero.primary}<ArrowRight size={18}/></a><a className="orbit-button secondary" href="mailto:contacto@somacoretech.com"><Mail size={18}/>{t.hero.secondary}</a></div><button className="orbit-text-action" onClick={() => scroll("demo")}>{t.hero.demo}<ArrowDown size={17}/></button></div>
           <div className="orbit-hero-visual" aria-label={locale === "es" ? "Vista de Orbit" : "Orbit preview"}>
-            <img className="orbit-hero-demo" src="/images/products/orbit-hero-demo.webp" alt={locale === "es" ? "Zorro de papel junto al dashboard real de Orbit" : "Paper fox next to the real Orbit dashboard"} width="1200" height="674" fetchPriority="high"/>
+            <div className="orbit-halo"/><img className="orbit-fox" src="/orbit-fox-hd.webp" alt={locale === "es" ? "Zorro de papel, símbolo de Orbit" : "Paper fox, Orbit symbol"} width="1200" height="1287" fetchPriority="high"/>
+            <div className="orbit-ui-card main"><span>ORBIT / CONTROL</span><strong>96.4%</strong><small>SLA {locale === "es" ? "cumplido" : "met"}</small><div className="spark"><i/><i/><i/><i/><i/></div></div>
+            <div className="orbit-ui-card alert"><b>INC-1042</b><span>{locale === "es" ? "En atención" : "In progress"}</span><em>01:42</em></div>
+            <div className="orbit-ui-card asset"><span>ACT-0732</span><b>{locale === "es" ? "Mantenimiento" : "Maintenance"}</b></div>
           </div>
         </div>
         <div className="container orbit-proof">{t.proof.map((item, i) => <div key={item}><span>0{i+1}</span><strong>{item}</strong></div>)}</div>
