@@ -47,7 +47,7 @@ export const translations = {
     },
     products: [
       [
-        "Atlas",
+        "Nexo",
         "Portal B2B para centralizar documentos, facturas, pagos, devoluciones y cumplimiento de proveedores.",
         "Proveedores · Pagos · Cumplimiento",
       ],
@@ -230,7 +230,7 @@ export const translations = {
     },
     products: [
       [
-        "Atlas",
+        "Nexo",
         "B2B portal that centralizes supplier documents, invoices, payments, returns and compliance.",
         "Suppliers · Payments · Compliance",
       ],

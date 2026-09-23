@@ -9,11 +9,11 @@
       "destination": "/index.html"
     },
     {
-      "source": "/productos/atlas",
+      "source": "/productos/nexo",
       "destination": "/index.html"
     },
     {
-      "source": "/productos/atlas/",
+      "source": "/productos/nexo/",
       "destination": "/index.html"
     }
   ]

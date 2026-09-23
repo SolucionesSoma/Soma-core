@@ -270,8 +270,8 @@ function HomePage() {
                     className={`suite-product ${i === 0 ? "featured" : ""}`}
                     key={name}
                   >
-                    {name === "Atlas" ? (
-                      <img src="/atlas-owl-hd.webp" alt={locale === "es" ? "Búho de papel, símbolo de Atlas" : "Paper owl, Atlas symbol"} width="1200" height="1200" loading="lazy" decoding="async" />
+                    {name === "Nexo" ? (
+                      <img src="/images/products/nexo-hero-demo.webp" alt={locale === "es" ? "Abeja de Nexo junto al dashboard del aplicativo" : "Nexo bee alongside the application dashboard"} width="1600" height="900" loading="lazy" decoding="async" />
                     ) : name === "Orbit" ? (
                       <img src="/images/products/orbit-hero-demo.webp" alt={locale === "es" ? "Zorro de Orbit junto al dashboard del aplicativo" : "Orbit fox alongside the application dashboard"} width="1200" height="674" loading="lazy" decoding="async" />
                     ) : (
@@ -291,9 +291,9 @@ function HomePage() {
                       </div>
                       <p>{desc}</p>
                       <small>{meta}</small>
-                      {name === "Atlas" ? (
-                        <a className="inline-link" href={`/productos/atlas${locale === "en" ? "?lang=en" : ""}`}>
-                          {locale === "es" ? "Conocer Atlas" : "Explore Atlas"}
+                      {name === "Nexo" ? (
+                        <a className="inline-link" href={`/productos/nexo${locale === "en" ? "?lang=en" : ""}`}>
+                          {locale === "es" ? "Conocer Nexo" : "Explore Nexo"}
                           <ArrowRight size={16} />
                         </a>
                       ) : name === "Orbit" ? (

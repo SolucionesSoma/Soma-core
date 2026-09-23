@@ -12,18 +12,18 @@ const styles = read("src/pages/atlas/atlas.css") + read("src/pages/atlas/demo/at
 const sitemap = read("public/sitemap.xml");
 const vercel = read("vercel.json");
 
-assert.match(app, /productos\\\/atlas/);
-assert.match(home, /href=\{`\/productos\/atlas/);
+assert.match(app, /productos\\\/nexo/);
+assert.match(home, /href=\{`\/productos\/nexo/);
 for (const id of ["atlas-hero", "modulos", "flujo", "demo", "gobierno", "preguntas", "contacto"])
   assert.match(page, new RegExp(`id=\\"${id}\\"`));
 for (const module of ["dashboard", "invoices", "payments", "returns", "certificates", "profile", "compliance"])
   assert.match(data + demo, new RegExp(module, "i"));
-assert.match(page, /atlas-owl-hd\.webp/);
-assert.match(sitemap, /productos\/atlas/);
-assert.match(vercel, /productos\/atlas/);
+assert.match(page, /nexo-bee-hd\.webp/);
+assert.match(sitemap, /productos\/nexo/);
+assert.match(vercel, /productos\/nexo/);
 assert.match(styles, /safe-area-inset-bottom/);
 assert.match(styles, /color-scheme:dark/);
 for (const forbidden of ["Más x Menos", "MasxMenos", "MXM", "mxm\.com\.co"])
   assert.doesNotMatch(`${page}\n${copy}\n${data}\n${demo}`, new RegExp(forbidden, "i"));
 
-console.log("Atlas acceptance checks passed");
+console.log("Nexo acceptance checks passed");
