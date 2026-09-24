@@ -57,6 +57,11 @@ export const translations = {
         "Servicio · Activos · IA",
       ],
       [
+        "Atlas",
+        "Analítica empresarial con dashboards controlados, permisos y trazabilidad.",
+        "BI · Permisos · Auditoría",
+      ],
+      [
         "Sonora",
         "Creación de cuñas con IA y programación sincronizada de audio para todos los puntos de venta.",
         "Audio · IA · Sincronización",
@@ -238,6 +243,11 @@ export const translations = {
         "Orbit",
         "ESM for tickets, requests, assets and maintenance, with AI classification and integrated chatbots.",
         "Service · Assets · AI",
+      ],
+      [
+        "Atlas",
+        "Business analytics with controlled dashboards, permissions and traceability.",
+        "BI · Permissions · Audit",
       ],
       [
         "Sonora",

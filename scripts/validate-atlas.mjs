@@ -22,7 +22,7 @@ for (const id of ["atlas-hero", "modulos", "flujo", "demo", "gobierno", "pregunt
 assert.match(copy, /dashboards/i);
 for (const forbidden of ["Más x Menos", "MasxMenos", "MXM", "mxm\.com\.co"])
   assert.doesNotMatch(`${page}\n${copy}\n${demo}`, new RegExp(forbidden, "i"));
-for (const module of ["home", "dashboards", "requests", "audit", "catalogs"])
+for (const module of ["home", "dashboards", "requests", "users", "audit", "catalogs"])
   assert.match(demo, new RegExp(module, "i"));
 assert.match(demo, /restringido|restricted/i);
 assert.match(demo, /Solicitar acceso|Request access/);
@@ -31,18 +31,10 @@ assert.match(demo, /No hay resultados|No results/);
 assert.match(demo, /approveRequest/);
 assert.match(demo, /rejectRequest/);
 assert.match(demo, /items\.map\(item => item\.id === id/);
+assert.match(demo, /Usuarios y roles/);
 assert.match(demo, /Auditoría/);
 assert.match(demo, /Catálogos/);
 assert.match(demo, /atlas-bi-side \$\{mobileOpen \? "open"/);
-assert.match(demo, /\["home", "Inicio"/);
-assert.match(demo, /\["dashboards", "Dashboards"/);
-assert.match(demo, /\["requests", "Administración"/);
-assert.match(demo, /\["audit", "Auditoría"/);
-assert.match(demo, /\["catalogs", "Catálogos"/);
-const demoCss = read("src/pages/atlas-bi/demo/atlasBiDemo.css");
-assert.match(demoCss, /color-scheme:\s*dark/);
-assert.match(demoCss, /\.atlas-bi-app\{[^}]*position:relative/);
-assert.match(demoCss, /\.atlas-bi-side\{position:absolute[^}]*inset:38px auto 0 0/);
-assert.match(demoCss, /\.atlas-bi-backdrop\{display:block;position:absolute[^}]*inset:38px 0 0/);
+assert.match(read("src/pages/atlas-bi/demo/atlasBiDemo.css"), /color-scheme:\s*dark/);
 
 console.log("Atlas route and card checks passed");

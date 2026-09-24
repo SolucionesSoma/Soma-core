@@ -250,7 +250,7 @@ function HomePage() {
                 onClick={() => setTab("suite")}
               >
                 {t.projects.suite}
-                <span>05</span>
+                <span>06</span>
               </button>
               <button
                 type="button"
@@ -274,6 +274,8 @@ function HomePage() {
                       <img src="/images/products/nexo-hero-demo.webp" alt={locale === "es" ? "Abeja de Nexo junto al dashboard del aplicativo" : "Nexo bee alongside the application dashboard"} width="1600" height="900" loading="lazy" decoding="async" />
                     ) : name === "Orbit" ? (
                       <img src="/images/products/orbit-hero-demo.webp" alt={locale === "es" ? "Zorro de Orbit junto al dashboard del aplicativo" : "Orbit fox alongside the application dashboard"} width="1200" height="674" loading="lazy" decoding="async" />
+                    ) : name === "Atlas" ? (
+                      <img src="/images/products/atlas-hero-demo.webp" alt={locale === "es" ? "Búho de Atlas junto al dashboard analítico" : "Atlas owl alongside the analytics dashboard"} width="1672" height="941" loading="lazy" decoding="async" />
                     ) : (
                       <img
                         src={productImages[i]}
@@ -299,6 +301,11 @@ function HomePage() {
                       ) : name === "Orbit" ? (
                         <a className="inline-link" href={`/productos/orbit${locale === "en" ? "?lang=en" : ""}`}>
                           {locale === "es" ? "Conocer Orbit" : "Explore Orbit"}
+                          <ArrowRight size={16} />
+                        </a>
+                      ) : name === "Atlas" ? (
+                        <a className="inline-link" href={`/productos/atlas${locale === "en" ? "?lang=en" : ""}`}>
+                          {locale === "es" ? "Conocer Atlas" : "Explore Atlas"}
                           <ArrowRight size={16} />
                         </a>
                       ) : (
