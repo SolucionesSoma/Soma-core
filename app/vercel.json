@@ -15,6 +15,14 @@
     {
       "source": "/productos/nexo/",
       "destination": "/index.html"
+    },
+    {
+      "source": "/productos/atlas",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/productos/atlas/",
+      "destination": "/index.html"
     }
   ]
 }
