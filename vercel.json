@@ -1,0 +1,28 @@
+{
+  "rewrites": [
+    {
+      "source": "/productos/orbit",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/productos/orbit/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/productos/nexo",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/productos/nexo/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/productos/atlas",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/productos/atlas/",
+      "destination": "/index.html"
+    }
+  ]
+}
