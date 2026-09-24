@@ -1,10 +1,10 @@
 import { useMemo, useState } from "react";
-import { BarChart3, Bell, BookOpen, Building2, ChevronRight, FolderKanban, Menu, Search, ShieldCheck, X } from "lucide-react";
+import { BarChart3, Bell, BookOpen, Building2, ChevronRight, FileCheck2, Menu, Search, ShieldCheck, X } from "lucide-react";
 import type { Locale } from "../../../i18n";
 import { atlasAudit, atlasReports, atlasRequests, type AccessRequest, type AtlasModule, type AtlasReport } from "../atlasBiDemoData";
 import "./atlasBiDemo.css";
 
-const nav: Array<[AtlasModule, string, typeof BarChart3]> = [["home", "Inicio", Building2], ["dashboards", "Dashboards", BarChart3], ["requests", "Administración", FolderKanban], ["audit", "Auditoría", ShieldCheck], ["catalogs", "Catálogos", BookOpen]];
+const nav: Array<[AtlasModule, string, typeof BarChart3]> = [["home", "Inicio", Building2], ["dashboards", "Dashboards", BarChart3], ["requests", "Administración", FileCheck2], ["audit", "Auditoría", ShieldCheck], ["catalogs", "Catálogos", BookOpen]];
 
 export default function AtlasBiDemo({ locale }: { locale: Locale }) {
   const [module, setModule] = useState<AtlasModule>("home"); const [query, setQuery] = useState(""); const [filter, setFilter] = useState("Todas"); const [detail, setDetail] = useState<AtlasReport | null>(null); const [mobileOpen, setMobileOpen] = useState(false); const [dark, setDark] = useState(false); const [notice, setNotice] = useState(""); const [requests, setRequests] = useState(atlasRequests);
