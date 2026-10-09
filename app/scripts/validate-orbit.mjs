@@ -30,7 +30,7 @@ assert.match(page, /lazy\(/);
 assert.match(demo, /Demo con datos ficticios/);
 assert.match(demo, /aria-live/);
 assert.match(page, /mailto:contacto@somacoretech\.com/);
-assert.match(page, /wa\.me\/573185772152/);
+assert.match(page, /wa\.me\/573184153180/);
 assert.match(page, /SoftwareApplication/);
 assert.match(sitemap, /productos\/orbit/);
 assert.match(vercel, /productos\/orbit/);

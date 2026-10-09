@@ -328,7 +328,7 @@ export const footerConfig: FooterConfig = {
   emailLabel: "Email",
   email: "contacto@somacoretech.com",
   phoneLabel: "Teléfono",
-  phone: "+57 318 577 2152",
+  phone: "+57 318 415 3180",
   addressLabel: "Ubicación",
   address: "Colombia",
   copyrightText: "© 2026 SOMA CORE. Todos los derechos reservados.",
