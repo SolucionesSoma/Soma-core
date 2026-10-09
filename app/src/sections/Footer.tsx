@@ -30,7 +30,7 @@ const SOCIAL_ICON_MAP: Record<SocialLink['icon'], ComponentType<{ className?: st
   email: Mail,
 };
 
-const WHATSAPP_NUMBER = '573185772152';
+const WHATSAPP_NUMBER = '573184153180';
 
 interface FooterProps {
   theme: 'light' | 'dark';
