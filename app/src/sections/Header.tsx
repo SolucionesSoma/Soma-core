@@ -36,7 +36,7 @@ export default function Header({ theme, setTheme, mobileOpen, setMobileOpen }: H
   };
 
   const openContactCalendar = () => {
-    window.open('https://wa.me/573185772152', '_blank', 'noopener,noreferrer');
+    window.open('https://wa.me/573184153180', '_blank', 'noopener,noreferrer');
     setMobileOpen(false);
   };
 
