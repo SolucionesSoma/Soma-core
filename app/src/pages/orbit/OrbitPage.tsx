@@ -9,7 +9,7 @@ import "../../index.css";
 import "./orbit.css";
 
 const OrbitDemo = lazy(() => import("./demo/OrbitDemo"));
-const WA = "https://wa.me/573185772152?text=Hola%2C%20quiero%20solicitar%20una%20demostraci%C3%B3n%20de%20Orbit.";
+const WA = "https://wa.me/573184153180?text=Hola%2C%20quiero%20solicitar%20una%20demostraci%C3%B3n%20de%20Orbit.";
 const ids = ["modulos", "flujo", "demo", "gobierno", "preguntas"];
 
 function SectionHead({ eyebrow, title, copy }: { eyebrow: string; title: string; copy: string }) {
