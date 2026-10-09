@@ -28,7 +28,7 @@ import {
 } from "../preferences";
 import "../index.css";
 
-const WA = "https://wa.me/573185772152";
+const WA = "https://wa.me/573184153180";
 const productImages = [
   "/images/products/atlas.webp",
   "",
