@@ -9,7 +9,7 @@ import "../../index.css";
 import "./atlas.css";
 
 const AtlasDemo = lazy(() => import("./demo/AtlasDemo"));
-const WA = "https://wa.me/573185772152?text=Hola%2C%20quiero%20solicitar%20una%20demostraci%C3%B3n%20de%20Nexo.";
+const WA = "https://wa.me/573184153180?text=Hola%2C%20quiero%20solicitar%20una%20demostraci%C3%B3n%20de%20Nexo.";
 const ids = ["modulos", "flujo", "demo", "gobierno", "preguntas"];
 
 function SectionHead({ eyebrow, title, copy }: { eyebrow: string; title: string; copy: string }) { return <div className="atlas-section-head"><span>{eyebrow}</span><h2>{title}</h2><p>{copy}</p></div>; }
