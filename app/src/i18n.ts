@@ -67,9 +67,9 @@ export const translations = {
         "Audio · IA · Sincronización",
       ],
       [
-        "Flow",
-        "Solicitudes, órdenes de gasto y permisos de trabajo con solicitantes, aprobadores y supervisores.",
-        "Solicitudes · Aprobaciones · Control",
+        "Hopi",
+        "Operación de restaurantes: menú QR, pedidos, cocina, caja e inventario flexible con la marca de cada negocio.",
+        "Restaurantes · Pedidos · Cocina",
       ],
       [
         "Relay",
@@ -255,9 +255,9 @@ export const translations = {
         "Audio · AI · Synchronization",
       ],
       [
-        "Flow",
-        "Requests, expense orders and work permits with requester, approver and supervisor groups.",
-        "Requests · Approvals · Control",
+        "Hopi",
+        "Restaurant operations: QR menus, orders, kitchen, checkout and flexible inventory under each business’s own brand.",
+        "Restaurants · Orders · Kitchen",
       ],
       [
         "Relay",

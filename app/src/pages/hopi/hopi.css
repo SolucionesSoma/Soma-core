@@ -1,0 +1,836 @@
+.hopi-site {
+  --h-ink: #062841;
+  --h-blue: #0878c2;
+  --h-cyan: #58d6f5;
+  --h-soft: #eaf7fb;
+  --h-paper: #f8fbfd;
+  --h-line: #cfe1ea;
+  --h-muted: #557083;
+  color: var(--h-ink);
+  background: #fff;
+  font-family: Manrope, Arial, sans-serif;
+}
+.hopi-site * {
+  box-sizing: border-box;
+}
+.hopi-site button,
+.hopi-site a {
+  font: inherit;
+}
+.hopi-site button {
+  cursor: pointer;
+}
+.hopi-site .container {
+  width: min(1180px, calc(100% - 40px));
+  margin: auto;
+}
+.hopi-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(255, 255, 255, 0.93);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(6, 40, 65, 0.1);
+}
+.hopi-utility {
+  background: var(--h-ink);
+  color: #fff;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+.hopi-utility .container {
+  display: flex;
+  justify-content: space-between;
+  padding: 7px 0;
+}
+.hopi-utility a {
+  color: #fff;
+  text-decoration: none;
+}
+.hopi-nav {
+  height: 76px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.hopi-brand {
+  display: flex;
+  align-items: center;
+  color: var(--h-ink);
+  text-decoration: none;
+  margin-right: auto;
+}
+.hopi-brand > img {
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+}
+.hopi-brand span {
+  display: grid;
+}
+.hopi-brand strong {
+  font-size: 20px;
+  letter-spacing: 0.13em;
+}
+.hopi-brand small {
+  font-size: 9px;
+  color: var(--h-muted);
+}
+.hopi-nav nav {
+  display: flex;
+  gap: 24px;
+}
+.hopi-nav nav button,
+.hopi-mobile-nav button {
+  border: 0;
+  background: none;
+  color: inherit;
+  font-size: 13px;
+}
+.hopi-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.hopi-pref,
+.hopi-menu {
+  min-height: 44px;
+  border: 1px solid var(--h-line);
+  background: transparent;
+  border-radius: 4px;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 12px;
+}
+.hopi-pref.icon {
+  padding: 0;
+  width: 44px;
+  justify-content: center;
+}
+.hopi-menu {
+  display: none;
+}
+.hopi-button {
+  min-height: 48px;
+  background: var(--h-ink);
+  color: #fff !important;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 20px;
+  border: 1px solid var(--h-ink);
+  font-weight: 700;
+  font-size: 13px;
+}
+.hopi-button.compact {
+  min-height: 44px;
+}
+.hopi-button.secondary {
+  background: transparent;
+  color: var(--h-ink) !important;
+}
+.hopi-button.light {
+  background: #fff;
+  color: var(--h-ink) !important;
+  border-color: #fff;
+}
+.hopi-mobile-nav {
+  display: grid;
+  padding: 10px 20px 20px;
+  border-top: 1px solid var(--h-line);
+}
+.hopi-mobile-nav button {
+  min-height: 44px;
+  text-align: left;
+}
+.hopi-hero {
+  padding: 88px 0 0;
+  overflow: hidden;
+  background: linear-gradient(180deg, #fff, #f5fbfe);
+}
+.hopi-hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  min-height: 580px;
+  gap: 40px;
+}
+.hopi-eyebrow,
+.hopi-section-head > span {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  font-weight: 800;
+  color: var(--h-blue);
+}
+.hopi-hero h1 {
+  font-size: clamp(48px, 6vw, 78px);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+  max-width: 740px;
+  margin: 20px 0 24px;
+}
+.hopi-hero-copy > p {
+  font-size: 19px;
+  line-height: 1.65;
+  color: var(--h-muted);
+  max-width: 650px;
+}
+.hopi-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+.hopi-text-action {
+  border: 0;
+  background: none;
+  color: var(--h-blue);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 25px;
+  padding: 8px 0;
+  font-weight: 700;
+}
+.hopi-hero-visual {
+  min-height: 540px;
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+.hopi-halo {
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  border: 1px solid rgba(8, 120, 194, 0.25);
+  box-shadow:
+    0 0 0 55px rgba(88, 214, 245, 0.06),
+    0 0 0 110px rgba(8, 120, 194, 0.035);
+}
+.hopi-owl {
+  width: 340px;
+  height: auto;
+  max-height: 390px;
+  object-fit: contain;
+  aspect-ratio: 1;
+  filter: drop-shadow(0 28px 35px rgba(6, 40, 65, 0.18));
+  z-index: 2;
+}
+.hopi-ui-card {
+  position: absolute;
+  z-index: 3;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #fff;
+  box-shadow: 0 18px 50px rgba(6, 40, 65, 0.14);
+  padding: 16px;
+  display: grid;
+}
+.hopi-ui-card.main {
+  left: 0;
+  bottom: 62px;
+  width: 180px;
+}
+.hopi-ui-card.main span,
+.hopi-ui-card small {
+  font-size: 9px;
+  color: var(--h-muted);
+}
+.hopi-ui-card.main strong {
+  font-size: 30px;
+}
+.hopi-spark {
+  height: 35px;
+  display: flex;
+  align-items: end;
+  gap: 6px;
+  margin-top: 10px;
+}
+.hopi-spark i {
+  width: 16%;
+  background: var(--h-cyan);
+  height: 35%;
+}
+.hopi-spark i:nth-child(2) {
+  height: 60%;
+}
+.hopi-spark i:nth-child(3) {
+  height: 50%;
+}
+.hopi-spark i:nth-child(4) {
+  height: 85%;
+}
+.hopi-spark i:nth-child(5) {
+  height: 70%;
+}
+.hopi-ui-card.alert {
+  right: 4px;
+  top: 105px;
+  grid-template-columns: 1fr auto;
+  gap: 3px 16px;
+}
+.hopi-ui-card.alert span {
+  font-size: 11px;
+  color: var(--h-muted);
+}
+.hopi-ui-card.alert em {
+  grid-row: 1/3;
+  grid-column: 2;
+  font-style: normal;
+  color: var(--h-blue);
+  align-self: center;
+}
+.hopi-ui-card.asset {
+  right: 30px;
+  bottom: 70px;
+  font-size: 11px;
+}
+.hopi-proof {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--h-line);
+  border-bottom: 1px solid var(--h-line);
+}
+.hopi-proof div {
+  padding: 24px 20px;
+  border-right: 1px solid var(--h-line);
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+.hopi-proof div:last-child {
+  border: 0;
+}
+.hopi-proof span {
+  font-size: 10px;
+  color: var(--h-blue);
+}
+.hopi-proof strong {
+  font-size: 12px;
+}
+.hopi-section {
+  padding: 120px 0;
+}
+.hopi-section-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+  margin-bottom: 60px;
+}
+.hopi-section-head > span {
+  grid-column: 1/-1;
+}
+.hopi-section-head h2 {
+  font-size: clamp(36px, 5vw, 58px);
+  line-height: 1.04;
+  letter-spacing: -0.045em;
+  margin: 0;
+  max-width: 680px;
+}
+.hopi-section-head p {
+  color: var(--h-muted);
+  font-size: 17px;
+  line-height: 1.7;
+  margin: 0;
+  max-width: 520px;
+}
+.hopi-modules {
+  background: var(--h-paper);
+}
+.hopi-module-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-left: 1px solid var(--h-line);
+  border-top: 1px solid var(--h-line);
+}
+.hopi-module-grid article {
+  min-height: 260px;
+  padding: 32px;
+  border-right: 1px solid var(--h-line);
+  border-bottom: 1px solid var(--h-line);
+  position: relative;
+  background: #fff;
+}
+.hopi-module-grid article.wide {
+  grid-column: span 2;
+  background: var(--h-ink);
+  color: #fff;
+}
+.hopi-module-grid article > span {
+  font-size: 11px;
+  color: var(--h-blue);
+}
+.hopi-module-grid .wide > span {
+  color: var(--h-cyan);
+}
+.hopi-module-grid h3 {
+  font-size: 25px;
+  margin: 56px 0 12px;
+}
+.hopi-module-grid p {
+  line-height: 1.6;
+  color: var(--h-muted);
+  max-width: 360px;
+}
+.hopi-module-grid .wide p {
+  color: #bcd0dc;
+}
+.hopi-module-line {
+  position: absolute;
+  left: 32px;
+  right: 32px;
+  bottom: 28px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--h-cyan) 0 30%, var(--h-line) 30%);
+}
+.hopi-flow {
+  background: var(--h-ink);
+  color: #fff;
+}
+.hopi-flow .hopi-section-head p {
+  color: #b5cad7;
+}
+.hopi-flow .hopi-section-head > span {
+  color: var(--h-cyan);
+}
+.hopi-flow-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+.hopi-flow-grid article {
+  padding: 28px 24px 50px;
+  border-top: 1px solid #31536a;
+  border-right: 1px solid #31536a;
+}
+.hopi-flow-grid b {
+  color: var(--h-cyan);
+  font-size: 11px;
+}
+.hopi-flow-grid h3 {
+  font-size: 22px;
+  margin: 50px 0 12px;
+}
+.hopi-flow-grid p {
+  color: #b5cad7;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.hopi-demo-section {
+  background: #e9f3f8;
+}
+.hopi-demo-placeholder {
+  height: 620px;
+  background: #fff;
+  border: 1px solid var(--h-line);
+  display: grid;
+  place-items: center;
+  color: var(--h-blue);
+  font-weight: 800;
+  letter-spacing: 0.2em;
+}
+.hopi-demo-placeholder > img {
+  width: 180px;
+  height: auto;
+}
+.hopi-two-col {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 90px;
+}
+.hopi-two-col .hopi-section-head {
+  display: block;
+  position: sticky;
+  top: 140px;
+  height: max-content;
+}
+.hopi-two-col .hopi-section-head h2 {
+  margin: 18px 0;
+}
+.hopi-governance-list article {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  gap: 15px;
+  padding: 28px 0;
+  border-top: 1px solid var(--h-line);
+}
+.hopi-governance-list article:last-child {
+  border-bottom: 1px solid var(--h-line);
+}
+.hopi-governance-list span {
+  font-size: 11px;
+  color: var(--h-blue);
+}
+.hopi-governance-list h3 {
+  margin: 0 0 8px;
+  font-size: 21px;
+}
+.hopi-governance-list p {
+  margin: 0;
+  color: var(--h-muted);
+  line-height: 1.6;
+}
+.hopi-faq details {
+  border-top: 1px solid var(--h-line);
+}
+.hopi-faq details:last-child {
+  border-bottom: 1px solid var(--h-line);
+}
+.hopi-faq summary {
+  list-style: none;
+  min-height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  cursor: pointer;
+}
+.hopi-faq summary::-webkit-details-marker {
+  display: none;
+}
+.hopi-faq summary span {
+  font-size: 25px;
+  font-weight: 300;
+}
+.hopi-faq details p {
+  color: var(--h-muted);
+  line-height: 1.65;
+  margin: 0 40px 24px 0;
+}
+.hopi-cta {
+  background: var(--h-blue);
+  color: #fff;
+  padding: 75px 0;
+}
+.hopi-cta .container {
+  display: grid;
+  grid-template-columns: 100px 1fr auto;
+  align-items: center;
+  gap: 38px;
+}
+.hopi-cta .container > img {
+  width: 90px;
+  height: auto;
+  filter: brightness(1.12);
+}
+.hopi-cta h2 {
+  font-size: clamp(34px, 4vw, 54px);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin: 8px 0;
+}
+.hopi-cta p {
+  margin: 0;
+  max-width: 650px;
+  color: #d9f5fc;
+}
+.hopi-cta-actions {
+  display: grid;
+  gap: 15px;
+}
+.hopi-cta-actions > a:not(.hopi-button) {
+  color: #fff;
+  font-size: 13px;
+}
+.route-loading {
+  min-height: 100vh;
+  background: #f6fbfd;
+}
+[data-theme="dark"] .hopi-site {
+  --h-ink: #eaf7fb;
+  --h-paper: #061e30;
+  --h-line: #24465c;
+  --h-muted: #a7bfcd;
+  background: #041726;
+  color: #eaf7fb;
+}
+[data-theme="dark"] .hopi-header {
+  background: rgba(4, 23, 38, 0.93);
+}
+[data-theme="dark"] .hopi-utility {
+  background: #02111d;
+}
+[data-theme="dark"] .hopi-hero {
+  background: linear-gradient(180deg, #041726, #06263c);
+}
+[data-theme="dark"] .hopi-module-grid article,
+[data-theme="dark"] .hopi-ui-card,
+[data-theme="dark"] .hopi-demo-placeholder {
+  background: #08263a;
+}
+[data-theme="dark"] .hopi-module-grid article.wide,
+[data-theme="dark"] .hopi-flow {
+  background: #021725;
+}
+[data-theme="dark"] .hopi-demo-section {
+  background: #031827;
+}
+[data-theme="dark"] .hopi-button {
+  background: #eaf7fb;
+  color: #062841 !important;
+  border-color: #eaf7fb;
+}
+[data-theme="dark"] .hopi-button.secondary {
+  background: transparent;
+  color: #eaf7fb !important;
+}
+@media (max-width: 900px) {
+  .hopi-nav nav,
+  .hopi-button.compact {
+    display: none;
+  }
+  .hopi-menu {
+    display: flex;
+  }
+  .hopi-hero-grid {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  .hopi-hero-visual {
+    min-height: 480px;
+  }
+  .hopi-proof {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .hopi-module-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .hopi-flow-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .hopi-two-col {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+  .hopi-two-col .hopi-section-head {
+    position: static;
+  }
+  .hopi-cta .container {
+    grid-template-columns: 80px 1fr;
+  }
+  .hopi-cta-actions {
+    grid-column: 2;
+  }
+}
+@media (max-width: 600px) {
+  .hopi-site .container {
+    width: min(100% - 28px, 1180px);
+  }
+  .hopi-utility {
+    display: none;
+  }
+  .hopi-nav {
+    height: 68px;
+  }
+  .hopi-brand > img {
+    width: 40px;
+    height: 40px;
+  }
+  .hopi-brand small,
+  .hopi-pref span {
+    display: none;
+  }
+  .hopi-pref {
+    width: 44px;
+    justify-content: center;
+    padding: 0;
+  }
+  .hopi-hero {
+    padding-top: 50px;
+  }
+  .hopi-hero h1 {
+    font-size: 47px;
+  }
+  .hopi-hero-copy > p {
+    font-size: 16px;
+  }
+  .hopi-actions {
+    display: grid;
+  }
+  .hopi-hero-visual {
+    min-height: 410px;
+  }
+  .hopi-halo {
+    width: 300px;
+    height: 300px;
+  }
+  .hopi-owl {
+    width: 245px;
+  }
+  .hopi-ui-card.main {
+    bottom: 20px;
+  }
+  .hopi-ui-card.alert {
+    top: 35px;
+  }
+  .hopi-ui-card.asset {
+    display: none;
+  }
+  .hopi-proof div {
+    padding: 18px 6px;
+  }
+  .hopi-proof strong {
+    font-size: 10px;
+  }
+  .hopi-section {
+    padding: 78px 0;
+  }
+  .hopi-section-head {
+    display: block;
+    margin-bottom: 40px;
+  }
+  .hopi-section-head h2 {
+    margin: 14px 0 18px;
+    font-size: 38px;
+  }
+  .hopi-section-head p {
+    font-size: 15px;
+  }
+  .hopi-module-grid,
+  .hopi-flow-grid {
+    grid-template-columns: 1fr;
+  }
+  .hopi-module-grid article.wide {
+    grid-column: auto;
+  }
+  .hopi-module-grid article {
+    min-height: 230px;
+  }
+  .hopi-flow-grid article {
+    padding: 22px;
+  }
+  .hopi-flow-grid h3 {
+    margin-top: 28px;
+  }
+  .hopi-cta .container {
+    grid-template-columns: 1fr;
+  }
+  .hopi-cta .container > img {
+    width: 70px;
+  }
+  .hopi-cta-actions {
+    grid-column: 1;
+  }
+  .hopi-demo-placeholder {
+    height: 500px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hopi-site * {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Hopi additions use the same SOMA grid, type scale and product tokens. */
+.hopi-nav nav a {
+  font-size: 13px;
+  color: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.hopi-mobile-nav a {
+  min-height: 44px;
+  padding: 10px 0;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+}
+.hopi-hero .hopi-text-action {
+  text-decoration: none;
+  width: max-content;
+}
+.hopi-hero-visual .hopi-owl {
+  width: min(90%, 420px);
+  height: auto;
+  max-height: 440px;
+}
+.hopi-sample {
+  position: absolute;
+  bottom: 15px;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  color: var(--h-muted);
+}
+.hopi-site section[id] {
+  scroll-margin-top: 120px;
+}
+.hopi-site a:focus-visible,
+.hopi-site button:focus-visible,
+.hopi-site select:focus-visible,
+.hopi-site input:focus-visible,
+.hopi-site summary:focus-visible {
+  outline: 3px solid #0878c2;
+  outline-offset: 4px;
+}
+.hopi-skip {
+  position: fixed;
+  top: 5px;
+  left: 10px;
+  transform: translateY(-180%);
+  z-index: 100;
+  background: #05263f;
+  color: #fff;
+  padding: 12px;
+}
+.hopi-skip:focus {
+  transform: none;
+}
+.hopi-module-grid p {
+  padding-bottom: 25px;
+}
+.hopi-site .hopi-ui-card {
+  border-color: var(--h-line);
+}
+[data-theme="dark"] .hopi-site {
+  --h-blue: #69c4ff;
+}
+[data-theme="dark"] .hopi-cta {
+  background: #0878c2;
+}
+.hopi-demo-placeholder {
+  min-height: 760px;
+}
+@media (max-width: 600px) {
+  .hopi-hero-visual .hopi-owl {
+    width: 280px;
+  }
+  .hopi-hero h1 {
+    font-size: clamp(39px, 10vw, 47px);
+  }
+  .hopi-sample {
+    bottom: 0;
+  }
+  .hopi-demo-placeholder {
+    min-height: 800px;
+  }
+  .hopi-site section[id] {
+    scroll-margin-top: 80px;
+  }
+}
+/* Six balanced module cards; readable text on the blue demo and CTA surfaces. */
+.hopi-module-grid article.wide {
+  grid-column: auto;
+}
+.hopi-demo-section .hopi-section-head > span {
+  color: #0569aa;
+}
+.hopi-cta p {
+  color: #fff;
+}
+[data-theme="dark"] .hopi-demo-section .hopi-section-head > span {
+  color: #69c4ff;
+}
+.hopi-site .cookie-accept {
+  background: #0569aa;
+  border-color: #0569aa;
+}
+[data-theme="dark"] .hopi-site .cookie-copy a {
+  color: #8aceff;
+}

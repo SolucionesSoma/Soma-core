@@ -29,13 +29,10 @@ import {
 import "../index.css";
 
 const WA = "https://wa.me/573184153180";
-const productImages = [
-  "/images/products/atlas.webp",
-  "",
-  "/images/products/sonora.webp",
-  "/images/products/flow.webp",
-  "/images/products/relay.webp",
-];
+const productImages: Record<string, string> = {
+  Sonora: "/images/products/sonora.webp",
+  Relay: "/images/products/relay.webp",
+};
 const developmentIcons = [Car, Scale, HardHat];
 const capabilityIcons = [Boxes, Code2, Bot, Database, ShieldCheck];
 const sectorImages = [
@@ -274,11 +271,13 @@ function HomePage() {
                       <img src="/images/products/nexo-hero-demo.webp" alt={locale === "es" ? "Abeja de Nexo junto al dashboard del aplicativo" : "Nexo bee alongside the application dashboard"} width="1600" height="900" loading="lazy" decoding="async" />
                     ) : name === "Orbit" ? (
                       <img src="/images/products/orbit-hero-demo.webp" alt={locale === "es" ? "Zorro de Orbit junto al dashboard del aplicativo" : "Orbit fox alongside the application dashboard"} width="1200" height="674" loading="lazy" decoding="async" />
+                    ) : name === "Hopi" ? (
+                      <img src="/images/products/hopi-hero-demo.webp" alt={locale === "es" ? "Conejo de Hopi junto a la demo de operación de restaurante" : "Hopi rabbit alongside the restaurant operations demo"} width="1600" height="900" loading="lazy" decoding="async" />
                     ) : name === "Atlas" ? (
                       <img src="/images/products/atlas-hero-demo.webp" alt={locale === "es" ? "Búho de Atlas junto al dashboard analítico" : "Atlas owl alongside the analytics dashboard"} width="1672" height="941" loading="lazy" decoding="async" />
                     ) : (
                       <img
-                        src={productImages[i]}
+                        src={productImages[name]}
                         alt={`${name}: ${desc}`}
                         width="1586"
                         height="992"
@@ -306,6 +305,11 @@ function HomePage() {
                       ) : name === "Atlas" ? (
                         <a className="inline-link" href={`/productos/atlas${locale === "en" ? "?lang=en" : ""}`}>
                           {locale === "es" ? "Conocer Atlas" : "Explore Atlas"}
+                          <ArrowRight size={16} />
+                        </a>
+                      ) : name === "Hopi" ? (
+                        <a className="inline-link" href={`/productos/hopi${locale === "en" ? "?lang=en" : ""}`}>
+                          {locale === "es" ? "Conocer Hopi" : "Explore Hopi"}
                           <ArrowRight size={16} />
                         </a>
                       ) : (

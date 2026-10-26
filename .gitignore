@@ -29,3 +29,7 @@ Thumbs.db
 
 # Coverage
 coverage/
+
+# Browser validation artifacts
+app/test-results/
+app/playwright-report/
